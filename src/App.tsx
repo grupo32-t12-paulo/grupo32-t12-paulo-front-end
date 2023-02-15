@@ -1,9 +1,11 @@
 import './App.css';
-import MediaCard from './components/CardComponent';
+import CardInfoSeller from './components/CardInfoSeller';
 
 function App() {
   return (
-    <MediaCard />
+    <>
+      <CardInfoSeller />
+    </>
   );
 }
 
