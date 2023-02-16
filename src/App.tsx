@@ -1,10 +1,11 @@
 import './App.css';
-import CardInfoSeller from './components/CardInfoSeller';
+import BackToTop from './components/Footer';
+
 
 function App() {
   return (
     <>
-      <CardInfoSeller />
+      <BackToTop />
     </>
   );
 }
