@@ -1,4 +1,3 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -50,7 +49,7 @@ export default function MediaCard() {
             marginBottom: "10px",
           }}
         >
-          <Avatar alt="Everton Vieira" src="/static/images/avatar/1.jpg" sx={{ width: 32, height: 32 }} />
+          <Avatar alt="Everton Vieira" src="/static/images/avatar/1.jpg" sx={{ width: 32, height: 32, fontSize: "14px", backgroundColor: "#4529E6" }} />
           <Typography
             variant="body1"
             style={{
