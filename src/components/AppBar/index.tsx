@@ -10,7 +10,7 @@ import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import user_image from "../assets/avatar_img.jpg";
 import { useNavigate } from "react-router-dom";
 
@@ -87,9 +87,8 @@ export default function AppBarComponent() {
           <Box
             sx={{
               display: { xs: "flex", md: "none" },
-              left: 0,
-              right: 0,
-              maxWidth: "100vw",
+              mr: "0",
+              ml: "0",
             }}
           >
             <IconButton
