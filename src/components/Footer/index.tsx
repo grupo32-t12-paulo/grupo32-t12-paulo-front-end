@@ -18,6 +18,7 @@ export default function BackToTop() {
     <div
       ref={headerRef}
       style={{
+        bottom: 0,
         minWidth: "100%",
         height: isScreenSizeLarge ? "140px" : "310px",
         backgroundColor: "#0B0D0D",
