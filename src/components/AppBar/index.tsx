@@ -10,8 +10,7 @@ import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
-import logo from "../assets/logo.svg";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import logo from "../../assets/logo.svg";
 import user_image from "../assets/avatar_img.jpg";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +20,7 @@ export default function AppBarComponent() {
     state: true,
     name: "Marcos Jorge",
     // para ver o comportamento do componente sem imagem descomente a linha abaixo
-    // image: "",
+    image: "",
     // para ver o comportamento do componente com imagem descomente a linha abaixo
     // image: user_image,
   };
@@ -87,8 +86,9 @@ export default function AppBarComponent() {
           {/* menu hamburguer */}
           <Box
             sx={{
-              flexGrow: 0,
               display: { xs: "flex", md: "none" },
+              mr: "0",
+              ml: "0",
             }}
           >
             <IconButton
@@ -104,27 +104,104 @@ export default function AppBarComponent() {
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
+                width: "100vw",
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.name}</Typography>
+                <MenuItem
+                  key={page.name}
+                  sx={{
+                    overflow: "visible",
+                    left: "0px",
+                    right: "0px",
+                    pt: 2,
+                    pb: 2,
+                  }}
+                  onClick={handleCloseNavMenu}
+                >
+                  <Typography sx={{}} textAlign="center">
+                    {page.name}
+                  </Typography>
                 </MenuItem>
               ))}
               <Divider />
+              {user.state ? (
+                settings.map((page) => (
+                  <MenuItem
+                    key={page}
+                    sx={{
+                      width: "100vw",
+                      pt: 2,
+                      pb: 2,
+                    }}
+                    style={{ maxWidth: "100vw", left: "0px" }}
+                    onClick={handleCloseNavMenu}
+                  >
+                    <Typography sx={{}} textAlign="center">
+                      {page}
+                    </Typography>
+                  </MenuItem>
+                ))
+              ) : (
+                <>
+                  <MenuItem
+                    key={"login"}
+                    sx={{
+                      width: "100vw",
+                      alignContent: "center",
+                      pt: 2,
+                      pb: 2,
+                    }}
+                    style={{ maxWidth: "100vw", left: "0px" }}
+                    onClick={handleCloseNavMenu}
+                  >
+                    <Typography sx={{}} textAlign="center">
+                      Fazer Login
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem sx={{ display: "flex", justifyContent: "center" }}>
+                    <Button
+                      variant="outlined"
+                      onClick={() => {
+                        navigate(`/`);
+                        return handleCloseNavMenu();
+                      }}
+                      sx={{
+                        my: 2,
+                        pt: 2,
+                        pb: 2,
+                        pr: 2.5,
+                        pl: 2.5,
+                        color: "black",
+                        borderColor: "#DEE2E6",
+                        display: "flex",
+                        width: "90%",
+                        textTransform: "capitalize",
+                        ":hover": {
+                          color: "#1976d2",
+                        },
+                      }}
+                      key={"cadastrar"}
+                    >
+                      <Typography
+                        m={0.2}
+                        mr={0.7}
+                        ml={0.7}
+                        sx={{
+                          fontWeight: 600,
+                        }}
+                        textAlign="center"
+                      >
+                        Cadastrar
+                      </Typography>
+                    </Button>
+                  </MenuItem>
+                </>
+              )}
             </Menu>
           </Box>
 
@@ -170,7 +247,7 @@ export default function AppBarComponent() {
                         }}
                         sizes="small"
                         src={user.image}
-                      ></Avatar>
+                      />
                     ) : (
                       <Avatar
                         sx={{
@@ -251,8 +328,8 @@ export default function AppBarComponent() {
                   }}
                   sx={{
                     my: 2,
-                    pt: 1,
-                    pb: 1,
+                    pt: 0,
+                    pb: 0,
                     pr: 2.5,
                     pl: 2.5,
                     color: "black",
