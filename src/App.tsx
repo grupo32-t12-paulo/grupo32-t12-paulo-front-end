@@ -1,11 +1,11 @@
 import './App.css';
-import BackToTop from './components/Footer';
+import ModalDelete from './components/ModalDelete';
 
 
 function App() {
   return (
     <>
-      <BackToTop />
+      <ModalDelete />
     </>
   );
 }
