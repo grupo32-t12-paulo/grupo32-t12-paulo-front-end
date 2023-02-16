@@ -21,7 +21,7 @@ export default function AppBarComponent() {
     state: true,
     name: "Marcos Jorge",
     // para ver o comportamento do componente sem imagem descomente a linha abaixo
-    // image: "",
+    image: "",
     // para ver o comportamento do componente com imagem descomente a linha abaixo
     // image: user_image,
   };
