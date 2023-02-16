@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import logo from "../assets/logo.svg";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import user_image from "../assets/avatar_img.jpg";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +23,7 @@ export default function AppBarComponent() {
     // para ver o comportamento do componente sem imagem descomente a linha abaixo
     // image: "",
     // para ver o comportamento do componente com imagem descomente a linha abaixo
-    image: user_image,
+    // image: user_image,
   };
   const arrName = user.name.split(" ");
   const first = arrName[0].split("");
