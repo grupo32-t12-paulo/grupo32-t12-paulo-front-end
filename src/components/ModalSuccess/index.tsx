@@ -55,7 +55,7 @@ export default function ModalSuccess() {
                 fontSize: "16px",
               }}
             >
-              Sucesso
+              Sucesso!
             </Typography>
             <CloseIcon onClick={handleClose} style={{cursor:"pointer"}} />
           </div>
