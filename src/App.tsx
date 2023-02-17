@@ -1,11 +1,14 @@
-import './App.css';
-import ModalDelete from './components/ModalDelete';
-import ActionAreaCard from './components/CardAuction';
+import "./App.css";
+import CurrentImageGallery from "./components/CurrentImageGallery";
+import GalleryGrid from "./components/Gallery";
+import ModalExpandImage from "./components/ModalExpandImage";
 
 function App() {
   return (
     <>
-      <ActionAreaCard />
+      <ModalExpandImage />
+      <CurrentImageGallery />
+      <GalleryGrid />
     </>
   );
 }
