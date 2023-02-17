@@ -1,14 +1,10 @@
 import "./App.css";
-import CurrentImageGallery from "./components/CurrentImageGallery";
-import GalleryGrid from "./components/Gallery";
-import ModalExpandImage from "./components/ModalExpandImage";
+import ModalSuccess from "./components/ModalSuccess";
 
 function App() {
   return (
     <>
-      <ModalExpandImage />
-      <CurrentImageGallery />
-      <GalleryGrid />
+      <ModalSuccess />
     </>
   );
 }
