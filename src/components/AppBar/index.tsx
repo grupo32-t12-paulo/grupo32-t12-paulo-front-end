@@ -4,7 +4,7 @@ import { AppBar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Box, Container } from "@mui/system";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
@@ -99,7 +99,7 @@ export default function AppBarComponent() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              {/* <MenuIcon /> */}
             </IconButton>
             <Menu
               id="menu-appbar"
