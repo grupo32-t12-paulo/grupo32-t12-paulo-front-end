@@ -4,7 +4,7 @@ import { AppBar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Box, Container } from "@mui/system";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
@@ -99,7 +99,7 @@ export default function AppBarComponent() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              {/* <MenuIcon /> */}
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -161,28 +161,28 @@ export default function AppBarComponent() {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                    {user.image ? (
-                      <Avatar
-                        sx={{
-                          bgcolor: "#5126EA",
-                          height: "32px",
-                          width: "32px",
-                        }}
-                        sizes="small"
-                        src={user.image}
-                      ></Avatar>
-                    ) : (
-                      <Avatar
-                        sx={{
-                          bgcolor: "#5126EA",
-                          height: "32px",
-                          width: "32px",
-                        }}
-                        sizes="small"
-                      >
-                        <Typography>{letters}</Typography>
-                      </Avatar>
-                    )}
+                    {/* {user.image ? ( */}
+                    <Avatar
+                      sx={{
+                        bgcolor: "#5126EA",
+                        height: "32px",
+                        width: "32px",
+                      }}
+                      sizes="small"
+                      // src={user.image}
+                    ></Avatar>
+                    {/* ) : ( */}
+                    <Avatar
+                      sx={{
+                        bgcolor: "#5126EA",
+                        height: "32px",
+                        width: "32px",
+                      }}
+                      sizes="small"
+                    >
+                      <Typography>{letters}</Typography>
+                    </Avatar>
+                    {/* )} */}
                   </IconButton>
                 </Tooltip>
                 <Typography

@@ -52,42 +52,26 @@ const Global = createGlobalStyle`
   --random12: #30007D;
 
 
+
   // typogrady
 
-  --Heading-1-700:
-  --Heading-2-600:
-  --Heading-3-600:
-  --Heading-3-500:
-  --Heading-4-600:
-  --Heading-4-500:
-  --Heading-5-600:
-  --Heading-5-500:
-  --Heading-6-600:
-  --Heading-6-500:
-  --Heading-7-600:
-  --Heading-7-500:
+  --Heading-1-700: 700;
+  --Heading-2-600: 600;
+  --Heading-3-500: 500;
 
+  --body-1-400: 400;
+  --body-2-500: 500;
 
-  // colors buttons
+  --input-placeholder: 400;
+  --input-label: 500;
+  --button-big-text: 600;
+  --button-medium-text: 600;
 
-  --button-black: #0B0D0D;
-  --button-black-hover: #212529;
+  --heading: 'Lexend';
+  --body: 'Inter';
+  --button: 'Inter';
+  --input: 'Inter';
 
-  --button-gray: #DEE2E6;
-  --button-gray-hover: #CED4DA
-  --button-gray-disable: #CED4DA
-
-
-  --button-purple: #4529E6
-  --button-purple-hover: #5126EA
-  --button-purple-opacity: #EDEAFD
-  --button-purple-disable: #B0A6F0
-
-  --button-red: #FFE5E5
-  --button-red-hover: #FDD8D8
-
-  --button-green: #DDF3E4
-  --button-green-hover: #CCEBD7
 
 }
 
@@ -99,9 +83,38 @@ const Global = createGlobalStyle`
 }
 
 body{
+    background-color: var(--whiteFixed);
+    color: var(--grey1);
     width: 100%;
     overflow-x: hidden;
+    font-family: var(--body);
+
 }
+
+h1, h2, h3, h4, h5, h6, strong{
+    font-family: var(--heading);
+} 
+
+button{
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    font-family: var(--button);
+}
+
+input, textarea {
+  font-family: var(--input);
+  padding: 10px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+
 `;
 
 export default Global;
