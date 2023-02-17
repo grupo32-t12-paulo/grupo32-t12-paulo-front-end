@@ -1,12 +1,13 @@
 import "./App.css";
 import ModalSuccess from "./components/ModalSuccess";
-import CardDescriptionProduct from "./components/CardDescriptionProduct";
+
+import ModalInfo from "./components/ModalInfo";
 
 
 function App() {
   return (
     <>
-      <CardDescriptionProduct />
+      <ModalInfo />
     </>
   );
 }
