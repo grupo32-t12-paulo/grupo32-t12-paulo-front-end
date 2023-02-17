@@ -1,3 +1,4 @@
+import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -18,11 +19,11 @@ export default function MediaCard() {
           gutterBottom
           variant="h5"
           component="div"
-          style={{ 
+          style={{
             paddingTop: "5px",
-            fontFamily: "Lexend", 
-            fontWeight: "600", 
-            fontSize: "16px" 
+            fontFamily: "Lexend",
+            fontWeight: "600",
+            fontSize: "16px"
           }}
         >
           Modelo do carro
@@ -49,7 +50,7 @@ export default function MediaCard() {
             marginBottom: "10px",
           }}
         >
-          <Avatar alt="Everton Vieira" src="/static/images/avatar/1.jpg" sx={{ width: 32, height: 32, fontSize: "14px", backgroundColor: "#4529E6" }} />
+          <Avatar alt="Everton Vieira" src="/static/images/avatar/1.jpg" sx={{ width: 32, height: 32 }} />
           <Typography
             variant="body1"
             style={{
