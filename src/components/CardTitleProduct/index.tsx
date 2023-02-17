@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import VehicleData from '../VehicleData';
 
 
-export default function CardProduct() {
+export default function CardTitleProduct() {
     return (
         <Card sx={{ maxWidth: 751, minHeight: 213 }}
             style={
