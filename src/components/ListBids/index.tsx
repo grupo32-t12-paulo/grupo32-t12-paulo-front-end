@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Button,
   Icon,
   List,
   ListItem,
@@ -12,6 +13,8 @@ import "moment/locale/pt-br";
 import Ellipse from "../../assets/ellipse.svg";
 
 export default function ListBids() {
+  const isAdminAnnouncement = false;
+
   let users = [
     {
       // Para ver o comportamento do componente sem usuário logado mude o state de user para false
@@ -34,7 +37,7 @@ export default function ListBids() {
       // para ver o comportamento do componente sem imagem descomente a linha abaixo
       image: "",
       bid: 8000,
-      created_at: "2023-02-17T21:58:01Z",
+      created_at: "2023-02-18T01:12:00Z",
       elapsedTime: "",
       // para ver o comportamento do componente com imagem descomente a linha abaixo
       // image: user_image,
@@ -159,12 +162,37 @@ export default function ListBids() {
                 lineHeight: "24px",
                 textAlign: "left",
                 color: "#495057",
+                mb: 2,
               }}
               primary={user.bid.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
               })}
             />
+            {isAdminAnnouncement && (
+              <Button
+                sx={{
+                  color: "var(--brand1)",
+                  bgcolor: "var(--brand4)",
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: "500",
+                  fontSize: "14px",
+                  ":hover": {
+                    bgcolor: "var(--brand1)",
+                    color: "var(--brand4)",
+                  },
+                }}
+                variant="text"
+              >
+                <Typography
+                  sx={{
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Vender
+                </Typography>
+              </Button>
+            )}
           </ListItem>
         ))}
       </List>
