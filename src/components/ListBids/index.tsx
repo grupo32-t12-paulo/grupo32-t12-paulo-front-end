@@ -24,7 +24,7 @@ export default function ListBids() {
       // para ver o comportamento do componente sem imagem descomente a linha abaixo
       image: "",
       bid: 8000,
-      created_at: "2023-02-17T21:58:01Z",
+      created_at: "2023-02-17T22:58:01Z",
       elapsedTime: "",
       // para ver o comportamento do componente com imagem descomente a linha abaixo
       // image: user_image,
@@ -37,7 +37,7 @@ export default function ListBids() {
       // para ver o comportamento do componente sem imagem descomente a linha abaixo
       image: "",
       bid: 8000,
-      created_at: "2023-02-18T01:12:00Z",
+      created_at: "2023-02-18T03:12:00Z",
       elapsedTime: "",
       // para ver o comportamento do componente com imagem descomente a linha abaixo
       // image: user_image,
@@ -50,7 +50,7 @@ export default function ListBids() {
       // para ver o comportamento do componente sem imagem descomente a linha abaixo
       image: "",
       bid: 8000,
-      created_at: "2023-02-17T21:58:01Z",
+      created_at: "2023-02-18T01:58:01Z",
       elapsedTime: "",
       // para ver o comportamento do componente com imagem descomente a linha abaixo
       // image: user_image,
@@ -151,7 +151,9 @@ export default function ListBids() {
                   color: "var(--grey3)",
                 }}
               >
-                <Moment fromNow>{user.created_at}</Moment>
+                <Moment interval={5} fromNow>
+                  {user.created_at}
+                </Moment>
               </Typography>
             </Box>
             <ListItemText
