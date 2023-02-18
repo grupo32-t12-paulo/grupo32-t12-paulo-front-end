@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Button,
   Icon,
   List,
   ListItem,
@@ -12,9 +11,7 @@ import Moment from "react-moment";
 import "moment/locale/pt-br";
 import Ellipse from "../../assets/ellipse.svg";
 
-export default function ListBids() {
-  const isAdminAnnouncement = false;
-
+export default function ListComments() {
   let users = [
     {
       // Para ver o comportamento do componente sem usuário logado mude o state de user para false
@@ -23,8 +20,9 @@ export default function ListBids() {
       letters: "",
       // para ver o comportamento do componente sem imagem descomente a linha abaixo
       image: "",
-      bid: 8000,
-      created_at: "2023-02-17T22:58:01Z",
+      comment:
+        "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.",
+      created_at: "2023-02-17T23:15:01Z",
       elapsedTime: "",
       // para ver o comportamento do componente com imagem descomente a linha abaixo
       // image: user_image,
@@ -36,8 +34,9 @@ export default function ListBids() {
       letters: "",
       // para ver o comportamento do componente sem imagem descomente a linha abaixo
       image: "",
-      bid: 8000,
-      created_at: "2023-02-18T03:12:00Z",
+      comment:
+        "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.",
+      created_at: "2023-02-18T01:12:00Z",
       elapsedTime: "",
       // para ver o comportamento do componente com imagem descomente a linha abaixo
       // image: user_image,
@@ -49,8 +48,9 @@ export default function ListBids() {
       letters: "",
       // para ver o comportamento do componente sem imagem descomente a linha abaixo
       image: "",
-      bid: 8000,
-      created_at: "2023-02-18T01:58:01Z",
+      comment:
+        "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.",
+      created_at: "2023-02-18T02:31:01Z",
       elapsedTime: "",
       // para ver o comportamento do componente com imagem descomente a linha abaixo
       // image: user_image,
@@ -69,7 +69,7 @@ export default function ListBids() {
 
   return (
     <Box sx={{ p: 5 }}>
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <List sx={{ width: "100%", maxWidth: 751, bgcolor: "background.paper" }}>
         <Typography
           variant="h5"
           sx={{
@@ -162,39 +162,12 @@ export default function ListBids() {
                 fontSize: "14px",
                 fontWeight: 400,
                 lineHeight: "24px",
-                textAlign: "left",
+                textAlign: "justify",
                 color: "#495057",
                 mb: 2,
               }}
-              primary={user.bid.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
+              primary={user.comment}
             />
-            {isAdminAnnouncement && (
-              <Button
-                sx={{
-                  color: "var(--brand1)",
-                  bgcolor: "var(--brand4)",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  ":hover": {
-                    bgcolor: "var(--brand1)",
-                    color: "var(--brand4)",
-                  },
-                }}
-                variant="text"
-              >
-                <Typography
-                  sx={{
-                    textTransform: "capitalize",
-                  }}
-                >
-                  Vender
-                </Typography>
-              </Button>
-            )}
           </ListItem>
         ))}
       </List>
