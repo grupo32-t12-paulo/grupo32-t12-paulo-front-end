@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Breadcrumbs,
   Icon,
   List,
   ListItem,
