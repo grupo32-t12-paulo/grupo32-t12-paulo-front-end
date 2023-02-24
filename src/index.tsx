@@ -13,8 +13,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <CurrentImageGalleryProvider>
-      <Router>
+    <Router>
+      <CurrentImageGalleryProvider>
         <UserProvider>
           <ToastContainer
             position="top-right"
@@ -30,8 +30,8 @@ root.render(
           />
           <App />
         </UserProvider>
-      </Router>
-    </CurrentImageGalleryProvider>
+      </CurrentImageGalleryProvider>
+    </Router>
   </React.StrictMode>
 );
 
