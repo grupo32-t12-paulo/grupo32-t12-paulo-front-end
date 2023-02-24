@@ -1,8 +1,10 @@
-import { Container, Div, Form } from "./style";
+import { Box } from "@mui/material";
+import { ContainerRoot, Div, Form } from "./style";
 
 const Login = () => {
   return (
-    <Container>
+    <Box sx={{mt: {md : 10, xs : 18}, mb: {md: 0, xs: 10}}}>
+    <ContainerRoot>
       <Div>
         <Form>
           <h2>Login</h2>
@@ -20,7 +22,8 @@ const Login = () => {
           <button className="cadastrar">Cadastrar</button>
         </Form>
       </Div>
-    </Container>
+    </ContainerRoot>
+    </Box>
   );
 };
 

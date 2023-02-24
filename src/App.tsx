@@ -1,12 +1,12 @@
 import "./App.css";
+import LoginPage from "./pages/loginPage";
 import Global from "./style/Global";
-import RouteApllication from "./routes";
 
 function App() {
   return (
     <>
       <Global />
-      <RouteApllication />
+      <LoginPage />
     </>
   );
 }
