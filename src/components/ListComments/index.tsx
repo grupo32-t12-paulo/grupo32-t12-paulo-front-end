@@ -68,13 +68,20 @@ export default function ListComments() {
   });
 
   return (
-    <Box sx={{ p: 5 }}>
-      <List sx={{ width: "100%", maxWidth: 751, bgcolor: "background.paper" }}>
+    <Box sx={{ mt: 5, mr: 1.1 }}>
+      <List
+        sx={{
+          width: "100%",
+          bgcolor: "background.paper",
+          borderRadius: 1,
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
             ml: 2,
-            mb: 2,
+            mb: 4,
+            mt: 3,
             color: "var(--grey1)",
             fontFamily: "Lexend, sans-serif",
             fontWeight: 600,

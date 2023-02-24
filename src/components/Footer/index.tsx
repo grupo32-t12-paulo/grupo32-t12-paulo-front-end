@@ -1,4 +1,3 @@
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -18,6 +17,7 @@ export default function BackToTop() {
     <div
       ref={headerRef}
       style={{
+        marginTop: 40,
         minWidth: "100%",
         height: isScreenSizeLarge ? "140px" : "310px",
         backgroundColor: "#0B0D0D",
