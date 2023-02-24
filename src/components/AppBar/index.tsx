@@ -11,18 +11,18 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import logo from "../../assets/logo.svg";
-import user_image from "../assets/avatar_img.jpg";
+import user_image from "../../assets/avatar_img.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function AppBarComponent() {
   const user = {
     // Para ver o comportamento do componente sem usuário logado mude o state de user para false
     state: true,
-    name: "Marcos Jorge",
+    name: "Jason Todd",
     // para ver o comportamento do componente sem imagem descomente a linha abaixo
-    image: "",
+    // image: "",
     // para ver o comportamento do componente com imagem descomente a linha abaixo
-    // image: user_image,
+    image: user_image,
   };
   const arrName = user.name.split(" ");
   const first = arrName[0].split("");
