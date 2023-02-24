@@ -127,7 +127,7 @@ const HomePage = () => {
       <AppBarComponent />
       <CardHeader />
 
-      <Box>
+      <Box sx={{ ml: { md: 15, xs: 7 }, mt: 6 }}>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
@@ -154,7 +154,7 @@ const HomePage = () => {
         </List>
       </Box>
 
-      <Container>
+      <Box sx={{ ml: { md: 15, xs: 7 } }}>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
@@ -218,7 +218,7 @@ const HomePage = () => {
             })}
           </List>
         </Box>
-      </Container>
+      </Box>
       <BackToTop />
     </>
   );
