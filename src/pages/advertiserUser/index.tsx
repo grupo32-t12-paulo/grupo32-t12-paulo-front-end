@@ -131,33 +131,6 @@ const AdvertiserUser = () => {
       <ContainerRoot>
         <Container>
           <CardInfoSeller />
-          <Box>
-            <Typography
-              variant="h5"
-              style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
-            >
-              Leilão
-            </Typography>
-            <List
-              sx={{
-                display: "flex",
-                gap: 0.1,
-                overflow: "auto",
-                pb: 2,
-              }}
-            >
-              <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-                <ActionAreaCard />
-              </ListItem>
-              <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-                <ActionAreaCard />
-              </ListItem>
-              <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-                <ActionAreaCard />
-              </ListItem>
-            </List>
-          </Box>
-
           <Typography
             variant="h5"
             style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
