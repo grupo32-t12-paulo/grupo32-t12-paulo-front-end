@@ -1,4 +1,3 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,16 +8,38 @@ import { ButtonEddit } from "../ButtonEddit";
 import CreateAnnouncement from "../CreateAnnouncement";
 
 
+
 interface IButton {
   ButtonType?: string
 }
 
 export default function MediaCard({ ButtonType }: IButton) {
+
+interface IChildren {
+  title: string;
+  image: string;
+  description: string;
+  seller: string;
+  km: string;
+  year: number;
+  price: string;
+}
+
+export default function MediaCard({
+  title,
+  image,
+  description,
+  seller,
+  km,
+  year,
+  price,
+}: IChildren) {
+
   return (
-    <Card sx={{ maxWidth: 312, boxShadow: "unset" }}>
+    <Card sx={{ width: "302px", boxShadow: "unset" }}>
       <CardMedia
         sx={{ height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
-        image="https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png"
+        image={image}
         title="green iguana"
       />
       <CardContent sx={{ padding: "0" }}>
@@ -30,10 +51,11 @@ export default function MediaCard({ ButtonType }: IButton) {
             paddingTop: "5px",
             fontFamily: "Lexend",
             fontWeight: "600",
-            fontSize: "16px"
+            fontSize: "16px",
+            margin: 4,
           }}
         >
-          Modelo do carro
+          {title}
         </Typography>
         <Typography
           variant="body2"
@@ -42,10 +64,10 @@ export default function MediaCard({ ButtonType }: IButton) {
             fontFamily: "Inter",
             fontSize: "14px",
             textAlign: "justify",
+            margin: 4,
           }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text
+          {description}
         </Typography>
         <div
           style={{
@@ -53,11 +75,16 @@ export default function MediaCard({ ButtonType }: IButton) {
             alignItems: "center",
             justifyContent: "left",
             gap: "10px",
-            marginTop: "10px",
+            marginTop: "14px",
             marginBottom: "10px",
+            marginLeft: 4,
           }}
         >
-          <Avatar alt="Everton Vieira" src="/static/images/avatar/1.jpg" sx={{ width: 32, height: 32 }} />
+          <Avatar
+            alt={seller}
+            src="/static/images/avatar/1.jpg"
+            sx={{ width: 32, height: 32 }}
+          />
           <Typography
             variant="body1"
             style={{
@@ -67,7 +94,7 @@ export default function MediaCard({ ButtonType }: IButton) {
               fontSize: "14px",
             }}
           >
-            Everton Vieira
+            {seller}
           </Typography>
         </div>
         <div
@@ -75,14 +102,16 @@ export default function MediaCard({ ButtonType }: IButton) {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            margin: 4,
+            marginTop: 15,
           }}
         >
-          <div style={{ display: "flex", gap: "10px", padding: "0" }}>
+          <div style={{ display: "flex", gap: "7px", padding: "0" }}>
             <Button
               variant="contained"
               style={{
-                width: "50px",
-                height: "32px",
+                width: "85px",
+                flexWrap: "nowrap",
                 backgroundColor: "#EDEAFD",
                 fontWeight: "500",
                 fontSize: "14px",
@@ -90,13 +119,11 @@ export default function MediaCard({ ButtonType }: IButton) {
                 boxShadow: "unset",
               }}
             >
-              KM
+              KM {km}
             </Button>
             <Button
               variant="contained"
               style={{
-                width: "50px",
-                height: "32px",
                 backgroundColor: "#EDEAFD",
                 fontWeight: "500",
                 fontSize: "14px",
@@ -104,7 +131,7 @@ export default function MediaCard({ ButtonType }: IButton) {
                 boxShadow: "unset",
               }}
             >
-              2019
+              {year}
             </Button>
           </div>
           <Typography
@@ -115,9 +142,10 @@ export default function MediaCard({ ButtonType }: IButton) {
               fontSize: "16px",
               textAlign: "justify",
               lineHeight: "20px",
+              marginRight: "10px",
             }}
           >
-            R$ 00.000,00
+            R$ {price}
           </Typography>
         </div>
         {

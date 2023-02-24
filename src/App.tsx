@@ -1,13 +1,17 @@
 import "./App.css";
 
+import LoginPage from "./pages/loginPage";
 import Global from "./style/Global";
-import ProfileViewAdmin from "./pages/ProfileViewAdmin";
+
 
 function App() {
   return (
     <>
       <Global />
-      <ProfileViewAdmin />
+
+    
+      <LoginPage />
+
     </>
   );
 }

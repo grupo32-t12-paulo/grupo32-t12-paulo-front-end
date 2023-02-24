@@ -110,7 +110,25 @@ export default function CardAuction({ ButtonType }: IButton) {
                     borderTopLeftRadius: "0",
                     WebkitBorderTopRightRadius: "0",
                     cursor: `${ButtonType === "profile" ? "pointer" : "auto"}`
+
                 }}
+              >
+                Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200
+              </h3>
+              <p style={{ color: "#CED4DA", fontSize: "16px" }}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem...
+              </p>
+            </Typography>
+
+            <Typography
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: "20px",
+              }}
             >
                 {
                     ButtonType === "profile" ?
@@ -133,8 +151,3 @@ export default function CardAuction({ ButtonType }: IButton) {
         </Card >
     );
 }
-
-
-
-
-

@@ -87,7 +87,8 @@ export const Form = styled.form`
     margin-bottom: 20px;
   }
 
-  .button-buyer {
+  .button-buyer,
+  .button-advertiser {
     width: 120px;
     height: 40px;
     font-weight: var(--button-medium-text);
@@ -95,7 +96,7 @@ export const Form = styled.form`
     color: var(--whiteFixed);
   }
 
-  .button-advertiser {
+  .button-advertiser:focus {
     width: 120px;
     height: 40px;
     border: 1px solid var(--grey4);
