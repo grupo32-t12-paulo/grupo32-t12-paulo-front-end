@@ -4,6 +4,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
+import { ButtonEddit } from "../ButtonEddit";
+import CreateAnnouncement from "../CreateAnnouncement";
+
+
+
+interface IButton {
+  ButtonType?: string
+}
+
+export default function MediaCard({ ButtonType }: IButton) {
 
 interface IChildren {
   title: string;
@@ -24,6 +34,7 @@ export default function MediaCard({
   year,
   price,
 }: IChildren) {
+
   return (
     <Card sx={{ width: "302px", boxShadow: "unset" }}>
       <CardMedia
@@ -137,7 +148,25 @@ export default function MediaCard({
             R$ {price}
           </Typography>
         </div>
+        {
+          ButtonType === "profile" ?
+            <div style={
+              {
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "end",
+                width: "100%",
+                minHeight: "60px",
+              }
+            }
+            >
+              <ButtonEddit color="#00000A" />
+            </div>
+            :
+            ""
+        }
       </CardContent>
     </Card>
   );
 }
+
