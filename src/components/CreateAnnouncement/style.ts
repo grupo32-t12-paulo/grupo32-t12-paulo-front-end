@@ -18,13 +18,14 @@ export const Container = styled.div`
 
   background-color: #212529c7;
   border-radius: 4px;
+  z-index: 999;
 `;
 
 export const Modal = styled.div`
   display: flex;
   flex-direction: column;
-  height: 80vh;
-  overflow-y: scroll;
+  min-height: 1036px;
+  // overflow-y: scroll;
 
   gap: 16px;
   padding: 10px 10px 20px 10px;
@@ -32,6 +33,7 @@ export const Modal = styled.div`
   background-color: var(--whiteFixed);
   box-shadow: 0px 4px 32px -8px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+
 `;
 
 export const Header = styled.div`

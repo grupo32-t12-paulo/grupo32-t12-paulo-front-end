@@ -9,9 +9,16 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import VehicleData from '../VehicleData';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { AvatarComponent } from '../Avatar';
+import { ButtonEddit } from '../ButtonEddit';
+import { create } from 'domain';
 
 
-export default function ActionAreaCard() {
+interface IButton {
+    ButtonType?: string
+}
+
+export default function CardAuction({ ButtonType }: IButton) {
+
     return (
         <Card sx={{ maxWidth: 735 }}
         >
@@ -22,6 +29,7 @@ export default function ActionAreaCard() {
                         minHeight: "326px",
                         alignItems: "center",
                         justifyContent: "center",
+                        cursor: "auto"
                     }}
             >
                 <CardContent
@@ -101,10 +109,26 @@ export default function ActionAreaCard() {
                     padding: "0 20px",
                     borderTopLeftRadius: "0",
                     WebkitBorderTopRightRadius: "0",
+                    cursor: `${ButtonType === "profile" ? "pointer" : "auto"}`
                 }}
             >
-                Acessar página do leilão
-                <ArrowForwardIcon />
+                {
+                    ButtonType === "profile" ?
+                        < ButtonEddit color="#FFFFFF" />
+                        :
+                        <div
+                            style={
+                                {
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    width: "100%",
+                                    padding: "0 20px",
+                                }}
+                        >
+                            Acessar página do leilão
+                            < ArrowForwardIcon />
+                        </div>
+                }
             </Button>
         </Card >
     );
