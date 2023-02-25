@@ -9,16 +9,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import VehicleData from '../VehicleData';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { AvatarComponent } from '../Avatar';
-import { ButtonEddit } from '../ButtonEddit';
-import { create } from 'domain';
 
 
-interface IButton {
-    ButtonType?: string
-}
-
-export default function CardAuction({ ButtonType }: IButton) {
-
+export default function ActionAreaCard() {
     return (
         <Card sx={{ maxWidth: 735 }}
         >
@@ -29,7 +22,6 @@ export default function CardAuction({ ButtonType }: IButton) {
                         minHeight: "326px",
                         alignItems: "center",
                         justifyContent: "center",
-                        cursor: "auto"
                     }}
             >
                 <CardContent
@@ -109,45 +101,15 @@ export default function CardAuction({ ButtonType }: IButton) {
                     padding: "0 20px",
                     borderTopLeftRadius: "0",
                     WebkitBorderTopRightRadius: "0",
-                    cursor: `${ButtonType === "profile" ? "pointer" : "auto"}`
-
                 }}
-              >
-                Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200
-              </h3>
-              <p style={{ color: "#CED4DA", fontSize: "16px" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem...
-              </p>
-            </Typography>
-
-            <Typography
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                gap: "20px",
-              }}
             >
-                {
-                    ButtonType === "profile" ?
-                        < ButtonEddit color="#FFFFFF" />
-                        :
-                        <div
-                            style={
-                                {
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    width: "100%",
-                                    padding: "0 20px",
-                                }}
-                        >
-                            Acessar página do leilão
-                            < ArrowForwardIcon />
-                        </div>
-                }
+                Acessar página do leilão
+                <ArrowForwardIcon />
             </Button>
         </Card >
     );
 }
+
+
+
+
