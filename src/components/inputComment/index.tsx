@@ -13,11 +13,12 @@ const InputComment = () => {
   };
 
   return (
-    <FormControl sx={{ margin: "20px", padding: "20px" }}>
+    <FormControl sx={{ mr: 1.1, mt: 5, borderRadius: 2, bgcolor: "white" }}>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
+          p: 2,
         }}
       >
         {user.image ? (
@@ -39,13 +40,15 @@ const InputComment = () => {
             }}
             sizes="small"
           >
-            <Typography>SL</Typography>
+            <Typography>JT</Typography>
           </Avatar>
         )}
+        <Typography sx={{ ml: 1 }}>Jason Todd</Typography>
       </Box>
 
       <Textarea
         placeholder="Digitar Comentário"
+        style={{ margin: 15 }}
         minRows={3}
         endDecorator={
           <Box
@@ -78,13 +81,12 @@ const InputComment = () => {
       <Box
         sx={{
           display: { xs: "flex", md: "none" },
-
           borderColor: "divider",
           flex: "auto",
           justifyContent: "start",
         }}
       >
-        <Button sx={{ background: "#4529E6", mt: 2 }}>
+        <Button sx={{ background: "#4529E6", mt: 1, ml: 2, mb: 1.5 }}>
           <Typography color="white" ml={"2px"} mr={"2px"} mt={"1px"} mb={"1px"}>
             Comentar
           </Typography>
@@ -94,7 +96,7 @@ const InputComment = () => {
         <Stack
           direction="row"
           spacing={1}
-          sx={{ display: "flex", flexWrap: "wrap" }}
+          sx={{ display: "flex", flexWrap: "wrap", ml: 0.8 }}
         >
           <Chip sx={{ marginBottom: "6px" }} label="Gostei muito!" />
           <Chip label="Incrível" />

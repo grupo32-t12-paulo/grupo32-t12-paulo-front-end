@@ -1,14 +1,13 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import Button from '@mui/material/Button';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import VehicleData from '../VehicleData';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { AvatarComponent } from '../Avatar';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import Button from "@mui/material/Button";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import VehicleData from "../VehicleData";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { AvatarComponent } from "../Avatar";
 
 
 export default function ActionAreaCard() {
@@ -103,11 +102,38 @@ export default function ActionAreaCard() {
                     WebkitBorderTopRightRadius: "0",
                 }}
             >
-                Acessar página do leilão
-                <ArrowForwardIcon />
-            </Button>
-        </Card >
-    );
+              <AvatarComponent backgroundA="#4529E6" colorP="#FFFFFF" />
+              <VehicleData
+                colorP="#FFFFFF"
+                colorSpanYQ="#4529E6"
+                backgroundYQ="#EDEAFD"
+                mileage={0}
+                price={"150.000"}
+                year={2020}
+              />
+            </Typography>
+          </div>
+        </CardContent>
+      </CardActionArea>
+      <Button
+        variant="contained"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+          height: "62px",
+          background: "#4529E6",
+          fontSize: "16px",
+          padding: "0 20px",
+          borderTopLeftRadius: "0",
+          WebkitBorderTopRightRadius: "0",
+        }}
+      >
+        Acessar página do leilão
+        <ArrowForwardIcon />
+      </Button>
+    </Card>
+  );
 }
 
 
