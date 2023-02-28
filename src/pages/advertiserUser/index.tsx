@@ -6,123 +6,13 @@ import { ContainerRoot } from "./style";
 import { Container } from "@mui/joy";
 import { List, ListItem } from "@mui/material";
 import { Box, Typography } from "@material-ui/core";
+import { useContext } from "react";
+import { AnnouncementContext } from "../../contexts/announcement.context";
+import { UserContext } from "../../contexts/user.context";
 
 const AdvertiserUser = () => {
-  const cars = [
-    {
-      title: "Chevrolet Vectra",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Hugo Strange",
-      km: "650",
-      year: 2012,
-      price: "30.000,00",
-    },
-    {
-      title: "Ford Mustang",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Bruce Wayne",
-      km: "100",
-      year: 2022,
-      price: "150.000,00",
-    },
-    {
-      title: "Ford Intercept",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Barbara Gordon",
-      km: "200",
-      year: 2021,
-      price: "120.000,00",
-    },
-    {
-      title: "Volkswagen Virtus",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Alfred Pennyworth",
-      km: "10",
-      year: 2020,
-      price: "60.000,00",
-    },
-    {
-      title: "Renault Captur",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Selina Kyle",
-      km: "40",
-      year: 2021,
-      price: "70.000,00",
-    },
-  ];
-  const motocycles = [
-    {
-      title: "Chevrolet Vectra",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Hugo Strange",
-      km: "650",
-      year: 2012,
-      price: "30.000,00",
-    },
-    {
-      title: "Ford Mustang",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Bruce Wayne",
-      km: "100",
-      year: 2022,
-      price: "150.000,00",
-    },
-    {
-      title: "Ford Intercept",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Barbara Gordon",
-      km: "200",
-      year: 2021,
-      price: "120.000,00",
-    },
-    {
-      title: "Volkswagen Virtus",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Alfred Pennyworth",
-      km: "10",
-      year: 2020,
-      price: "60.000,00",
-    },
-    {
-      title: "Renault Captur",
-      image:
-        "https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      seller: "Selina Kyle",
-      km: "40",
-      year: 2021,
-      price: "70.000,00",
-    },
-  ];
-
+  const { cars, motorcycles } = useContext(AnnouncementContext);
+  const { user } = useContext(UserContext);
   return (
     <>
       <AppBarComponent />
@@ -136,30 +26,41 @@ const AdvertiserUser = () => {
           >
             Carros
           </Typography>
-          <List
-            sx={{
-              display: "flex",
-              gap: 0.1,
-              overflow: "auto",
-              pb: 2,
-            }}
-          >
-            {cars.map((car) => {
-              return (
+
+          {cars.length ? (
+            <List
+              sx={{
+                display: "flex",
+                gap: 0.1,
+                overflow: "auto",
+                pb: 2,
+              }}
+            >
+              {cars.map((car) => (
                 <ListItem>
                   <MediaCard
                     title={car.title}
-                    image={car.image}
+                    image={car.coverImage}
                     description={car.description}
-                    seller={car.seller}
-                    km={car.km}
+                    seller={car.adType}
+                    km={car.mileage}
                     year={car.year}
                     price={car.price}
                   />
                 </ListItem>
-              );
-            })}
-          </List>
+              ))}
+            </List>
+          ) : (
+            <h2
+              style={{
+                margin: "20px",
+                fontSize: "1rem",
+                fontWeight: "var(--Heading-2-600)",
+              }}
+            >
+              Não possui anúncio de carros no momento
+            </h2>
+          )}
 
           <Box>
             <Typography
@@ -168,30 +69,41 @@ const AdvertiserUser = () => {
             >
               Motos
             </Typography>
-            <List
-              sx={{
-                p: 0,
-                display: "flex",
-                overflow: "auto",
-                pb: 2,
-              }}
-            >
-              {motocycles.map((motocycle) => {
-                return (
+
+            {motorcycles.length ? (
+              <List
+                sx={{
+                  p: 0,
+                  display: "flex",
+                  overflow: "auto",
+                  pb: 2,
+                }}
+              >
+                {motorcycles.map((motorcycle) => (
                   <ListItem>
                     <MediaCard
-                      title={motocycle.title}
-                      image={motocycle.image}
-                      description={motocycle.description}
-                      seller={motocycle.seller}
-                      km={motocycle.km}
-                      year={motocycle.year}
-                      price={motocycle.price}
+                      title={motorcycle.title}
+                      image={motorcycle.coverImage}
+                      description={motorcycle.description}
+                      seller={motorcycle.adType}
+                      km={motorcycle.mileage}
+                      year={motorcycle.year}
+                      price={motorcycle.price}
                     />
                   </ListItem>
-                );
-              })}
-            </List>
+                ))}
+              </List>
+            ) : (
+              <h2
+                style={{
+                  margin: "20px",
+                  fontSize: "1rem",
+                  fontWeight: "var(--Heading-2-600)",
+                }}
+              >
+                Não possui anúncio de carros no momento
+              </h2>
+            )}
           </Box>
         </Container>
       </ContainerRoot>
