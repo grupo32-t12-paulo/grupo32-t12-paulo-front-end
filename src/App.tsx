@@ -8,9 +8,8 @@ function App() {
   return (
     <>
       <Global />
-      <ModalExpandImage />
       <RouteApllication />
-      <ProductPage />
+      <ModalExpandImage />
     </>
   );
 }
