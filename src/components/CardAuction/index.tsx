@@ -1,7 +1,6 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -83,6 +82,9 @@ export default function ActionAreaCard() {
                 colorP="#FFFFFF"
                 colorSpanYQ="#4529E6"
                 backgroundYQ="#EDEAFD"
+                mileage={0}
+                price={"150.000"}
+                year={2020}
               />
             </Typography>
           </div>
