@@ -17,16 +17,27 @@ export default function CardSellerInfo({
   image,
 }: IChildren) {
   const arrName = name.split(" ");
-  const first = arrName[0].split("");
-  const final = arrName[arrName.length - 1].split("");
-  const letterFirst = first[0];
-  const letterFinal = final[0];
-  const letters = `${letterFirst}${letterFinal}`;
+  let letters = "";
+  if (arrName.length > 1) {
+    const first = arrName[0].split("");
+    const final = arrName[arrName.length - 1].split("");
+    const letterFirst = first[0];
+    const letterFinal = final[0];
+    letters = `${letterFirst}${letterFinal}`;
+  } else {
+    console.log(letters.length);
+    const first = arrName[0].split("");
+    const letterFirst = first[0];
+    letters = `${letterFirst}`;
+  }
   return (
     <Card
       sx={{
         height: "394px",
         backgroundColor: "#FDFDFD",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <CardContent
