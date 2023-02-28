@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { CurrentImageGalleryProvider } from "./contexts/gallery.context";
 import UserProvider from "./contexts/user.context";
+import AnnouncementProvider from "./contexts/announcement.context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,19 +17,21 @@ root.render(
     <CurrentImageGalleryProvider>
       <Router>
         <UserProvider>
-          <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          <App />
+          <AnnouncementProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={4000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+            <App />
+          </AnnouncementProvider>
         </UserProvider>
       </Router>
     </CurrentImageGalleryProvider>

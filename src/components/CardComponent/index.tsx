@@ -10,7 +10,7 @@ interface IChildren {
   image: string;
   description: string;
   seller: string;
-  km: string;
+  km: number;
   year: number;
   price: string;
 }
