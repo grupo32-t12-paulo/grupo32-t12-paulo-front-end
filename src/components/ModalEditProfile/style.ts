@@ -18,6 +18,8 @@ export const Container = styled.div`
 
   background-color: #212529c7;
   border-radius: 4px;
+
+  z-index: 999;
 `;
 
 export const Modal = styled.div`

@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { CurrentImageGalleryProvider } from "./contexts/gallery.context";
 import UserProvider from "./contexts/user.context";
 import { AnnouncementDetailsProvider } from "./contexts/announcementDetails.context";
+import AnnouncementProvider from "./contexts/announcement.context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,6 +19,7 @@ root.render(
       <CurrentImageGalleryProvider>
         <UserProvider>
           <AnnouncementDetailsProvider>
+          <AnnouncementProvider>
             <ToastContainer
               position="top-right"
               autoClose={4000}
@@ -32,6 +34,7 @@ root.render(
             />
             <App />
           </AnnouncementDetailsProvider>
+          </AnnouncementProvider>
         </UserProvider>
       </CurrentImageGalleryProvider>
     </Router>

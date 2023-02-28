@@ -1,8 +1,10 @@
 import "./App.css";
-import Global from "./style/Global";
+
+import LoginPage from "./pages/loginPage";
 import RouteApllication from "./routes";
 import ProductPage from "./pages/product";
 import ModalExpandImage from "./components/ModalExpandImage";
+import Global from "./style/Global";
 
 function App() {
   return (

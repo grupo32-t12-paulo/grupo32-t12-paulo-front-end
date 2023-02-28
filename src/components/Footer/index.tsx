@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useRef } from "react";
-import { useMediaQuery } from "@mui/material";
+import { Box, Popover, useMediaQuery } from "@mui/material";
 
 export default function BackToTop() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -14,9 +14,9 @@ export default function BackToTop() {
   };
 
   return (
-    <div
+    <Box
       ref={headerRef}
-      style={{
+      sx={{
         marginTop: 40,
         minWidth: "100%",
         height: isScreenSizeLarge ? "140px" : "310px",
@@ -25,6 +25,7 @@ export default function BackToTop() {
         alignItems: "center",
         justifyContent: isScreenSizeLarge ? "space-around" : "center",
         flexDirection: isScreenSizeLarge ? "row" : "column",
+        position: "relative",
       }}
     >
       <img
@@ -61,6 +62,6 @@ export default function BackToTop() {
           <ArrowDropUpIcon style={{ color: "#FFFFFF" }} />
         </Button>
       </div>
-    </div>
+    </Box>
   );
 }
