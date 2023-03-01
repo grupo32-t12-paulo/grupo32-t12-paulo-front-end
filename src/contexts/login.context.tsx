@@ -6,50 +6,49 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { createContext } from "react";
 
 interface ILoginContext {
-    user: null | IUser;
-    setUser: Dispatch<SetStateAction<IUser | null>>;
-    signIn: SubmitHandler<FieldValues>;
+  user: null | IUser;
+  setUser: Dispatch<SetStateAction<IUser | null>>;
+  signIn: SubmitHandler<FieldValues>;
 }
 
 export interface IUser {
-    id: number;
-    email: string;
-    password: string;
+  id: number;
+  email: string;
+  password: string;
 }
 
 export interface IResponseLogin {
-    user: IUser;
-    accessToken: string;
+  user: IUser;
+  token: string;
 }
 
-export const LoginContext = createContext<ILoginContext>({} as ILoginContext)
+export const LoginContext = createContext<ILoginContext>({} as ILoginContext);
 
 export function LoginProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<IUser | null>(null);
-    const navigate = useNavigate();
-  
-    const signIn: SubmitHandler<FieldValues> = async (data) => {
-      try {
-        const response = await api.post<IResponseLogin>("/login", data);
-  
-        if (response.status === 200) {
-          const { user, accessToken } = response.data;
-          localStorage.setItem("@motorshop:token", accessToken);
-          localStorage.setItem("@motorshop:email", user.email);
-  
-          api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-  
-          setUser(user);
-          navigate("/dashboard");
-        }
-      } catch (err) {
-        toast.error("Usuário ou senha incorreto.");
+  const [user, setUser] = useState<IUser | null>(null);
+  const navigate = useNavigate();
+
+  async function signIn(data: FieldValues) {
+    try {
+      const response = await api.post<IResponseLogin>("/login", data);
+
+      if (response.status === 200) {
+        const { user, token } = response.data;
+        localStorage.setItem("@motorshop:token", token);
+
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+        setUser(user);
+        navigate("/announcement/10");
       }
-    };
-  
-    return (
-      <LoginContext.Provider value={{ user, setUser, signIn }}>
-        {children}
-      </LoginContext.Provider>
-    );
+    } catch (err) {
+      toast.error("Usuário ou senha incorreto.");
+    }
+  }
+
+  return (
+    <LoginContext.Provider value={{ user, setUser, signIn }}>
+      {children}
+    </LoginContext.Provider>
+  );
 }
