@@ -51,6 +51,8 @@ interface IAnnouncementDetailsContext {
   announcement: undefined | IAnnouncement;
   comments: undefined | IComment[];
   setId: Dispatch<SetStateAction<undefined | string>>;
+  postComment(e: React.BaseSyntheticEvent): Promise<void>;
+  setComments: Dispatch<SetStateAction<IComment[] | undefined>>;
 }
 
 export const AnnouncementDetailsContext =
@@ -79,16 +81,51 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
     }
   }
 
+  async function postComment(e: React.BaseSyntheticEvent) {
+    e.preventDefault();
+    let arrayComments;
+    if (comments) {
+      arrayComments = comments;
+    }
+
+    if (!comments) {
+      arrayComments = [];
+    }
+    await api
+      .post(`/announcements/${id}/comments`, { text: e.target[0].value })
+      .then((response) => {
+        arrayComments.push(response.data);
+        e.target[0].value = "";
+        refreshListComments();
+      })
+      .catch((err) => console.error(err));
+  }
+
+  async function refreshListComments() {
+    await api
+      .get(`/announcements/${id}/comments`)
+      .then((response) => setComments(response.data))
+      .catch((error) => console.error(error));
+  }
+
   useEffect(() => {
     refreshData();
   }, [id]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      refreshListComments();
+    }, 15000);
+  }, [comments]);
 
   return (
     <AnnouncementDetailsContext.Provider
       value={{
         announcement,
         comments,
+        setComments,
         setId,
+        postComment,
       }}
     >
       {children}
