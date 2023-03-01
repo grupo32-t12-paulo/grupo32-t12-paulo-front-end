@@ -1,11 +1,16 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
+import { IAnnouncement } from "./announcement.context";
 
 interface IUserProps {
   user: IUser | null;
   setUser: (user: IUser | null) => void;
+
+  annoucementUser: IAnnouncement[] | [];
+  setAnnoucementUser: (annoucementUser: IAnnouncement[] | []) => void;
+
   handleRegisterUser: (data: IHandleRegisterUser) => void;
 }
 
@@ -25,7 +30,7 @@ export interface IUser {
   password: string;
   cpf: string;
   cellphone: string;
-  dateBirth: Date | string;
+  dateBirth: string;
   description: string;
   isActive?: boolean;
   isAdvertiser?: boolean;
@@ -49,12 +54,29 @@ export interface IProviderChildren {
 export const UserContext = createContext<IUserProps>({} as IUserProps);
 const UserProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
+    []
+  );
   const navigate = useNavigate();
 
+  useEffect(() => {
+    api
+      .get(`/users/${user?.userId}`)
+      .then((res) => {
+        console.log("res", res);
+        setAnnoucementUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const handleRegisterUser = (data: IHandleRegisterUser) => {
+    console.log(data);
     api
       .post("/users", data)
       .then((res) => {
+        console.log(res.data);
         toast.success("usuário cadastrado com sucesso");
         navigate("/login", { replace: true });
       })
@@ -64,7 +86,15 @@ const UserProvider = ({ children }: IProviderChildren) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, handleRegisterUser }}>
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        annoucementUser,
+        setAnnoucementUser,
+        handleRegisterUser,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

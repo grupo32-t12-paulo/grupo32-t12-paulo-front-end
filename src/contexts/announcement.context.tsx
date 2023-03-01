@@ -42,7 +42,7 @@ const AnnouncementProvider = ({ children }: IProviderChildren) => {
 
   const listAnnouncement = () => {
     api
-      .get("/announcement")
+      .get("/announcements")
       .then((response) => {
         setAnnouncement(response.data);
       })

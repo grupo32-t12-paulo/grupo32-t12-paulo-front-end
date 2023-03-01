@@ -3,15 +3,16 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const Div = styled.div`
+  margin-top: 80px;
+  border-radius: 8px;
   box-shadow: 0px 4px 32px -8px rgba(0, 0, 0, 0.25);
-  height: 100vh;
+  height: 84vh;
   overflow-y: scroll;
 `;
 
@@ -48,14 +49,20 @@ export const Form = styled.form`
 
     font-size: 0.8rem;
     font-weight: var(--input-placeholder);
-    margin-bottom: 20px;
+
     border: 1px solid var(--grey4);
   }
 
   textarea {
     height: 80px;
-    margin-bottom: 20px;
     resize: none;
+  }
+
+  p {
+    color: var(--alert1);
+    font-weight: var(--body-1-400);
+    font-size: 0.8rem;
+    margin-bottom: 20px;
   }
 
   .state-city,
@@ -91,16 +98,22 @@ export const Form = styled.form`
   .button-advertiser {
     width: 120px;
     height: 40px;
+
+    color: var(--grey0);
+    background-color: var(--grey10);
+    border: 1px solid var(--grey4);
     font-weight: var(--button-medium-text);
-    background-color: var(--brand1);
-    color: var(--whiteFixed);
   }
 
+  .button-buyer:hover,
+  .button-advertiser:hover,
+  .button-buyer:focus,
   .button-advertiser:focus {
     width: 120px;
     height: 40px;
-    border: 1px solid var(--grey4);
-    background-color: var(--whiteFixed);
+
+    color: var(--whiteFixed);
+    background-color: var(--brand1);
     font-weight: var(--button-medium-text);
   }
 

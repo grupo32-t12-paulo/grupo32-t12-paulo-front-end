@@ -12,7 +12,8 @@ import { UserContext } from "../../contexts/user.context";
 
 const AdvertiserUser = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
-  const { user } = useContext(UserContext);
+  const { annoucementUser } = useContext(UserContext);
+  console.log("oi", annoucementUser);
   return (
     <>
       <AppBarComponent />
@@ -27,40 +28,32 @@ const AdvertiserUser = () => {
             Carros
           </Typography>
 
-          {cars.length ? (
-            <List
-              sx={{
-                display: "flex",
-                gap: 0.1,
-                overflow: "auto",
-                pb: 2,
-              }}
-            >
-              {cars.map((car) => (
-                <ListItem>
-                  <MediaCard
-                    title={car.title}
-                    image={car.coverImage}
-                    description={car.description}
-                    seller={car.adType}
-                    km={car.mileage}
-                    year={car.year}
-                    price={car.price}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h2
-              style={{
-                margin: "20px",
-                fontSize: "1rem",
-                fontWeight: "var(--Heading-2-600)",
-              }}
-            >
-              Não possui anúncio de carros no momento
-            </h2>
-          )}
+          <List
+            sx={{
+              display: "flex",
+              gap: 0.1,
+              overflow: "auto",
+              pb: 2,
+            }}
+          >
+            {annoucementUser.map((car) => {
+              if (car.adType === "car") {
+                return (
+                  <ListItem>
+                    <MediaCard
+                      title={car.title}
+                      image={car.coverImage}
+                      description={car.description}
+                      seller={car.adType}
+                      km={car.mileage}
+                      year={car.year}
+                      price={car.price}
+                    />
+                  </ListItem>
+                );
+              }
+            })}
+          </List>
 
           <Box>
             <Typography
@@ -79,19 +72,23 @@ const AdvertiserUser = () => {
                   pb: 2,
                 }}
               >
-                {motorcycles.map((motorcycle) => (
-                  <ListItem>
-                    <MediaCard
-                      title={motorcycle.title}
-                      image={motorcycle.coverImage}
-                      description={motorcycle.description}
-                      seller={motorcycle.adType}
-                      km={motorcycle.mileage}
-                      year={motorcycle.year}
-                      price={motorcycle.price}
-                    />
-                  </ListItem>
-                ))}
+                {annoucementUser.map((motorcycle) => {
+                  if (motorcycle.adType === "motocycle") {
+                    return (
+                      <ListItem>
+                        <MediaCard
+                          title={motorcycle.title}
+                          image={motorcycle.coverImage}
+                          description={motorcycle.description}
+                          seller={motorcycle.adType}
+                          km={motorcycle.mileage}
+                          year={motorcycle.year}
+                          price={motorcycle.price}
+                        />
+                      </ListItem>
+                    );
+                  }
+                })}
               </List>
             ) : (
               <h2
