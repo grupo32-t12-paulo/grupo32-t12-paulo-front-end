@@ -77,7 +77,7 @@ export default function ListComments({ comments }: IChildren) {
             fontSize: "20px",
           }}
         >
-          Lances
+          Comentários
         </Typography>
         {comments.map((comment) => (
           <ListItem
