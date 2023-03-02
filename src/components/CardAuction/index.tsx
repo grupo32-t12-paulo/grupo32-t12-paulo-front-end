@@ -8,8 +8,14 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import VehicleData from "../VehicleData";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { AvatarComponent } from "../Avatar";
+import CreateAnnouncement from "../CreateAnnouncement";
 
-export default function ActionAreaCard() {
+interface IProps {
+  typeUser?: string
+}
+
+
+export default function ActionAreaCard({ typeUser }: IProps) {
   return (
     <Card sx={{ maxWidth: 735 }}>
       <CardActionArea
@@ -104,8 +110,20 @@ export default function ActionAreaCard() {
           WebkitBorderTopRightRadius: "0",
         }}
       >
-        Acessar página do leilão
-        <ArrowForwardIcon />
+        {typeUser === "seller" ?
+          <CreateAnnouncement
+            w="80px"
+            h="38px"
+            color="#FDFDFD"
+            text="Editar"
+            border="1px solid"
+          />
+          :
+          <>
+            Acessar página do leilão
+            <ArrowForwardIcon />
+          </>
+        }
       </Button>
     </Card>
   );
