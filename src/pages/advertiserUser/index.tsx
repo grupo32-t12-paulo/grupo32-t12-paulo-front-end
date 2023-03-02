@@ -8,11 +8,21 @@ import { List, ListItem } from "@mui/material";
 import { Box, Typography } from "@material-ui/core";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
+import { IAnnouncement } from "../../contexts/announcement.context";
 
 const AdvertiserUser = () => {
-  const { annoucementUser, listAnnouncementProfile } = useContext(UserContext);
-  listAnnouncementProfile();
-  console.log("oi", annoucementUser);
+  const { annoucementUser } = useContext(UserContext);
+  const cars: IAnnouncement[] = [];
+  const motorcycles: IAnnouncement[] = [];
+
+  annoucementUser.map((vehicle) => {
+    if (vehicle.vehicleType === "car") {
+      cars.push(vehicle);
+    } else {
+      motorcycles.push(vehicle);
+    }
+  });
+
   return (
     <>
       <AppBarComponent />
@@ -35,8 +45,8 @@ const AdvertiserUser = () => {
               pb: 2,
             }}
           >
-            {annoucementUser.map((car) => {
-              if (car.adType === "car") {
+            {cars.length > 0 ? (
+              cars.map((car) => {
                 return (
                   <ListItem>
                     <MediaCard
@@ -50,8 +60,14 @@ const AdvertiserUser = () => {
                     />
                   </ListItem>
                 );
-              }
-            })}
+              })
+            ) : (
+              <ListItem>
+                <Typography>
+                  No momento você não possui anúncio de carros
+                </Typography>
+              </ListItem>
+            )}
           </List>
 
           <Box>
@@ -61,45 +77,38 @@ const AdvertiserUser = () => {
             >
               Motos
             </Typography>
-
-            {annoucementUser.length ? (
-              <List
-                sx={{
-                  p: 0,
-                  display: "flex",
-                  overflow: "auto",
-                  pb: 2,
-                }}
-              >
-                {annoucementUser.map((motorcycle) => {
-                  if (motorcycle.adType === "motocycle") {
-                    return (
-                      <ListItem>
-                        <MediaCard
-                          title={motorcycle.title}
-                          image={motorcycle.coverImage}
-                          description={motorcycle.description}
-                          seller={motorcycle.adType}
-                          km={motorcycle.mileage}
-                          year={motorcycle.year}
-                          price={motorcycle.price}
-                        />
-                      </ListItem>
-                    );
-                  }
-                })}
-              </List>
-            ) : (
-              <h2
-                style={{
-                  margin: "20px",
-                  fontSize: "1rem",
-                  fontWeight: "var(--Heading-2-600)",
-                }}
-              >
-                Não possui anúncio de carros no momento
-              </h2>
-            )}
+            <List
+              sx={{
+                p: 0,
+                display: "flex",
+                overflow: "auto",
+                pb: 2,
+              }}
+            >
+              {motorcycles.length > 0 ? (
+                motorcycles.map((motorcycle) => {
+                  return (
+                    <ListItem>
+                      <MediaCard
+                        title={motorcycle.title}
+                        image={motorcycle.coverImage}
+                        description={motorcycle.description}
+                        seller={motorcycle.adType}
+                        km={motorcycle.mileage}
+                        year={motorcycle.year}
+                        price={motorcycle.price}
+                      />
+                    </ListItem>
+                  );
+                })
+              ) : (
+                <ListItem>
+                  <Typography>
+                    No momento você não possui anúncio de motos
+                  </Typography>
+                </ListItem>
+              )}
+            </List>
           </Box>
         </Container>
       </ContainerRoot>

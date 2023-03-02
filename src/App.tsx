@@ -6,6 +6,8 @@ function App() {
   return (
     <>
       <Global />
+      <RouteApllication />
+      <ModalExpandImage />
       <Reset />
     </>
   );

@@ -56,7 +56,7 @@ const AnnouncementProvider = ({ children }: IProviderChildren) => {
     const arrayMotorcycle: IAnnouncement[] = [];
 
     announcement.map((element: IAnnouncement) => {
-      if (element.adType === "car") {
+      if (element.vehicleType === "car") {
         arrayCars.push(element);
       } else {
         arrayMotorcycle.push(element);
