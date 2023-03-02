@@ -1,126 +1,87 @@
-import { Container, Form, Header, Modal, Div } from "./style";
-import { useState } from "react";
-import { Button } from "@mui/joy";
+import { Container, Form, Header, Modal } from "./style";
 
-interface IProps {
-  color?: string,
-  text?: string,
-  w?: string,
-  h?: string,
-  border?: string,
-  gap?: string
-}
-
-const CreateAnnouncement = ({ color, text, w, h, border, gap }: IProps) => {
-  const [open, setOpen] = useState(false)
-
+const CreateAnnouncement = () => {
   return (
-    <>
-      {
-        open ?
-          <Container>
-            < Modal >
-              <Header>
-                <h2>Editar anúncio</h2>
-                <button className="buttonExit"
-                  onClick={() => setOpen(false)}
-                >X</button>
-              </Header>
+    <Container>
+      <Modal>
+        <Header>
+          <h2>Editar anúncio</h2>
+          <button className="buttonExit">X</button>
+        </Header>
 
-              <Form>
-                <Div>
-                  <h3>Tipo de anúncio</h3>
-                  <div className="sale-auction">
-                    <button className="buttonSale">Venda</button>
-                    <button className="buttonAuction">Leilão</button>
-                  </div>
+        <Form>
+          <h3>Tipo de anúncio</h3>
+          <div className="sale-auction">
+            <button className="buttonSale">Venda</button>
+            <button className="buttonAuction">Leilão</button>
+          </div>
 
-                  <h3>Informações do veículo</h3>
+          <h3>Informações do veículo</h3>
 
-                  <label htmlFor="title">Título</label>
-                  <input type="text" id="title" placeholder="Digitar título" />
+          <label htmlFor="title">Título</label>
+          <input type="text" id="title" placeholder="Digitar título" />
 
-                  <div className="year-mileage-price">
-                    <div className="div-year-mileage">
-                      <div className="divYear">
-                        <label htmlFor="year">Ano</label>
-                        <input
-                          className="year"
-                          type="number"
-                          id="year"
-                          placeholder="Digitar ano"
-                        />
-                      </div>
+          <div className="year-mileage-price">
+            <div className="div-year-mileage">
+              <div className="divYear">
+                <label htmlFor="year">Ano</label>
+                <input
+                  className="year"
+                  type="number"
+                  id="year"
+                  placeholder="Digitar ano"
+                />
+              </div>
 
-                      <div className="divMileage">
-                        <label htmlFor="mileage">Quilometragem</label>
-                        <input
-                          className="mileage"
-                          type="number"
-                          id="mileage"
-                          placeholder="Digitar quilometragem"
-                        />
-                      </div>
-                    </div>
+              <div className="divMileage">
+                <label htmlFor="mileage">Quilometragem</label>
+                <input
+                  className="mileage"
+                  type="number"
+                  id="mileage"
+                  placeholder="Digitar quilometragem"
+                />
+              </div>
+            </div>
 
-                    <div className="divPrice">
-                      <label htmlFor="price">Preço</label>
-                      <input
-                        className="price"
-                        type="number"
-                        id="price"
-                        placeholder="Digitar preço"
-                      />
-                    </div>
-                  </div>
+            <div className="divPrice">
+              <label htmlFor="price">Preço</label>
+              <input
+                className="price"
+                type="number"
+                id="price"
+                placeholder="Digitar preço"
+              />
+            </div>
+          </div>
 
-                  <label htmlFor="description">Descrição</label>
-                  <textarea id="description" placeholder="Digitar descrição" />
+          <label htmlFor="description">Descrição</label>
+          <textarea id="description" placeholder="Digitar descrição" />
 
-                  <h3>Tipo de veículo</h3>
-                  <div className="car-motorcycle">
-                    <button className="buttonCar">Carro</button>
-                    <button className="buttonMotorcycle">Moto</button>
-                  </div>
+          <h3>Tipo de veículo</h3>
+          <div className="car-motorcycle">
+            <button className="buttonCar">Carro</button>
+            <button className="buttonMotorcycle">Moto</button>
+          </div>
 
-                  <label htmlFor="coverImage">Imagem da capa</label>
-                  <input type="text" id="coverImage" placeholder="https://image.com" />
+          <label htmlFor="coverImage">Imagem da capa</label>
+          <input type="text" id="coverImage" placeholder="https://image.com" />
 
-                  <label htmlFor="firstImage">1ª imagem da galeria</label>
-                  <input type="text" id="firstImage" placeholder="https://image.com" />
+          <label htmlFor="firstImage">1ª imagem da galeria</label>
+          <input type="text" id="firstImage" placeholder="https://image.com" />
 
-                  <label htmlFor="secondImage">2ª imagem da galeria</label>
-                  <input type="text" id="secondImage" placeholder="https://image.com" />
+          <label htmlFor="secondImage">2ª imagem da galeria</label>
+          <input type="text" id="secondImage" placeholder="https://image.com" />
 
-                  <span>Adicionar campo para imagem da galeria</span>
+          <span>Adicionar campo para imagem da galeria</span>
 
-                  <div className="cancel-createContente">
-                    <button className="buttonCancel">Cancelar</button>
-                    <button className="buttonCreateContente">Criar conteúdo</button>
-                  </div>
-                </Div>
-              </Form>
-            </Modal >
-          </Container >
-          : null
-      }
-      <Button
-        sx={
-          {
-            maxWidth: w,
-            height: h,
-            borderRadius: 4,
-            color: color,
-            border: border,
-            position: "relative",
-            bottom: Number(gap)
-          }
-        }
-        onClick={() => setOpen(true)}
-      >
-        {text}
-      </Button>
-    </>
+          <div className="cancel-createContente">
+            <button className="buttonCancel">Cancelar</button>
+            <button className="buttonCreateContente">Criar conteúdo</button>
+          </div>
+        </Form>
+      </Modal>
+    </Container>
   );
 };
 

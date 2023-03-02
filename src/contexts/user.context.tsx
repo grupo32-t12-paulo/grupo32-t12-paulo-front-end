@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMatch, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 import { AnnouncementContext, IAnnouncement } from "./announcement.context";
@@ -62,22 +62,29 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
+  const { idAdvertiser } = useParams();
+  const isPage = useMatch(`/advertiser-profile/${idAdvertiser}`);
 
-  const { user } = useContext(LoginContext);
   const navigate = useNavigate();
 
   const listAnnouncementProfile = () => {
-    console.log(user);
+    console.log("recarregou anúncios");
     api
-      .get(`/users/${user?.id}`)
+      .get(`/users/${idAdvertiser}`)
       .then((res) => {
         console.log("res", res);
-        setAnnoucementUser(res.data);
+        setAnnoucementUser(res.data.annoucements);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    if (isPage) {
+      listAnnouncementProfile();
+    }
+  }, [window.location.href]);
 
   const handleRegisterUser = (data: IHandleRegisterUser) => {
     console.log(data);

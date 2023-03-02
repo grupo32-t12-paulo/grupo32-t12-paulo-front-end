@@ -71,7 +71,6 @@ const HomePage = () => {
                   price={car.price}
                   seller={car.adType}
                   year={car.year}
-                  id={car.annoucementId}
                   key={car.annoucementId}
                 />
               </ListItem>
@@ -115,7 +114,6 @@ const HomePage = () => {
                     km={motorcycle.mileage}
                     year={motorcycle.year}
                     price={motorcycle.price}
-                    id={motorcycle.annoucementId}
                   />
                 </ListItem>
               ))}

@@ -13,7 +13,10 @@ const RouteApllication = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/register-user" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="advertiser-profile" element={<AdvertiserUser />} />
+      <Route
+        path="/advertiser-profile/:idAdvertiser"
+        element={<AdvertiserUser />}
+      />
       <Route path="/announcement/:id" element={<ProductPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>

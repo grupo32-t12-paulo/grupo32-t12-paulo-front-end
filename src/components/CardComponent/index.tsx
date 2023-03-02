@@ -13,7 +13,6 @@ interface IChildren {
   km: number;
   year: number;
   price: string;
-  id: number
 }
 
 export default function MediaCard({
@@ -24,7 +23,6 @@ export default function MediaCard({
   km,
   year,
   price,
-  id
 }: IChildren) {
   return (
     <Card sx={{ width: "302px", boxShadow: "unset" }}>

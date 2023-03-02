@@ -54,7 +54,7 @@ export default function AppBarComponent() {
     settings = [
       { name: "Editar perfil", to: "/" },
       { name: "Editar endereço", to: "/" },
-      { name: "Meus Anúncios", to: "/" },
+      { name: "Meus Anúncios", to: "/advertiser-profile" },
       { name: "Sair", to: "/" },
     ];
   }
@@ -170,7 +170,7 @@ export default function AppBarComponent() {
                         }}
                         onClick={() => {
                           handleCloseNavMenu();
-                          return navigate("/");
+                          return navigate(page.to);
                         }}
                       >
                         <Typography
@@ -384,7 +384,7 @@ export default function AppBarComponent() {
                             sx={{ display: "flex", width: "150px" }}
                             textAlign="center"
                             onClick={() => {
-                              return navigate("/");
+                              return navigate(setting.to);
                             }}
                           >
                             {setting.name}

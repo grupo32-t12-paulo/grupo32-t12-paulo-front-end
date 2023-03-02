@@ -18,20 +18,22 @@ export const Container = styled.div`
 
   background-color: #212529c7;
   border-radius: 4px;
-
   z-index: 999;
 `;
 
 export const Modal = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 1036px;
+  // overflow-y: scroll;
 
   gap: 16px;
-  padding: 10px 10px 0px 10px;
+  padding: 10px 10px 20px 10px;
 
   background-color: var(--whiteFixed);
   box-shadow: 0px 4px 32px -8px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+
 `;
 
 export const Header = styled.div`
@@ -39,11 +41,10 @@ export const Header = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 10px;
 
   h2 {
     font-size: 1rem;
-    font-weight: var(--Heading-3-500);
+    font-weight: var(--Heading-2-600);
   }
 
   .buttonExit {
@@ -51,8 +52,6 @@ export const Header = styled.div`
     height: 40px;
 
     background-color: var(--whiteFixed);
-    border: none;
-
     font-size: 1.2rem;
   }
 `;
@@ -210,53 +209,6 @@ export const Form = styled.form`
       text-align: start;
       font-size: 0.7rem;
       padding: 12px;
-    }
-  }
-`;
-export const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  height: 64vh;
-
-  h3 {
-    font-size: 0.8rem;
-    text-align: left;
-    font-weight: var(--Heading-3-500);
-    margin-bottom: 30px;
-  }
-
-  label {
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: var(--input-label);
-    margin-bottom: 4px;
-  }
-
-  input,
-  textarea {
-    width: 280px;
-    height: 40px;
-
-    margin-bottom: 30px;
-    border: 1px solid var(--grey4);
-
-    font-size: 0.8rem;
-    font-weight: var(--input-placeholder);
-  }
-
-  textarea {
-    min-height: 100px;
-    resize: none;
-  }
-
-  @media (min-width: 769px) {
-    height: 50vh;
-    input,
-    textarea {
-      margin-bottom: 20px;
-      width: 340px;
-      height: 40px;
     }
   }
 `;
