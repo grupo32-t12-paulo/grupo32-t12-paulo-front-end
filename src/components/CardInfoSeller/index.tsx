@@ -88,7 +88,14 @@ export default function CardInfoSeller({ typeUser }: IProps) {
             since the 1500s
           </Typography>
           {typeUser === "seller" ?
-            <CreateAnnouncement />
+            <CreateAnnouncement
+              gap="-60"
+              w="160px"
+              h="48px"
+              color="#4529E6"
+              text="Criar anúncio"
+              border="2px solid"
+            />
             : null
           }
         </CardContent>

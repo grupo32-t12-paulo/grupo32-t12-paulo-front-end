@@ -2,8 +2,16 @@ import { Container, Form, Header, Modal, Div } from "./style";
 import { useState } from "react";
 import { Button } from "@mui/joy";
 
+interface IProps {
+  color?: string,
+  text?: string,
+  w?: string,
+  h?: string,
+  border?: string,
+  gap?: string
+}
 
-const CreateAnnouncement = () => {
+const CreateAnnouncement = ({ color, text, w, h, border, gap }: IProps) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -99,17 +107,18 @@ const CreateAnnouncement = () => {
       <Button
         sx={
           {
-            maxWidth: 160,
-            height: 48,
-            color: "#4529E6",
-            border: "2px solid",
+            maxWidth: w,
+            height: h,
+            borderRadius: 4,
+            color: color,
+            border: border,
             position: "relative",
-            bottom: -60
+            bottom: Number(gap)
           }
         }
         onClick={() => setOpen(true)}
       >
-        Criar anuncio
+        {text}
       </Button>
     </>
   );

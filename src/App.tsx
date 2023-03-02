@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Global />
-      <RouteApllication />
+      <ProfileViewAdmin />
       {/* <RegisterPage /> */}
       {/* <Register /> */}
       {/* <LoginPage /> */}
