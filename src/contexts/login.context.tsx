@@ -1,4 +1,5 @@
 import api from "../services/api";
+import decode from "jwt-decode";
 import { toast } from "react-toastify";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -6,50 +7,78 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { createContext } from "react";
 
 interface ILoginContext {
-    user: null | IUser;
-    setUser: Dispatch<SetStateAction<IUser | null>>;
-    signIn: SubmitHandler<FieldValues>;
+  user: null | IUser;
+  setUser: Dispatch<SetStateAction<IUser | null>>;
+  signIn: SubmitHandler<FieldValues>;
+}
+
+interface IAddress {
+  cep: string;
+  state: string;
+  city: string;
+  street: string;
+  number: number;
+  complement?: string;
 }
 
 export interface IUser {
-    id: number;
-    email: string;
-    password: string;
+  name: string;
+  email: string;
+  password?: string;
+  cpf: string;
+  cellPhone: string;
+  dateBirth: Date | string | number;
+  description: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  idAdvertiser: boolean;
+  address: IAddress;
+  id: number;
+  addressId: number;
 }
 
 export interface IResponseLogin {
-    user: IUser;
-    accessToken: string;
+  user: IUser;
+  token: string;
 }
 
-export const LoginContext = createContext<ILoginContext>({} as ILoginContext)
+interface IToken {
+  id: string;
+  isActive: boolean;
+  isAdvertiser: boolean;
+}
+
+export const LoginContext = createContext<ILoginContext>({} as ILoginContext);
 
 export function LoginProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<IUser | null>(null);
-    const navigate = useNavigate();
-  
-    const signIn: SubmitHandler<FieldValues> = async (data) => {
-      try {
-        const response = await api.post<IResponseLogin>("/login", data);
-  
-        if (response.status === 200) {
-          const { user, accessToken } = response.data;
-          localStorage.setItem("@motorshop:token", accessToken);
-          localStorage.setItem("@motorshop:email", user.email);
-  
-          api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-  
-          setUser(user);
-          navigate("/dashboard");
-        }
-      } catch (err) {
-        toast.error("Usuário ou senha incorreto.");
+  const [user, setUser] = useState<IUser | null>(null);
+  const navigate = useNavigate();
+
+  async function signIn(data: FieldValues) {
+    try {
+      const response = await api.post<IResponseLogin>("/login", data);
+
+      if (response.status === 200) {
+        const { token } = response.data;
+        const resJWT: IToken = decode(token);
+
+        localStorage.setItem("@motorshop:token", token);
+
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        const { data } = await api.get(`/users/${resJWT.id}`);
+
+        setUser(data);
+        navigate("/announcement/1");
       }
-    };
-  
-    return (
-      <LoginContext.Provider value={{ user, setUser, signIn }}>
-        {children}
-      </LoginContext.Provider>
-    );
+    } catch (err) {
+      toast.error("Usuário ou senha incorreto.");
+    }
+  }
+
+  return (
+    <LoginContext.Provider value={{ user, setUser, signIn }}>
+      {children}
+    </LoginContext.Provider>
+  );
 }

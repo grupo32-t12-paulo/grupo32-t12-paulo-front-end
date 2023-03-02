@@ -4,6 +4,8 @@ import Register from "./components/FormRegister";
 import LoginPage from "./pages/loginPage";
 import RegisterPage from "./pages/Register";
 import RouteApllication from "./routes";
+import ProductPage from "./pages/product";
+import ModalExpandImage from "./components/ModalExpandImage";
 import Global from "./style/Global";
 
 function App() {
@@ -14,6 +16,9 @@ function App() {
       {/* <RegisterPage /> */}
       {/* <Register /> */}
       {/* <LoginPage /> */}
+
+      <ModalExpandImage />
+
     </>
   );
 }

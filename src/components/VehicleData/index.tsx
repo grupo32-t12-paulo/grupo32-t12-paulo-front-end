@@ -1,56 +1,68 @@
-interface IvehicleData {
-    colorSpanYQ?: string;
-    backgroundYQ?: string;
-    colorP?: string;
+interface IVehicleData {
+  colorSpanYQ?: string;
+  backgroundYQ?: string;
+  colorP?: string;
+  mileage: number;
+  price: string;
+  year: number;
 }
 
-
-const VehicleData = ({ colorSpanYQ, backgroundYQ, colorP }: IvehicleData) => {
-    return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                gap: "20px",
-            }}
+const VehicleData = ({
+  colorSpanYQ,
+  backgroundYQ,
+  colorP,
+  mileage,
+  price,
+  year,
+}: IVehicleData) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "20px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+        }}
+      >
+        <span
+          style={{
+            height: "32px",
+            padding: "6px",
+            boxSizing: "border-box",
+            borderRadius: "4px",
+            background: backgroundYQ,
+            color: colorSpanYQ,
+          }}
         >
-            <div style={{
-                display: "flex",
-                gap: "10px",
-            }}
-            >
+          {year}
+        </span>
+        <span
+          style={{
+            height: "32px",
+            padding: "6px",
+            boxSizing: "border-box",
+            borderRadius: "4px",
+            background: backgroundYQ,
+            color: colorSpanYQ,
+          }}
+        >
+          {mileage} km
+        </span>
+      </div>
+      <span style={{ color: colorP }}>
+        {Number(price).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        })}
+      </span>
+    </div>
+  );
+};
 
-                <span style={{
-                    width: "50px",
-                    height: "32px",
-                    padding: "5px",
-                    boxSizing: "border-box",
-                    borderRadius: "4px",
-                    background: backgroundYQ,
-                    color: colorSpanYQ,
-                }}>
-                    2013
-                </span>
-                <span style={{
-                    width: "50px",
-                    height: "32px",
-                    padding: "5px",
-                    boxSizing: "border-box",
-                    borderRadius: "4px",
-                    background: backgroundYQ,
-                    color: colorSpanYQ,
-                }}>
-                    0 km
-                </span>
-            </div>
-            <span
-                style={{ color: colorP }}
-            >
-                R$ 00.000,00
-            </span>
-        </div>
-    )
-}
-
-export default VehicleData
+export default VehicleData;
