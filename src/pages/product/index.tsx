@@ -61,6 +61,7 @@ const ProductPage = () => {
                   <CardSellerInfo
                     name={announcement.user.name}
                     description={announcement.user.description}
+                    userId={announcement.user.id}
                   />
                 )}
               </Grid>
@@ -88,6 +89,7 @@ const ProductPage = () => {
               <CardSellerInfo
                 name={announcement.user.name}
                 description={announcement.user.description}
+                userId={announcement.user.id}
               />
             )}
             <ListComments />

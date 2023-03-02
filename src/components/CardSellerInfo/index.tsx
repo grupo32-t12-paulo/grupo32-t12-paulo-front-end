@@ -4,10 +4,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
 import { Box } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 
 interface IChildren {
   name: string;
   description: string;
+  userId: string;
   image?: string;
 }
 
@@ -15,6 +17,7 @@ export default function CardSellerInfo({
   name,
   description,
   image,
+  userId,
 }: IChildren) {
   const arrName = name.split(" ");
   let letters = "";
@@ -30,6 +33,8 @@ export default function CardSellerInfo({
     const letterFirst = first[0];
     letters = `${letterFirst}`;
   }
+  const navigate = useNavigate();
+
   return (
     <Card
       sx={{
@@ -111,6 +116,7 @@ export default function CardSellerInfo({
             pr: 4,
             pl: 4,
           }}
+          onClick={() => navigate(`/advertiser-profile/${userId}`)}
         >
           Ver todos anuncios
         </Button>
