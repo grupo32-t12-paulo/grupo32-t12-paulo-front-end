@@ -50,7 +50,7 @@ export default function AppBarComponent() {
     { name: "Sair", to: "/" },
   ];
 
-  if (user?.isAdvertiser) {
+  if (user?.idAdvertiser) {
     settings = [
       { name: "Editar perfil", to: "/" },
       { name: "Editar endereço", to: "/" },

@@ -52,7 +52,7 @@ const ProductPage = () => {
                     />
                   </>
                 )}
-                {comments && <ListComments />}
+                {comments && <ListComments comments={comments} />}
                 <InputComment />
               </Grid>
               <Grid item xs={4}>
@@ -90,7 +90,7 @@ const ProductPage = () => {
                 description={announcement.user.description}
               />
             )}
-            <ListComments />
+            {comments && <ListComments comments={comments} />}
             <InputComment />
           </Box>
         </Container>

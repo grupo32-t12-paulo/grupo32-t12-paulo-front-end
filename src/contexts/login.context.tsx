@@ -32,7 +32,7 @@ export interface IUser {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  isAdvertiser: boolean;
+  idAdvertiser: boolean;
   address: IAddress;
   id: number;
   addressId: number;
