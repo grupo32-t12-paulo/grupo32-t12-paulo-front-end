@@ -1,15 +1,21 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
-import { IAnnouncement } from "./announcement.context";
+import { AnnouncementContext, IAnnouncement } from "./announcement.context";
+import { LoginContext } from "./login.context";
 
 interface IUserProps {
-  user: IUser | null;
-  setUser: (user: IUser | null) => void;
-
   annoucementUser: IAnnouncement[] | [];
   setAnnoucementUser: (annoucementUser: IAnnouncement[] | []) => void;
+
+  listAnnouncementProfile: () => void;
 
   handleRegisterUser: (data: IHandleRegisterUser) => void;
 }
@@ -53,15 +59,17 @@ export interface IProviderChildren {
 }
 export const UserContext = createContext<IUserProps>({} as IUserProps);
 const UserProvider = ({ children }: IProviderChildren) => {
-  const [user, setUser] = useState<IUser | null>(null);
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
+
+  const { user } = useContext(LoginContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const listAnnouncementProfile = () => {
+    console.log(user);
     api
-      .get(`/users/${user?.userId}`)
+      .get(`/users/${user?.id}`)
       .then((res) => {
         console.log("res", res);
         setAnnoucementUser(res.data);
@@ -69,7 +77,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
 
   const handleRegisterUser = (data: IHandleRegisterUser) => {
     console.log(data);
@@ -88,10 +96,9 @@ const UserProvider = ({ children }: IProviderChildren) => {
   return (
     <UserContext.Provider
       value={{
-        user,
-        setUser,
         annoucementUser,
         setAnnoucementUser,
+        listAnnouncementProfile,
         handleRegisterUser,
       }}
     >

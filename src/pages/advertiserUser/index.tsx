@@ -7,12 +7,11 @@ import { Container } from "@mui/joy";
 import { List, ListItem } from "@mui/material";
 import { Box, Typography } from "@material-ui/core";
 import { useContext } from "react";
-import { AnnouncementContext } from "../../contexts/announcement.context";
 import { UserContext } from "../../contexts/user.context";
 
 const AdvertiserUser = () => {
-  const { cars, motorcycles } = useContext(AnnouncementContext);
-  const { annoucementUser } = useContext(UserContext);
+  const { annoucementUser, listAnnouncementProfile } = useContext(UserContext);
+  listAnnouncementProfile();
   console.log("oi", annoucementUser);
   return (
     <>
@@ -63,7 +62,7 @@ const AdvertiserUser = () => {
               Motos
             </Typography>
 
-            {motorcycles.length ? (
+            {annoucementUser.length ? (
               <List
                 sx={{
                   p: 0,
