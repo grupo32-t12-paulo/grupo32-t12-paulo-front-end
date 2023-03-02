@@ -5,7 +5,7 @@ import HomePage from "../pages/homePage";
 
 import RegisterPage from "../pages/Register";
 
-import LoginPage from "../pages/loginPage";
+import LoginPage from "../pages/LoginPage/loginPage";
 
 const RouteApllication = () => {
   return (
