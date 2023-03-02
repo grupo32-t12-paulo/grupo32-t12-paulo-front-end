@@ -6,6 +6,7 @@ import { Avatar } from "@mui/material";
 import { UserContext } from "../../contexts/user.context";
 import { useContext } from "react";
 import { LoginContext } from "../../contexts/login.context";
+
 export default function CardInfoSeller() {
   const { user } = useContext(LoginContext);
   return (

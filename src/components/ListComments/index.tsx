@@ -10,31 +10,51 @@ import { Box } from "@mui/system";
 import Moment from "react-moment";
 import "moment/locale/pt-br";
 import Ellipse from "../../assets/ellipse.svg";
-import { AnnouncementDetailsContext } from "../../contexts/announcementDetails.context";
-import { useContext } from "react";
 
-export default function ListComments() {
-  const { comments } = useContext(AnnouncementDetailsContext);
+interface IChildren {
+  comments: IComment[];
+}
 
-  if (comments) {
-    comments.map((comment) => {
-      const arrName = comment.user.name.split(" ");
-      let letters = "";
-      if (arrName.length > 1) {
-        const first = arrName[0].split("");
-        const final = arrName[arrName.length - 1].split("");
-        const letterFirst = first[0];
-        const letterFinal = final[0];
-        letters = `${letterFirst}${letterFinal}`;
-      } else {
-        console.log(letters.length);
-        const first = arrName[0].split("");
-        const letterFirst = first[0];
-        letters = `${letterFirst}`;
-      }
-      return (comment.user.letters = letters);
-    });
-  }
+interface IComment {
+  text: string;
+  createAt: string;
+  user: IUser;
+}
+
+interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  cpf: string;
+  cellPhone: string;
+  dateBirth: Date | string | number;
+  description: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  idAdvertiser: boolean;
+  image: string;
+  letters: string;
+}
+
+export default function ListComments({ comments }: IChildren) {
+  comments.map((comment) => {
+    const arrName = comment.user.name.split(" ");
+    let letters = "";
+    if (arrName.length > 1) {
+      const first = arrName[0].split("");
+      const final = arrName[arrName.length - 1].split("");
+      const letterFirst = first[0];
+      const letterFinal = final[0];
+      letters = `${letterFirst}${letterFinal}`;
+    } else {
+      console.log(letters.length);
+      const first = arrName[0].split("");
+      const letterFirst = first[0];
+      letters = `${letterFirst}`;
+    }
+    return (comment.user.letters = letters);
+  });
 
   return (
     <Box sx={{ mt: 5, mr: 1.1 }}>
@@ -59,102 +79,93 @@ export default function ListComments() {
         >
           Comentários
         </Typography>
-        {comments?.length ? (
-          comments.map((comment) => (
-            <ListItem
-              alignItems="flex-start"
-              sx={{ display: "flex", flexDirection: "column", mb: 4 }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  mb: 2,
-                }}
-              >
-                {comment.user.image ? (
-                  <Avatar
-                    sx={{
-                      height: "32px",
-                      width: "32px",
-                    }}
-                    sizes="small"
-                    src={comment.user.image}
-                  />
-                ) : (
-                  <Avatar
-                    sx={{
-                      bgcolor: "var(--brand1)",
-                      height: "32px",
-                      width: "32px",
-                    }}
-                    sizes="small"
-                  >
-                    <Typography fontSize={14} fontFamily="Inter, sans-serif">
-                      {comment.user.letters}
-                    </Typography>
-                  </Avatar>
-                )}
-                <Typography
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    ml: 1,
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "var(--grey1)",
-                  }}
-                >
-                  {comment.user.name}
-                </Typography>
-                <Icon
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img src={Ellipse} alt="" />
-                </Icon>
-                <Typography
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "var(--grey3)",
-                  }}
-                >
-                  <Moment interval={5} fromNow>
-                    {comment.createAt}
-                  </Moment>
-                </Typography>
-              </Box>
-              <ListItemText
-                sx={{
-                  fontFamily: "Inter",
-                  fontSize: "14px",
-                  fontWeight: 400,
-                  lineHeight: "24px",
-                  textAlign: "justify",
-                  color: "#495057",
-                  mb: 2,
-                }}
-                primary={comment.text}
-              />
-            </ListItem>
-          ))
-        ) : (
+        {comments.map((comment) => (
           <ListItem
             alignItems="flex-start"
             sx={{ display: "flex", flexDirection: "column", mb: 4 }}
           >
-            No momento não foram encontrados comentários para este anúncio
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                mb: 2,
+              }}
+            >
+              {comment.user.image ? (
+                <Avatar
+                  sx={{
+                    height: "32px",
+                    width: "32px",
+                  }}
+                  sizes="small"
+                  src={comment.user.image}
+                />
+              ) : (
+                <Avatar
+                  sx={{
+                    bgcolor: "var(--brand1)",
+                    height: "32px",
+                    width: "32px",
+                  }}
+                  sizes="small"
+                >
+                  <Typography fontSize={14} fontFamily="Inter, sans-serif">
+                    {comment.user.letters}
+                  </Typography>
+                </Avatar>
+              )}
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  ml: 1,
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  color: "var(--grey1)",
+                }}
+              >
+                {comment.user.name}
+              </Typography>
+              <Icon
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={Ellipse} alt="" />
+              </Icon>
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  color: "var(--grey3)",
+                }}
+              >
+                <Moment interval={5} fromNow>
+                  {comment.createAt}
+                </Moment>
+              </Typography>
+            </Box>
+            <ListItemText
+              sx={{
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontWeight: 400,
+                lineHeight: "24px",
+                textAlign: "justify",
+                color: "#495057",
+                mb: 2,
+              }}
+              primary={comment.text}
+            />
           </ListItem>
-        )}
+        ))}
       </List>
     </Box>
   );
