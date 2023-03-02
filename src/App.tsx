@@ -1,7 +1,7 @@
 import "./App.css";
 import Register from "./components/FormRegister";
 
-import LoginPage from "./pages/loginPage";
+import LoginPage from "./pages/LoginPage/loginPage";
 import RegisterPage from "./pages/Register";
 import RouteApllication from "./routes";
 import ProductPage from "./pages/product";
@@ -19,7 +19,6 @@ function App() {
       {/* <LoginPage /> */}
 
       <ModalExpandImage />
-
     </>
   );
 }
