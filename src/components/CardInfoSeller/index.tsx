@@ -3,8 +3,11 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
+import { UserContext } from "../../contexts/user.context";
+import { useContext } from "react";
 
 export default function CardInfoSeller() {
+  const { user } = useContext(UserContext);
   return (
     <Card
       style={{
@@ -45,7 +48,7 @@ export default function CardInfoSeller() {
               color: "#212529",
             }}
           >
-            Everton Vieira
+            {user?.name}{" "}
           </Typography>
           <Button
             variant="contained"
@@ -73,9 +76,7 @@ export default function CardInfoSeller() {
             textAlign: "justify",
           }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
+          {user?.description}
         </Typography>
       </CardContent>
     </Card>

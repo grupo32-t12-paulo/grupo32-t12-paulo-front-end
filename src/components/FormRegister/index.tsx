@@ -78,6 +78,7 @@ const Register = () => {
             placeholder="Digite seu nome"
             {...register("name")}
           />
+          <p>{errors.name?.message}</p>
 
           <label htmlFor="email">Email</label>
           <input
@@ -86,22 +87,25 @@ const Register = () => {
             placeholder="exemplo@email.com"
             {...register("email")}
           />
+          <p>{errors.email?.message}</p>
 
           <label htmlFor="cpf">CPF</label>
           <input
-            type="number"
+            type="string"
             id="cpf"
             placeholder="000.000.000-00"
             {...register("cpf")}
           />
+          <p>{errors.cpf?.message}</p>
 
           <label htmlFor="cellphone">Telefone</label>
           <input
-            type="number"
+            type="text"
             id="cellphone"
             placeholder="(xx) xxxxx-xxxx"
             {...register("cellphone")}
           />
+          <p>{errors.cellphone?.message}</p>
 
           <label htmlFor="dateBirth">Data de nascimento</label>
           <input
@@ -110,6 +114,7 @@ const Register = () => {
             placeholder="dd/mm/aaaa"
             {...register("dateBirth")}
           />
+          <p>{errors.dateBirth?.message}</p>
 
           <label htmlFor="description">Descrição</label>
           <textarea
@@ -117,16 +122,18 @@ const Register = () => {
             placeholder="Digitar descrição"
             {...register("description")}
           />
+          <p>{errors.description?.message}</p>
 
           <h3>Informações de Endereço</h3>
 
           <label htmlFor="cep">CEP</label>
           <input
-            type="number"
+            type="string"
             id="cep"
             placeholder="00000.000"
             {...register("address.cep")}
           />
+          <p>{errors.address?.cep?.message}</p>
 
           <div className="state-city">
             <div className="divState">
@@ -141,6 +148,7 @@ const Register = () => {
                 {...register("address.state")}
               />
             </div>
+            <p>{errors.address?.state?.message}</p>
 
             <div className="divCity">
               <label htmlFor="city">Cidade</label>
@@ -151,6 +159,7 @@ const Register = () => {
                 placeholder="Digitar cidade"
                 {...register("address.city")}
               />
+              <p>{errors.address?.city?.message}</p>
             </div>
           </div>
 
@@ -161,6 +170,7 @@ const Register = () => {
             placeholder="Digitar Rua"
             {...register("address.street")}
           />
+          <p>{errors.address?.street?.message}</p>
 
           <div className="number-complement">
             <div className="divNumber">
@@ -172,6 +182,7 @@ const Register = () => {
                 placeholder="Digitar número"
                 {...register("address.number")}
               />
+              <p>{errors.address?.number?.message}</p>
             </div>
 
             <div className="divComplement">
@@ -185,21 +196,27 @@ const Register = () => {
               />
             </div>
           </div>
+          <p>{errors.address?.complement?.message}</p>
 
           <label htmlFor="type">Tipo de Conta</label>
 
           <div className="button-buyer-advertiser">
-            <button className="button-buyer">Comprador</button>
-            <button className="button-advertiser">Anunciante</button>
+            <button type="button" className="button-buyer">
+              Comprador
+            </button>
+            <button type="button" className="button-advertiser">
+              Anunciante
+            </button>
           </div>
 
           <label htmlFor="password">Senha</label>
           <input
-            type="password"
+            type="text"
             id="password"
             placeholder="********"
             {...register("password")}
           />
+          <p>{errors.password?.message}</p>
 
           <label htmlFor="verPassword">Confirmar senha</label>
           <input
@@ -208,6 +225,7 @@ const Register = () => {
             placeholder="********"
             {...register("verPassword")}
           />
+          <p>{errors.verPassword?.message}</p>
 
           <button className="buttonRegister">Finalizar Cadastro</button>
         </Form>

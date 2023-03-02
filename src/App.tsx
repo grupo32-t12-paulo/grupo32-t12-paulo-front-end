@@ -1,6 +1,8 @@
 import "./App.css";
+import Register from "./components/FormRegister";
 
 import LoginPage from "./pages/loginPage";
+import RegisterPage from "./pages/Register";
 import RouteApllication from "./routes";
 import ProductPage from "./pages/product";
 import ModalExpandImage from "./components/ModalExpandImage";
@@ -11,7 +13,12 @@ function App() {
     <>
       <Global />
       <RouteApllication />
+      {/* <RegisterPage /> */}
+      {/* <Register /> */}
+      {/* <LoginPage /> */}
+
       <ModalExpandImage />
+
     </>
   );
 }
