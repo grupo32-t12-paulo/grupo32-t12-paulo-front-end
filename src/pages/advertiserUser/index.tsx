@@ -47,6 +47,7 @@ const AdvertiserUser = () => {
                       km={car.mileage}
                       year={car.year}
                       price={car.price}
+                      id={car.annoucementId}
                     />
                   </ListItem>
                 );
@@ -83,6 +84,7 @@ const AdvertiserUser = () => {
                           km={motorcycle.mileage}
                           year={motorcycle.year}
                           price={motorcycle.price}
+                          id={motorcycle.annoucementId}
                         />
                       </ListItem>
                     );
