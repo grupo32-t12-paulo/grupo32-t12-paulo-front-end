@@ -22,6 +22,7 @@ interface IAnnouncement {
   description: string;
   vehicleType: string;
   coverImage: string;
+  images: string[];
   user: IUser;
 }
 

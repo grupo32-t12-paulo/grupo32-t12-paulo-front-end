@@ -1,5 +1,6 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AppBarComponent from "../../components/AppBar";
 import ActionAreaCard from "../../components/CardAuction";
 import MediaCard from "../../components/CardComponent";
@@ -8,10 +9,8 @@ import BackToTop from "../../components/Footer";
 import { AnnouncementContext } from "../../contexts/announcement.context";
 
 const HomePage = () => {
-  const { cars, motorcycles, listAnnouncement } =
-    useContext(AnnouncementContext);
-
-  listAnnouncement();
+  const { cars, motorcycles } = useContext(AnnouncementContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -62,7 +61,10 @@ const HomePage = () => {
             }}
           >
             {cars.map((car) => (
-              <ListItem>
+              <ListItem
+                onClick={() => navigate(`announcement/${car.annoucementId}`)}
+                sx={{ ":hover": { cursor: "pointer" } }}
+              >
                 <MediaCard
                   title={car.title}
                   description={car.description}

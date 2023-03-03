@@ -9,13 +9,36 @@ import { useContext, useEffect } from "react";
 import { CurrentImageGalleryContext } from "../../contexts/gallery.context";
 import { Container } from "@mui/system";
 
-export default function GalleryGrid() {
-  const photos = [Photo, Photo2, Photo3, Photo, Photo2, Photo3];
+interface IChildren {
+  arrImages: string[] | undefined;
+}
+
+export default function GalleryGrid({ arrImages }: IChildren) {
+  if (arrImages) {
+    console.log(arrImages);
+    if (arrImages.length < 6) {
+      let acc = arrImages.length;
+      arrImages.map((image, index) => {
+        if (index === arrImages.length - 1) {
+          while (acc < 6) {
+            arrImages.push(image);
+            console.log(arrImages);
+
+            acc = acc + 1;
+          }
+        }
+      });
+    }
+  }
+  const photos = arrImages;
+
   const { setCurrentImage, setOpen } = useContext(CurrentImageGalleryContext);
 
   useEffect(() => {
     setOpen(false);
-    setCurrentImage(photos[0]);
+    if (photos) {
+      setCurrentImage(photos[0]);
+    }
   }, []);
 
   return (
@@ -48,7 +71,7 @@ export default function GalleryGrid() {
           mb: 2,
         }}
       >
-        {photos.map((photo, index) => (
+        {photos?.map((photo, index) => (
           <Grid key={`photo_${index}`} item xs={4}>
             <CardActionArea onClick={() => setCurrentImage(photo)}>
               <Card
