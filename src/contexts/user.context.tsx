@@ -68,7 +68,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const navigate = useNavigate();
 
   const listAnnouncementProfile = () => {
-    console.log("recarregou anúncios");
     api
       .get(`/users/${idAdvertiser}`)
       .then((res) => {
@@ -87,7 +86,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
   }, [window.location.href]);
 
   const handleRegisterUser = (data: IHandleRegisterUser) => {
-    console.log(data);
     api
       .post("/users", data)
       .then((res) => {
