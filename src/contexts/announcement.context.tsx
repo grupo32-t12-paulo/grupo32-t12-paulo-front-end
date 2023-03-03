@@ -10,8 +10,6 @@ export interface IAnnouncementProps {
 
   motorcycles: IAnnouncement[] | [];
   setMotorcycles: React.Dispatch<React.SetStateAction<IAnnouncement[] | []>>;
-
-  listAnnouncement: () => void;
 }
 
 export interface IAnnouncement {
@@ -41,6 +39,7 @@ const AnnouncementProvider = ({ children }: IProviderChildren) => {
   const [motorcycles, setMotorcycles] = useState<IAnnouncement[] | []>([]);
 
   const listAnnouncement = () => {
+    console.log("listAnnouncement");
     api
       .get("/announcements")
       .then((response) => {
@@ -68,8 +67,10 @@ const AnnouncementProvider = ({ children }: IProviderChildren) => {
   };
 
   useEffect(() => {
-    refreshListAnnouncement();
+    setTimeout(() => refreshListAnnouncement(), 5000);
   }, [announcement]);
+
+  useEffect(() => listAnnouncement(), []);
 
   return (
     <AnnouncementContext.Provider
@@ -80,7 +81,6 @@ const AnnouncementProvider = ({ children }: IProviderChildren) => {
         setCars,
         motorcycles,
         setMotorcycles,
-        listAnnouncement,
       }}
     >
       {children}

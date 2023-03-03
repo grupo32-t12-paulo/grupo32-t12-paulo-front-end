@@ -57,7 +57,7 @@ export function LoginProvider({ children }: { children: React.ReactNode }) {
         api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const { data } = await api.get(`/users/${resJWT.id}`);
         setUser(data);
-        navigate("/announcement/1");
+        navigate("/");
       }
     } catch (err) {
       toast.error("Usuário ou senha incorreto.");

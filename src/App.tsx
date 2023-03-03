@@ -10,7 +10,6 @@ function App() {
       <Global />
       <RouteApllication />
       <ModalExpandImage />
-      <Reset />
     </>
   );
 }
