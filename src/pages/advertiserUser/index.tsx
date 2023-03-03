@@ -9,9 +9,12 @@ import { Box, Typography } from "@material-ui/core";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { IAnnouncement } from "../../contexts/announcement.context";
+import { useParams } from "react-router-dom";
 
 const AdvertiserUser = () => {
-  const { annoucementUser } = useContext(UserContext);
+  const { annoucementUser, setId } = useContext(UserContext);
+  const { idAdvertiser } = useParams();
+  setId(idAdvertiser);
   const cars: IAnnouncement[] = [];
   const motorcycles: IAnnouncement[] = [];
 
@@ -64,7 +67,7 @@ const AdvertiserUser = () => {
             ) : (
               <ListItem>
                 <Typography>
-                  No momento você não possui anúncio de carros
+                  Esse anunciante não possui anúncio de carros.
                 </Typography>
               </ListItem>
             )}
@@ -104,7 +107,7 @@ const AdvertiserUser = () => {
               ) : (
                 <ListItem>
                   <Typography>
-                    No momento você não possui anúncio de motos
+                    Esse anunciante não possui anúncio de motos.
                   </Typography>
                 </ListItem>
               )}

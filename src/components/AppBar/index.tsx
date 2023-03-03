@@ -447,7 +447,7 @@ export default function AppBarComponent() {
                   <Button
                     variant="outlined"
                     onClick={() => {
-                      navigate(`/`);
+                      navigate(`/register-user`);
                       return handleCloseNavMenu();
                     }}
                     sx={{
