@@ -1,23 +1,29 @@
 import {
   createContext,
+  Dispatch,
   ReactNode,
-  useContext,
+  SetStateAction,
   useEffect,
   useState,
 } from "react";
-import { useMatch, useNavigate, useParams } from "react-router-dom";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
-import { AnnouncementContext, IAnnouncement } from "./announcement.context";
-import { LoginContext } from "./login.context";
+import { IAnnouncement } from "./announcement.context";
 
 interface IUserProps {
   annoucementUser: IAnnouncement[] | [];
   setAnnoucementUser: (annoucementUser: IAnnouncement[] | []) => void;
 
+  setId: Dispatch<SetStateAction<string | undefined>>;
+
+  isAdvertiser: boolean;
+  setIsAdvertiser: (isAdvertiser: boolean) => void;
+
   listAnnouncementProfile: () => void;
 
-  handleRegisterUser: (data: IHandleRegisterUser) => void;
+  handleRegisterUser: SubmitHandler<FieldValues>;
 }
 
 interface IAddress {
@@ -35,44 +41,50 @@ export interface IUser {
   email: string;
   password: string;
   cpf: string;
-  cellphone: string;
+  cellPhone: string;
   dateBirth: string;
   description: string;
   isActive?: boolean;
   isAdvertiser?: boolean;
-  address: IAddress;
 }
 
 export interface IHandleRegisterUser {
   name: string;
   email: string;
   password: string;
+  verPassword: string;
   cpf: string;
-  cellphone: string;
-  dateBirth: Date | string;
+  cellPhone: string;
+  dateBirth: string;
   description: string;
   address: IAddress;
+
+  // cep: string;
+  // state: string;
+  // city: string;
+  // street: string;
+  // number: string;
+  // complement: string;
 }
 
 export interface IProviderChildren {
   children: ReactNode;
 }
 export const UserContext = createContext<IUserProps>({} as IUserProps);
+
 const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
-  const { idAdvertiser } = useParams();
-  const isPage = useMatch(`/advertiser-profile/${idAdvertiser}`);
+  const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
+  const [id, setId] = useState<string | undefined>();
 
   const navigate = useNavigate();
 
   const listAnnouncementProfile = () => {
-    console.log("recarregou anúncios");
     api
-      .get(`/users/${idAdvertiser}`)
+      .get(`/users/${id}`)
       .then((res) => {
-        console.log("res", res);
         setAnnoucementUser(res.data.annoucements);
       })
       .catch((err) => {
@@ -81,14 +93,13 @@ const UserProvider = ({ children }: IProviderChildren) => {
   };
 
   useEffect(() => {
-    if (isPage) {
+    if (id !== undefined) {
       listAnnouncementProfile();
     }
-  }, [window.location.href]);
+  }, [id]);
 
-  const handleRegisterUser = (data: IHandleRegisterUser) => {
-    console.log(data);
-    api
+  const handleRegisterUser = async (data: FieldValues) => {
+    await api
       .post("/users", data)
       .then((res) => {
         console.log(res.data);
@@ -96,6 +107,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         navigate("/login", { replace: true });
       })
       .catch((err) => {
+        console.log(err);
         toast.error("erro durante o cadastro. Tente novamente");
       });
   };
@@ -105,6 +117,9 @@ const UserProvider = ({ children }: IProviderChildren) => {
       value={{
         annoucementUser,
         setAnnoucementUser,
+        isAdvertiser,
+        setIsAdvertiser,
+        setId,
         listAnnouncementProfile,
         handleRegisterUser,
       }}

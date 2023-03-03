@@ -3,7 +3,7 @@ import AdvertiserUser from "../pages/advertiserUser";
 import ProductPage from "../pages/product";
 import HomePage from "../pages/homePage";
 
-import RegisterPage from "../pages/Register";
+import RegisterPage from "../pages/RegisterUser";
 
 import LoginPage from "../pages/LoginPage/loginPage";
 

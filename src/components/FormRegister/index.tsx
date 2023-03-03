@@ -3,31 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Container, Div, Form } from "./style";
 import { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
-
-interface IAddress {
-  cep: string;
-  state: string;
-  city: string;
-  street: string;
-  number: string;
-  complement: string;
-}
-
-interface IRegister {
-  name: string;
-  email: string;
-  password: string;
-  verPassword: string;
-  cpf: string;
-  cellphone: string;
-  dateBirth: Date | string;
-  description: string;
-  address: IAddress;
-}
+import { IHandleRegisterUser, UserContext } from "../../contexts/user.context";
 
 const Register = () => {
-  const { handleRegisterUser } = useContext(UserContext);
+  const { handleRegisterUser, isAdvertiser, setIsAdvertiser } =
+    useContext(UserContext);
+  console.log("oi", handleRegisterUser);
 
   const formRegister = yup.object().shape({
     name: yup.string().required("campo obrigatório"),
@@ -49,21 +30,25 @@ const Register = () => {
       .required("Confirmação de senha obrigatória")
       .equals([yup.ref("password"), null], "A senha não corresponde"),
     cpf: yup.string().required("campo obrigatório"),
-    cellphone: yup.string().required("campo obrigatório"),
+    cellPhone: yup.string().required("campo obrigatório"),
     dateBirth: yup.string().required("campo obrigatório"),
-    description: yup.string().required("campo obrigatório"),
-    cep: yup.string().required("campo obrigatório"),
-    state: yup.string().required("campo obrigatório"),
-    street: yup.string().required("campo obrigatório"),
-    number: yup.string().required("campo obrigatório"),
-    complement: yup.string().required("campo obrigatório"),
+    description: yup
+      .string()
+      .required("campo obrigatório")
+      .min(10, "minimo 10 caracteres"),
+    // cep: yup.string().required("campo obrigatório"),
+    // state: yup.string().required("ex: DF"),
+    // city: yup.string().required("campo obrigatório"),
+    // street: yup.string().required("campo obrigatório"),
+    // number: yup.string().required("campo obrigatório"),
+    // complement: yup.string().required("campo obrigatório"),
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRegister>({ resolver: yupResolver(formRegister) });
+  } = useForm<IHandleRegisterUser>({ resolver: yupResolver(formRegister) });
   return (
     <Container>
       <Div>
@@ -103,9 +88,9 @@ const Register = () => {
             type="text"
             id="cellphone"
             placeholder="(xx) xxxxx-xxxx"
-            {...register("cellphone")}
+            {...register("cellPhone")}
           />
-          <p>{errors.cellphone?.message}</p>
+          <p>{errors.cellPhone?.message}</p>
 
           <label htmlFor="dateBirth">Data de nascimento</label>
           <input
@@ -147,8 +132,8 @@ const Register = () => {
                 placeholder="Digitar Estado"
                 {...register("address.state")}
               />
+              <p>{errors.address?.state?.message}</p>
             </div>
-            <p>{errors.address?.state?.message}</p>
 
             <div className="divCity">
               <label htmlFor="city">Cidade</label>
@@ -177,7 +162,7 @@ const Register = () => {
               <label htmlFor="number">Número</label>
               <input
                 className="number"
-                type="number"
+                type="string"
                 id="number"
                 placeholder="Digitar número"
                 {...register("address.number")}
@@ -194,17 +179,25 @@ const Register = () => {
                 placeholder="ex: apart 307"
                 {...register("address.complement")}
               />
+              <p>{errors.address?.complement?.message}</p>
             </div>
           </div>
-          <p>{errors.address?.complement?.message}</p>
 
           <label htmlFor="type">Tipo de Conta</label>
 
           <div className="button-buyer-advertiser">
-            <button type="button" className="button-buyer">
+            <button
+              type="button"
+              className="button-buyer"
+              onClick={() => setIsAdvertiser(true)}
+            >
               Comprador
             </button>
-            <button type="button" className="button-advertiser">
+            <button
+              type="button"
+              className="button-advertiser"
+              onClick={() => setIsAdvertiser(true)}
+            >
               Anunciante
             </button>
           </div>
@@ -227,7 +220,13 @@ const Register = () => {
           />
           <p>{errors.verPassword?.message}</p>
 
-          <button className="buttonRegister">Finalizar Cadastro</button>
+          <button
+            onClick={() => console.log("botão")}
+            type="submit"
+            className="buttonRegister"
+          >
+            Finalizar Cadastro
+          </button>
         </Form>
       </Div>
     </Container>
