@@ -6,6 +6,7 @@ import HomePage from "../pages/homePage";
 import RegisterPage from "../pages/Register";
 
 import LoginPage from "../pages/LoginPage/loginPage";
+import ResetPassword from "../pages/ResetPassword";
 
 const RouteApllication = () => {
   return (
@@ -19,6 +20,7 @@ const RouteApllication = () => {
       />
       <Route path="/announcement/:id" element={<ProductPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/recover-password/:id/:token" element={<ResetPassword />} />
     </Routes>
   );
 };
