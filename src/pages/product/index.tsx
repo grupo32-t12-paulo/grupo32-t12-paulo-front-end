@@ -22,6 +22,13 @@ const ProductPage = () => {
   const { id } = useParams();
   setId(id);
 
+  const images: string[] = [];
+  if (announcement) {
+    images.push(announcement.coverImage);
+  } else {
+    images.push("");
+  }
+
   useEffect(() => {
     if (announcement && comments) {
       setConditional(true);
@@ -56,7 +63,7 @@ const ProductPage = () => {
                 <InputComment />
               </Grid>
               <Grid item xs={4}>
-                <GalleryGrid />
+                <GalleryGrid arrImages={images} />
                 {announcement && (
                   <CardSellerInfo
                     name={announcement.user.name}
@@ -84,7 +91,7 @@ const ProductPage = () => {
                 />
               </>
             )}
-            <GalleryGrid />
+            <GalleryGrid arrImages={images} />
             {announcement && (
               <CardSellerInfo
                 name={announcement.user.name}
