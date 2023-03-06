@@ -58,8 +58,6 @@ export const Header = styled.div`
 `;
 
 export const Form = styled.form`
-  padding: 10px;
-
   .cancel-saveEdition {
     display: flex;
     flex-direction: row;
@@ -97,6 +95,7 @@ export const Div = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   height: 64vh;
+  padding: 10px;
 
   h3 {
     font-size: 0.8rem;

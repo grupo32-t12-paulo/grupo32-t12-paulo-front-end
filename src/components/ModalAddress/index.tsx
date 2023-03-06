@@ -1,19 +1,50 @@
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { AddressContext, IEditForm } from "../../contexts/address.context";
 import { Container, Form, Header, Modal } from "./style";
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/login.context";
 
 const ModalAddress = () => {
+  const { handleEditAddress, setEditModalAddress } = useContext(AddressContext);
+  const { user } = useContext(LoginContext);
+
+  const formEdit = yup.object().shape({
+    cep: yup.string().optional(),
+    state: yup.string().optional(),
+    city: yup.string().optional(),
+    street: yup.string().optional(),
+    number: yup.string().optional(),
+    complement: yup.string().optional(),
+  });
+  const { handleSubmit, register } = useForm<IEditForm>({
+    resolver: yupResolver(formEdit),
+  });
+
   return (
     <Container>
       <Modal>
         <Header>
           <h2>Editar Endereço</h2>
-          <button className="buttonExit">X</button>
+          <button
+            className="buttonExit"
+            onClick={() => setEditModalAddress(false)}
+          >
+            X
+          </button>
         </Header>
 
         <h3>Informações de endereço</h3>
 
-        <Form>
+        <Form onSubmit={handleSubmit(handleEditAddress)}>
           <label htmlFor="cep">CEP</label>
-          <input type="text" id="cep" placeholder="00000.000" />
+          <input
+            type="text"
+            id="cep"
+            {...register("cep")}
+            defaultValue={user?.address.cep}
+          />
 
           <div className="state-city">
             <div className="divState">
@@ -22,7 +53,8 @@ const ModalAddress = () => {
                 className="state"
                 type="text"
                 id="state"
-                placeholder="Paraná"
+                {...register("state")}
+                defaultValue={user?.address.state}
               />
             </div>
 
@@ -32,13 +64,14 @@ const ModalAddress = () => {
                 className="city"
                 type="text"
                 id="city"
-                placeholder="Curitiba"
+                {...register("city")}
+                defaultValue={user?.address.city}
               />
             </div>
           </div>
 
           <label htmlFor="road">Rua</label>
-          <input type="text" id="road" placeholder="00000.000" />
+          <input type="text" id="road" {...register("street")} />
 
           <div className="number-complement">
             <div className="divNumber">
@@ -47,7 +80,8 @@ const ModalAddress = () => {
                 className="number"
                 type="text"
                 id="number"
-                placeholder="1029"
+                {...register("number")}
+                defaultValue={user?.address.number}
               />
             </div>
 
@@ -57,13 +91,19 @@ const ModalAddress = () => {
                 className="complement"
                 type="text"
                 id="complement"
-                placeholder="Curitiba"
+                {...register("complement")}
+                defaultValue={user?.address.complement}
               />
             </div>
           </div>
 
           <div className="button-cancel-save">
-            <button className="buttonCancel">Cancelar</button>
+            <button
+              className="buttonCancel"
+              onClick={() => setEditModalAddress(false)}
+            >
+              Cancelar
+            </button>
             <button className="buttonSave">Salvar Alterações</button>
           </div>
         </Form>

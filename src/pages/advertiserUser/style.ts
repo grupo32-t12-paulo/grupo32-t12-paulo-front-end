@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const ContainerRoot = styled.div`
   background: linear-gradient(
     180deg,
-    rgba(69, 41, 230, 1) 15%,
-    rgba(248, 249, 250, 1) 15%
+    rgba(69, 41, 230, 1) 25%,
+    rgba(248, 249, 250, 1) 25%
   );
 
   @media (min-width: 769px) {
     background: linear-gradient(
       180deg,
-      rgba(69, 41, 230, 1) 15%,
-      rgba(248, 249, 250, 1) 15%
+      rgba(69, 41, 230, 1) 35%,
+      rgba(248, 249, 250, 1) 35%
     );
   }
 `;
