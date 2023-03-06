@@ -94,7 +94,7 @@ export default function AppBarComponent() {
     <>
       {editModalUser ? <ModalEditProfile /> : null}
       {editModalAddress ? <ModalAddress /> : null}
-      <AppBar color="inherit" elevation={0} variant="outlined">
+      <AppBar color="inherit" elevation={0} sx={{ zIndex: 1 }} variant="outlined">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Logo */}

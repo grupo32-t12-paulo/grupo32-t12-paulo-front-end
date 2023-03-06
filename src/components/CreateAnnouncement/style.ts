@@ -25,7 +25,6 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 1036px;
-  // overflow-y: scroll;
 
   gap: 16px;
   padding: 10px 10px 20px 10px;
@@ -94,13 +93,6 @@ export const Form = styled.form`
 
     border: 1px solid var(--grey3);
     background-color: var(--whiteFixed);
-    font-weight: var(--button-medium-text);
-  }
-
-  .buttonCancel {
-    width: 132px;
-    height: 40px;
-    background-color: var(--button-gray);
     font-weight: var(--button-medium-text);
   }
 
@@ -173,9 +165,6 @@ export const Form = styled.form`
     .buttonCreateContente {
       width: 150px;
     }
-    .buttonCancel {
-      width: 100px;
-    }
 
     .buttonAuction,
     .buttonMotorcycle {
@@ -211,4 +200,12 @@ export const Form = styled.form`
       padding: 12px;
     }
   }
+`;
+
+export const Div = styled.div`
+  margin-top: 80px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 32px -8px rgba(0, 0, 0, 0.25);
+  height: 84vh;
+  overflow-y: scroll;
 `;

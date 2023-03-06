@@ -4,6 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
+import CreateAnnouncement from "../CreateAnnouncement";
 
 interface IChildren {
   title: string;
@@ -13,6 +14,8 @@ interface IChildren {
   km: number;
   year: number;
   price: string;
+  annoucementId?: string;
+  edit?: boolean;
 }
 
 export default function MediaCard({
@@ -23,13 +26,16 @@ export default function MediaCard({
   km,
   year,
   price,
+  annoucementId,
+  edit,
 }: IChildren) {
+
   return (
-    <Card sx={{ width: "302px", boxShadow: "unset" }}>
+    <Card sx={{ width: "312px", boxShadow: "unset", minHeight: 356 }}>
       <CardMedia
-        sx={{ height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
+        sx={{ width: "100%", height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
         image={image}
-        title="green iguana"
+        title=""
       />
       <CardContent sx={{ padding: "0" }}>
         <Typography
@@ -97,9 +103,10 @@ export default function MediaCard({
         >
           <div style={{ display: "flex", gap: "7px", padding: "0" }}>
             <Button
-              variant="contained"
+
               style={{
                 width: "85px",
+                height: "38px",
                 flexWrap: "nowrap",
                 backgroundColor: "#EDEAFD",
                 fontWeight: "500",
@@ -137,6 +144,7 @@ export default function MediaCard({
             R$ {price}
           </Typography>
         </div>
+        {edit ? <CreateAnnouncement annoucementId={annoucementId} /> : null}
       </CardContent>
     </Card>
   );

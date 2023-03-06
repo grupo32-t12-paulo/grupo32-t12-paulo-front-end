@@ -36,6 +36,9 @@ interface IUserProps {
   handleEdit: (data: IEditForm) => void;
 
   handleDelete: () => void;
+
+  user: IUser;
+
 }
 
 interface IAddress {
@@ -58,7 +61,9 @@ export interface IUser {
   description: string;
   isActive?: boolean;
   isAdvertiser?: boolean;
+  annoucements?: IAnnouncement[];
 }
+
 
 export interface IHandleRegisterUser {
   name: string;
@@ -100,6 +105,8 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
+  const [user, setUser] = useState<IUser>({} as IUser)
+
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | undefined>();
   const [editModalUser, setEditModalUser] = useState<boolean>(false);
@@ -113,6 +120,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .get(`/users/${userId}`)
       .then((res) => {
+        setUser(res.data)
         setAnnoucementUser(res.data.annoucements);
       })
       .catch((err) => {
@@ -182,6 +190,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         handleRegisterUser,
         handleEdit,
         handleDelete,
+        user
       }}
     >
       {children}
