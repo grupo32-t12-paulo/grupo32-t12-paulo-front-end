@@ -9,7 +9,12 @@ import VehicleData from "../VehicleData";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { AvatarComponent } from "../Avatar";
 
-export default function ActionAreaCard() {
+interface IProps {
+  annoucementsId?: string;
+  edit?: boolean;
+}
+
+export default function ActionAreaCard({ annoucementsId, edit }: IProps) {
   return (
     <Card sx={{ maxWidth: 735 }}>
       <CardActionArea

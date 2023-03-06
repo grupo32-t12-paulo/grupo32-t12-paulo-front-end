@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import AdvertiserUser from "../pages/advertiserUser";
 import ProductPage from "../pages/product";
 import HomePage from "../pages/homePage";
+import ProfileViewAdmin from "../pages/profileViewAdmin";
 
 import RegisterPage from "../pages/RegisterUser";
 
@@ -18,6 +19,7 @@ const RouteApllication = () => {
         path="/advertiser-profile/:idAdvertiser"
         element={<AdvertiserUser />}
       />
+      <Route path="/profileAdmin/:id" element={<ProfileViewAdmin />} />
       <Route path="/announcement/:id" element={<ProductPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/recover-password/:id/:token" element={<ResetPassword />} />
