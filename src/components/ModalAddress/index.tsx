@@ -9,6 +9,7 @@ import { LoginContext } from "../../contexts/login.context";
 const ModalAddress = () => {
   const { handleEditAddress, setEditModalAddress } = useContext(AddressContext);
   const { user } = useContext(LoginContext);
+  console.log("address", user?.address);
 
   const formEdit = yup.object().shape({
     cep: yup.string().optional(),
@@ -71,7 +72,12 @@ const ModalAddress = () => {
           </div>
 
           <label htmlFor="road">Rua</label>
-          <input type="text" id="road" {...register("street")} />
+          <input
+            type="text"
+            id="road"
+            {...register("street")}
+            defaultValue={user?.address.street}
+          />
 
           <div className="number-complement">
             <div className="divNumber">

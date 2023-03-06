@@ -11,6 +11,7 @@ import UserProvider from "./contexts/user.context";
 import { AnnouncementDetailsProvider } from "./contexts/announcementDetails.context";
 import AnnouncementProvider from "./contexts/announcement.context";
 import { LoginProvider } from "./contexts/login.context";
+import AddressProvider from "./contexts/address.context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -21,23 +22,25 @@ root.render(
       <CurrentImageGalleryProvider>
         <LoginProvider>
           <UserProvider>
-            <AnnouncementDetailsProvider>
-              <AnnouncementProvider>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={4000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                />
-                <App />
-              </AnnouncementProvider>
-            </AnnouncementDetailsProvider>
+            <AddressProvider>
+              <AnnouncementDetailsProvider>
+                <AnnouncementProvider>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
+                  <App />
+                </AnnouncementProvider>
+              </AnnouncementDetailsProvider>
+            </AddressProvider>
           </UserProvider>
         </LoginProvider>
       </CurrentImageGalleryProvider>
