@@ -5,18 +5,17 @@ import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
 import { useContext } from "react";
 import { LoginContext } from "../../contexts/login.context";
+import CreateAnnouncement from "../CreateAnnouncement";
 
 export default function CardInfoSeller() {
   const { user } = useContext(LoginContext);
   return (
-    <Card
+    <div
       style={{
-        minWidth: "343px",
+        width: "100%",
         maxWidth: "1240px",
         height: "394px",
         backgroundColor: "#FDFDFD",
-        marginLeft: "16px",
-        marginRight: "16px",
       }}
     >
       <CardContent
@@ -78,7 +77,8 @@ export default function CardInfoSeller() {
         >
           {user?.description}
         </Typography>
+        <CreateAnnouncement create={true} />
       </CardContent>
-    </Card>
+    </div>
   );
 }

@@ -24,6 +24,8 @@ interface IUserProps {
   listAnnouncementProfile: () => void;
 
   handleRegisterUser: SubmitHandler<FieldValues>;
+
+  user: IUser;
 }
 
 interface IAddress {
@@ -46,7 +48,9 @@ export interface IUser {
   description: string;
   isActive?: boolean;
   isAdvertiser?: boolean;
+  annoucements?: IAnnouncement[];
 }
+
 
 export interface IHandleRegisterUser {
   name: string;
@@ -76,6 +80,8 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
+  const [user, setUser] = useState<IUser>({} as IUser)
+
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
   const [id, setId] = useState<string | undefined>();
 
@@ -85,6 +91,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .get(`/users/${id}`)
       .then((res) => {
+        setUser(res.data)
         setAnnoucementUser(res.data.annoucements);
       })
       .catch((err) => {
@@ -122,6 +129,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         setId,
         listAnnouncementProfile,
         handleRegisterUser,
+        user
       }}
     >
       {children}
