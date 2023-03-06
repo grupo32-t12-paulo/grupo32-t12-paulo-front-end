@@ -7,8 +7,10 @@ import { useContext, useState } from "react";
 import { LoginContext } from "../../contexts/login.context";
 import { ContainerRoot, Div, Form } from "./style";
 import ForgotPasswordModal from "../Forgot";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { signIn } = useContext(LoginContext);
   const schema = yup.object({
     email: yup
@@ -66,10 +68,16 @@ const Login = () => {
               Esqueci minha senha
             </Box>
 
-            <button>Entrar</button>
+            <button type="submit">Entrar</button>
 
             <h3>Ainda não possui conta?</h3>
-            <button className="cadastrar">Cadastrar</button>
+            <button
+              type="button"
+              className="cadastrar"
+              onClick={() => navigate("login")}
+            >
+              Cadastrar
+            </button>
           </Form>
         </Div>
       </ContainerRoot>
