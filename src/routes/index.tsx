@@ -21,7 +21,6 @@ const RouteApllication = () => {
       />
       <Route path="/profileAdmin/:id" element={<ProfileViewAdmin />} />
       <Route path="/announcement/:id" element={<ProductPage />} />
-      <Route path="/login" element={<LoginPage />} />
       <Route path="/recover-password/:id/:token" element={<ResetPassword />} />
     </Routes>
   );
