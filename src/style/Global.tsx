@@ -111,7 +111,15 @@ input, textarea {
 
 
 ::-webkit-scrollbar{
-    width: 10px;
+    width: 6px;
+    border-radius: 20px;
+    background-color: var(--whiteFixed);
+}
+
+
+::-webkit-scrollbar-thumb {
+  border-radius: 40px;
+  width: 5px;
 }
 
 

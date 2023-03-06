@@ -3,6 +3,7 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -11,21 +12,33 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 import { IAnnouncement } from "./announcement.context";
+import { LoginContext } from "./login.context";
 
 interface IUserProps {
   annoucementUser: IAnnouncement[] | [];
   setAnnoucementUser: (annoucementUser: IAnnouncement[] | []) => void;
 
-  setId: Dispatch<SetStateAction<string | undefined>>;
+  setUserId: Dispatch<SetStateAction<string | undefined>>;
 
   isAdvertiser: boolean;
   setIsAdvertiser: (isAdvertiser: boolean) => void;
+
+  editModalUser: boolean;
+  setEditModalUser: (editModalUser: boolean) => void;
+
+  deleteModalUser: boolean;
+  setDeleteModalUser: (deleteModalUser: boolean) => void;
 
   listAnnouncementProfile: () => void;
 
   handleRegisterUser: SubmitHandler<FieldValues>;
 
+  handleEdit: (data: IEditForm) => void;
+
+  handleDelete: () => void;
+
   user: IUser;
+
 }
 
 interface IAddress {
@@ -33,7 +46,7 @@ interface IAddress {
   state: string;
   city: string;
   street: string;
-  number: string;
+  number: number;
   complement: string;
 }
 
@@ -62,13 +75,25 @@ export interface IHandleRegisterUser {
   dateBirth: string;
   description: string;
   address: IAddress;
+}
 
-  // cep: string;
-  // state: string;
-  // city: string;
-  // street: string;
-  // number: string;
-  // complement: string;
+export interface IHandleEdit {
+  id?: string;
+  name?: string;
+  email?: string;
+  cpf?: string;
+  cellPhone?: string;
+  dateBirth?: string;
+  description?: string;
+}
+
+export interface IEditForm {
+  name?: string;
+  email?: string;
+  cpf?: string;
+  cellPhone?: string;
+  dateBirth?: string;
+  description?: string;
 }
 
 export interface IProviderChildren {
@@ -83,13 +108,17 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IUser>({} as IUser)
 
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
-  const [id, setId] = useState<string | undefined>();
+  const [userId, setUserId] = useState<string | undefined>();
+  const [editModalUser, setEditModalUser] = useState<boolean>(false);
+  const [deleteModalUser, setDeleteModalUser] = useState<boolean>(false);
+
+  const { user, setUser } = useContext(LoginContext);
 
   const navigate = useNavigate();
 
   const listAnnouncementProfile = () => {
     api
-      .get(`/users/${id}`)
+      .get(`/users/${userId}`)
       .then((res) => {
         setUser(res.data)
         setAnnoucementUser(res.data.annoucements);
@@ -100,10 +129,10 @@ const UserProvider = ({ children }: IProviderChildren) => {
   };
 
   useEffect(() => {
-    if (id !== undefined) {
+    if (userId !== undefined) {
       listAnnouncementProfile();
     }
-  }, [id]);
+  }, [userId]);
 
   const handleRegisterUser = async (data: FieldValues) => {
     await api
@@ -119,6 +148,32 @@ const UserProvider = ({ children }: IProviderChildren) => {
       });
   };
 
+  const handleEdit = async (data: IEditForm) => {
+    await api
+      .patch(`/users/${user?.id}`, data)
+      .then((response) => {
+        setUser(response.data);
+        setEditModalUser(false);
+        toast.success("informações atualizadas com sucesso");
+      })
+      .catch((err) => {
+        toast.error("erro ao atualizar informações");
+      });
+  };
+
+  const handleDelete = async () => {
+    await api
+      .delete(`/user/${userId}`)
+      .then((response) => {
+        setDeleteModalUser(false);
+        window.localStorage.removeItem("@motorshop:token");
+        navigate("/", { replace: true });
+      })
+      .catch((err) => {
+        toast.error("erro ao excluir usuário");
+      });
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -126,9 +181,15 @@ const UserProvider = ({ children }: IProviderChildren) => {
         setAnnoucementUser,
         isAdvertiser,
         setIsAdvertiser,
-        setId,
+        setUserId,
+        editModalUser,
+        setEditModalUser,
+        deleteModalUser,
+        setDeleteModalUser,
         listAnnouncementProfile,
         handleRegisterUser,
+        handleEdit,
+        handleDelete,
         user
       }}
     >
