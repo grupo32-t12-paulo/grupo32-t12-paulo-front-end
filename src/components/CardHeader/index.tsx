@@ -1,6 +1,10 @@
 import Button from "@mui/material/Button";
+import { useMediaQuery } from "@mui/material";
+import { Link } from "react-scroll"
 
 export const CardHeader = () => {
+  const isScreenSizeLarge = useMediaQuery("(max-width: 372px)");
+
   return (
     <header
       style={{
@@ -52,43 +56,39 @@ export const CardHeader = () => {
           width: "100%",
           maxWidth: "372px",
           display: "flex",
-          flexWrap: "wrap",
+          flexWrap: isScreenSizeLarge ? "wrap" : "nowrap",
           alignItems: "center",
           justifyContent: "center",
           gap: "10px",
         }}
       >
-        <Button
-          variant="outlined"
-          style={{
-            width: "100%",
-            maxWidth: "180px",
-            height: "48px",
-            color: "#ffffff",
-            border: "1px solid #ffffff",
-          }}
-        >
-          <a href="#cars" style={{ textDecoration: "none", color: "#FFF" }}>
-            Carros{" "}
-          </a>
-        </Button>
-        <Button
-          variant="outlined"
-          style={{
-            width: "100%",
-            maxWidth: "180px",
-            height: "48px",
-            color: "#ffffff",
-            border: "1px solid #ffffff",
-          }}
-        >
-          <a
-            href="#motorcycle"
-            style={{ textDecoration: "none", color: "#FFF" }}
+        <Link to="cars" activeClass="active" spy={true} smooth={true} offset={-100} duration={500}>
+          <Button
+            variant="outlined"
+            style={{
+              width: "182px",
+              height: "48px",
+              color: "#ffffff",
+              border: "1px solid #ffffff",
+            }}
           >
-            Motos{" "}
-          </a>
-        </Button>
+            <p style={{ textDecoration: "none", color: "#FFF" }}>Carros</p>
+          </Button>
+        </Link>
+        
+        <Link to="motorcycle" activeClass="active" spy={true} smooth={true} offset={-100} duration={500}>
+          <Button
+            variant="outlined"
+            style={{
+              width: "182px",
+              height: "48px",
+              color: "#ffffff",
+              border: "1px solid #ffffff",
+            }}
+          >
+            <p style={{ textDecoration: "none", color: "#FFF" }}>Motos</p>
+          </Button>
+        </Link>
       </div>
     </header>
   );
