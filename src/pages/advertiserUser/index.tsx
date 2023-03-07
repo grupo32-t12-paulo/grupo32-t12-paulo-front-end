@@ -12,9 +12,9 @@ import { IAnnouncement } from "../../contexts/announcement.context";
 import { useParams } from "react-router-dom";
 
 const AdvertiserUser = () => {
-  const { annoucementUser, setId } = useContext(UserContext);
+  const { annoucementUser, setUserId } = useContext(UserContext);
   const { idAdvertiser } = useParams();
-  setId(idAdvertiser);
+  setUserId(idAdvertiser);
   const cars: IAnnouncement[] = [];
   const motorcycles: IAnnouncement[] = [];
 
@@ -32,7 +32,9 @@ const AdvertiserUser = () => {
 
       <ContainerRoot>
         <Container>
-          <CardInfoSeller />
+          <Box style={{ marginTop: "60px", paddingTop: "60px" }}>
+            <CardInfoSeller />
+          </Box>
           <Typography
             variant="h5"
             style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}

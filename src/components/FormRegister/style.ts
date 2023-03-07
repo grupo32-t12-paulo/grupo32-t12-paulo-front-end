@@ -14,13 +14,12 @@ export const Div = styled.div`
   box-shadow: 0px 4px 32px -8px rgba(0, 0, 0, 0.25);
   height: 84vh;
   overflow-y: scroll;
+  padding: 10px;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-
-  padding: 20px;
   gap: 6px;
 
   h2 {
@@ -109,6 +108,7 @@ export const Form = styled.form`
   .button-advertiser:hover,
   .button-buyer:focus,
   .button-advertiser:focus {
+    pointer-events: auto;
     width: 120px;
     height: 40px;
 

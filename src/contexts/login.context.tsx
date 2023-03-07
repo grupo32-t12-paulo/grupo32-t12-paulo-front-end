@@ -24,7 +24,7 @@ export interface IUser {
   password?: string;
   cpf: string;
   cellPhone: string;
-  dateBirth: Date | string | number;
+  dateBirth: string | number;
   description: string;
   isActive: boolean;
   createdAt: Date;
