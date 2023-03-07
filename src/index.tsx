@@ -20,11 +20,11 @@ root.render(
   <React.StrictMode>
     <Router>
       <LoginProvider>
-        <CurrentImageGalleryProvider>
-          <UserProvider>
-            <AddressProvider>
+        <UserProvider>
+          <AddressProvider>
+            <AnnouncementProvider>
               <AnnouncementDetailsProvider>
-                <AnnouncementProvider>
+                <CurrentImageGalleryProvider>
                   <ToastContainer
                     position="top-right"
                     autoClose={4000}
@@ -38,11 +38,11 @@ root.render(
                     theme="light"
                   />
                   <App />
-                </AnnouncementProvider>
+                </CurrentImageGalleryProvider>
               </AnnouncementDetailsProvider>
-            </AddressProvider>
-          </UserProvider>
-        </CurrentImageGalleryProvider>
+            </AnnouncementProvider>
+          </AddressProvider>
+        </UserProvider>
       </LoginProvider>
     </Router>
   </React.StrictMode>
