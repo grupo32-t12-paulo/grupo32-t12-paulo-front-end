@@ -83,6 +83,10 @@ export const Form = styled.form`
     color: var(--whiteFixed);
     font-weight: var(--button-medium-text);
   }
+  .buttonCancel{
+    width: 126px;
+    height: 40px;
+  }
 
   .buttonAuction,
   .buttonMotorcycle {
@@ -91,7 +95,7 @@ export const Form = styled.form`
 
     margin-bottom: 20px;
 
-    border: 1px solid var(--grey3);
+    border: 1px solid var(--brand1);
     background-color: var(--whiteFixed);
     font-weight: var(--button-medium-text);
   }
@@ -159,6 +163,7 @@ export const Form = styled.form`
 
     .buttonSale,
     .buttonCar {
+      border: 1px solid var(--brand1);
       width: 160px;
     }
 

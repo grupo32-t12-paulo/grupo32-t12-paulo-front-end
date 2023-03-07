@@ -6,15 +6,18 @@ import { Avatar } from "@mui/material";
 import { useContext } from "react";
 import { LoginContext } from "../../contexts/login.context";
 import CreateAnnouncement from "../CreateAnnouncement";
+import { UserContext } from "../../contexts/user.context";
+
 
 export default function CardInfoSeller() {
-  const { user } = useContext(LoginContext);
+  const { user } = useContext(UserContext);
+  // const { user } = useContext(LoginContext);
   return (
     <div
       style={{
         width: "100%",
         maxWidth: "1240px",
-        height: "394px",
+        minHeight: "394px",
         backgroundColor: "#FDFDFD",
       }}
     >
@@ -22,7 +25,7 @@ export default function CardInfoSeller() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          padding: "20px",
+          padding: "0 40px",
           paddingTop: "40px",
         }}
       >
@@ -63,11 +66,15 @@ export default function CardInfoSeller() {
               boxShadow: "unset",
             }}
           >
-            Anunciante
+            {user?.isAdvertiser ? "Anunciante" : "Vendedor"}
           </Button>
         </div>
         <Typography
           style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            gap: "60px",
             color: "#495057",
             fontWeight: "400",
             fontSize: "16px",
@@ -75,9 +82,12 @@ export default function CardInfoSeller() {
             textAlign: "justify",
           }}
         >
-          {user?.description}
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          {user?.isAdvertiser ?
+            <CreateAnnouncement edit={"create"} />
+            : null
+          }
         </Typography>
-        <CreateAnnouncement create={true} />
       </CardContent>
     </div>
   );

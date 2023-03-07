@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
 import CreateAnnouncement from "../CreateAnnouncement";
+import { Edit } from "@mui/icons-material";
 
 interface IChildren {
   title: string;
@@ -31,9 +32,17 @@ export default function MediaCard({
 }: IChildren) {
 
   return (
-    <Card sx={{ width: "312px", boxShadow: "unset", minHeight: 356 }}>
+    <Card sx={
+      {
+        maxWidth: "312px",
+        boxShadow: "unset",
+        minHeight: 356,
+        background: "rgba(0, 0, 0, 0.0)",
+      }
+    }
+    >
       <CardMedia
-        sx={{ width: "100%", height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
+        sx={{ width: "100%", height: 152, paddingTop: "10px" }}
         image={image}
         title=""
       />
@@ -144,7 +153,7 @@ export default function MediaCard({
             R$ {price}
           </Typography>
         </div>
-        {edit ? <CreateAnnouncement annoucementId={annoucementId} /> : null}
+        {edit ? <CreateAnnouncement annoucementId={annoucementId} edit="edit" /> : null}
       </CardContent>
     </Card>
   );
