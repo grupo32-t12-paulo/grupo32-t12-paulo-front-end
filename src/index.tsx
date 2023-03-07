@@ -18,8 +18,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <CurrentImageGalleryProvider>
-        <LoginProvider>
+      <LoginProvider>
+        <CurrentImageGalleryProvider>
           <UserProvider>
             <AnnouncementDetailsProvider>
               <AnnouncementProvider>
@@ -39,8 +39,8 @@ root.render(
               </AnnouncementProvider>
             </AnnouncementDetailsProvider>
           </UserProvider>
-        </LoginProvider>
-      </CurrentImageGalleryProvider>
+        </CurrentImageGalleryProvider>
+      </LoginProvider>
     </Router>
   </React.StrictMode>
 );
