@@ -32,31 +32,29 @@ export default function ModalDelete({ annoucementId }: IProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { handleDeleteAnnouncements } = useContext(AnnouncementDetailsContext);
-
+  // const { handleDeleteAnnouncements } = useContext(AnnouncementDetailsContext);
 
   return (
     <>
       <Button
         onClick={handleOpen}
-        style={
-          {
-            height: "40px",
-            minWidth: "202px",
-            background: "#DEE2E6",
-            color: "#495057",
-            // fontSize: "16px"
-          }
-        }
-      >Excluir anúncio</Button>
+        style={{
+          height: "40px",
+          minWidth: "202px",
+          background: "#DEE2E6",
+          color: "#495057",
+          // fontSize: "16px"
+        }}
+      >
+        Excluir anúncio
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
-      // aria-labelledby="modal-modal-title"
-      // aria-describedby="modal-modal-description"
+        // aria-labelledby="modal-modal-title"
+        // aria-describedby="modal-modal-description"
       >
-        <Box sx={style}
-        >
+        <Box sx={style}>
           <div
             style={{
               display: "flex",
@@ -79,7 +77,9 @@ export default function ModalDelete({ annoucementId }: IProps) {
             </Typography>
             <CloseIcon onClick={handleClose} sx={{ cursor: "pointer" }} />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+          >
             <Typography
               id="modal-modal-description"
               sx={{ mt: 2 }}
@@ -131,7 +131,9 @@ export default function ModalDelete({ annoucementId }: IProps) {
               Cancelar
             </Button>
             <Button
-              onClick={(e) => { handleDeleteAnnouncements(annoucementId) }}
+              onClick={(e) => {
+                // handleDeleteAnnouncements(annoucementId);
+              }}
               style={{
                 backgroundColor: "#FDD8D8",
                 color: "#CD2B31",
