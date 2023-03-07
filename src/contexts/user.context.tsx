@@ -51,6 +51,7 @@ interface IAddress {
 }
 
 export interface IUser {
+  id: string;
   userId: number;
   name: string;
   email: string;
@@ -63,7 +64,6 @@ export interface IUser {
   isAdvertiser?: boolean;
   annoucements?: IAnnouncement[];
 }
-
 
 export interface IHandleRegisterUser {
   name: string;
@@ -105,7 +105,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
-  const [user, setUser] = useState<IUser>({} as IUser)
+  const [user, setUser] = useState<IUser>({} as IUser);
 
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | undefined>();
@@ -120,7 +120,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .get(`/users/${userId}`)
       .then((res) => {
-        setUser(res.data)
+        setUser(res.data);
         setAnnoucementUser(res.data.annoucements);
       })
       .catch((err) => {
