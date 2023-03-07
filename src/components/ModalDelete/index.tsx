@@ -131,7 +131,11 @@ export default function ModalDelete({ annoucementId }: IProps) {
               Cancelar
             </Button>
             <Button
-              onClick={(e) => { handleDeleteAnnouncements(annoucementId) }}
+              onClick={(e) => {
+                handleDeleteAnnouncements(annoucementId)
+                return handleClose
+              }
+              }
               style={{
                 backgroundColor: "#FDD8D8",
                 color: "#CD2B31",

@@ -11,7 +11,7 @@ import { AvatarComponent } from "../Avatar";
 
 interface IProps {
   annoucementsId?: string;
-  edit?: boolean;
+  edit?: string;
 }
 
 export default function ActionAreaCard({ annoucementsId, edit }: IProps) {
@@ -100,6 +100,7 @@ export default function ActionAreaCard({ annoucementsId, edit }: IProps) {
         style={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           width: "100%",
           height: "62px",
           background: "#4529E6",
@@ -109,9 +110,58 @@ export default function ActionAreaCard({ annoucementsId, edit }: IProps) {
           WebkitBorderTopRightRadius: "0",
         }}
       >
-        Acessar página do leilão
-        <ArrowForwardIcon />
+        {edit === "edit" ?
+          <div style={
+            {
+              display: "flex",
+              gap: "15px",
+              alignItems: "center"
+            }
+          }>
+            <Button
+              sx={
+                {
+                  textTransform: "none",
+                  fontSize: "16px",
+                  maxWidth: "80px",
+                  height: "38px",
+                  fontFamily: "Inter",
+                  fontStyle: "Semi Bold",
+                  borderRadius: 1,
+                  color: "#FDFDFD",
+                  border: "1.5px solid #FDFDFD",
+                }
+              }
+            // onClick={() => navigate(`/announcement/${annoucementId}`)}
+            >
+              Editar
+            </Button>
+            <Button
+              sx={
+                {
+                  textTransform: "none",
+                  fontSize: "16px",
+                  maxWidth: "105px",
+                  height: "38px",
+                  fontFamily: "Inter",
+                  fontStyle: "Semi Bold",
+                  borderRadius: 1,
+                  color: "#FDFDFD",
+                  border: "1.5px solid #FDFDFD",
+                }
+              }
+            // onClick={() => navigate(`/announcement/${annoucementId}`)}
+            >
+              Ver como
+            </Button>
+          </div>
+          :
+          <>
+            Acessar página do leilão
+            < ArrowForwardIcon />
+          </>
+        }
       </Button>
-    </Card>
+    </Card >
   );
 }

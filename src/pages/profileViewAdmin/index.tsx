@@ -21,8 +21,8 @@ export default function ProfileViewAdmin() {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "200px",
-        // background: "#E9ECEF"
+        gap: "15rem",
+        background: "#F1F3F5",
       }}
     >
       <header
@@ -49,7 +49,28 @@ export default function ProfileViewAdmin() {
         </div>
       </header>
 
-      <Box sx={{ ml: { md: 6, xs: 7 }, mt: 6 }}>
+      {/* <Container sx={
+        {
+          width: "100%",
+          height: "100%",
+          margin: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center"
+        }
+      }
+      > */}
+      <Box sx={
+        {
+          ml: { md: 6, xs: 7 },
+          mt: 6,
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+        }
+      }
+      >
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)" }}
@@ -65,25 +86,33 @@ export default function ProfileViewAdmin() {
           }}
         >
           <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-            <ActionAreaCard />
+            <ActionAreaCard edit="edit" />
           </ListItem>
           <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-            <ActionAreaCard />
+            <ActionAreaCard edit="edit" />
           </ListItem>
           <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-            <ActionAreaCard />
+            <ActionAreaCard edit="edit" />
           </ListItem>
         </List>
       </Box>
 
-      <Box sx={{ ml: { md: 6, xs: 7, minHeight: 350 } }}>
+      <Box sx={
+        {
+          ml: { md: 6, xs: 7 },
+          minHeight: 350,
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+        }
+      }>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)" }}
         >
           Carros
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {user.annoucements?.find(e => e.vehicleType === "car") ? (
           <List
             sx={{
               display: "flex",
@@ -94,7 +123,7 @@ export default function ProfileViewAdmin() {
             {user.annoucements?.map((car) => {
               if (car.vehicleType === "car") {
                 return (
-                  <ListItem sx={{ maxWidth: { md: 305 } }}>
+                  <ListItem sx={{ maxWidth: { md: 312 } }}>
                     <MediaCard
                       title={car.title}
                       image={car.coverImage}
@@ -114,23 +143,34 @@ export default function ProfileViewAdmin() {
         ) : (
           <h2
             style={{
-              margin: "20px",
+              width: "100%",
+              height: "356px",
               fontSize: "1rem",
-              fontWeight: "var(--Heading-2-600)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: "var(--grey2)",
             }}
           >
-            Não há anúncio de motos no momento
+            Não há anúncio de carros no momento
           </h2>
         )}
       </Box>
-      <Box sx={{ ml: { md: 6, xs: 7 }, minHeight: 350 }} >
+      <Box sx={
+        {
+          ml: { md: 6, xs: 7 }, minHeight: 350,
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+        }
+      } >
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)" }}
         >
           Motos
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {user.annoucements?.find(e => e.vehicleType === "motocycle") ? (
           <List
             sx={{
               p: 0,
@@ -162,14 +202,20 @@ export default function ProfileViewAdmin() {
         ) : (
           <h2
             style={{
+              width: "100%",
+              height: "356px",
               fontSize: "1rem",
-              fontWeight: "var(--Heading-2-600)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: "var(--grey2)",
             }}
           >
             Não há anúncio de motos no momento
           </h2>
         )}
       </Box>
+      {/* </Container> */}
     </main >
   );
 }

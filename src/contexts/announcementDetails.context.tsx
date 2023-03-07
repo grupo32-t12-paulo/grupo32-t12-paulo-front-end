@@ -89,7 +89,7 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
   const token = localStorage.getItem("@motorshop:token");
 
   async function handleAnnouncement(data: IHandleAnnouncementes) {
-
+    console.log(data)
     api.post(
       "/announcements", data
       , {
