@@ -10,10 +10,10 @@ import { UserContext } from "../../contexts/user.context";
 import { title } from "process";
 
 export default function ProfileViewAdmin() {
-  const { annoucementUser, setId, user } = useContext(UserContext);
+  // const { annoucementUser, setId, user } = useContext(UserContext);
 
-  const { id } = useParams()
-  setId(id)
+  // const { id } = useParams()
+  // setId(id)
 
 
   return (
@@ -83,7 +83,7 @@ export default function ProfileViewAdmin() {
         >
           Carros
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {/* {user.annoucements?.length !== 0 ? (
           <List
             sx={{
               display: "flex",
@@ -121,7 +121,7 @@ export default function ProfileViewAdmin() {
           >
             Não há anúncio de motos no momento
           </h2>
-        )}
+        )} */}
       </Box>
       <Box sx={{ ml: { md: 6, xs: 7 }, minHeight: 350 }} >
         <Typography
@@ -130,7 +130,7 @@ export default function ProfileViewAdmin() {
         >
           Motos
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {/* {user.annoucements?.length !== 0 ? (
           <List
             sx={{
               p: 0,
@@ -168,7 +168,7 @@ export default function ProfileViewAdmin() {
           >
             Não há anúncio de motos no momento
           </h2>
-        )}
+        )} */}
       </Box>
     </main >
   );

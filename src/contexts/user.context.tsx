@@ -37,7 +37,7 @@ interface IUserProps {
 
   handleDelete: () => void;
 
-  user: IUser;
+  // user: IUser;
 
 }
 
@@ -105,7 +105,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
-  const [user, setUser] = useState<IUser>({} as IUser)
+  // const [user, setUser] = useState<IUser>({} as IUser)
 
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | undefined>();
@@ -190,7 +190,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         handleRegisterUser,
         handleEdit,
         handleDelete,
-        user
+        // user
       }}
     >
       {children}
