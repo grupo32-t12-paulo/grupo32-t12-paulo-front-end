@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import api from "../services/api";
+import { IUser } from "./login.context";
 
 export interface IAnnouncementProps {
   announcement: IAnnouncement[] | [];
@@ -13,6 +14,7 @@ export interface IAnnouncementProps {
 }
 
 export interface IAnnouncement {
+  user: IUser;
   annoucementId: number;
   title: string;
   isActive: boolean;
