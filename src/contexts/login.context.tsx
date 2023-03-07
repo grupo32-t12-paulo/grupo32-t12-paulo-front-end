@@ -56,10 +56,10 @@ export function LoginProvider({ children }: { children: React.ReactNode }) {
     const getToken = localStorage.getItem("@motorshop:token");
     if (getToken) {
       const resJWT: IToken = decode(getToken);
+      api.defaults.headers.common["Authorization"] = `Bearer ${getToken}`;
       try {
         const { data } = await api.get(`/users/${resJWT.id}`);
         setUser(data);
-        api.defaults.headers.common["Authorization"] = `Bearer ${getToken}`;
       } catch {
         api.defaults.headers.common["Authorization"] = "";
       }
