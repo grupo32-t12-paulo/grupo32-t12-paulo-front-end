@@ -4,9 +4,11 @@ import * as yup from "yup";
 import { Container, Div, Form } from "./style";
 import { useContext } from "react";
 import { IHandleRegisterUser, UserContext } from "../../contexts/user.context";
+import ModalInfo from "../ModalInfo";
 
 const Register = () => {
-  const { handleRegisterUser, setIsAdvertiser } = useContext(UserContext);
+  const { handleRegisterUser, setIsAdvertiser, open, setOpen } =
+    useContext(UserContext);
 
   const formRegister = yup.object().shape({
     name: yup.string().required("campo obrigatório"),
@@ -49,188 +51,192 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IHandleRegisterUser>({ resolver: yupResolver(formRegister) });
+
   return (
-    <Container>
-      <Div>
-        <Form onSubmit={handleSubmit(handleRegisterUser)}>
-          <h2>Cadastro</h2>
-          <h3>Informações Pessoais</h3>
+    <>
+      <Container>
+        <Div>
+          <Form onSubmit={handleSubmit(handleRegisterUser)}>
+            <h2>Cadastro</h2>
+            <h3>Informações Pessoais</h3>
 
-          <label htmlFor="name">Nome</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          />
-          <p>{errors.name?.message}</p>
+            <label htmlFor="name">Nome</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Digite seu nome"
+              {...register("name")}
+            />
+            <p>{errors.name?.message}</p>
 
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="exemplo@email.com"
-            {...register("email")}
-          />
-          <p>{errors.email?.message}</p>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="exemplo@email.com"
+              {...register("email")}
+            />
+            <p>{errors.email?.message}</p>
 
-          <label htmlFor="cpf">CPF</label>
-          <input
-            type="string"
-            id="cpf"
-            placeholder="000.000.000-00"
-            {...register("cpf")}
-          />
-          <p>{errors.cpf?.message}</p>
+            <label htmlFor="cpf">CPF</label>
+            <input
+              type="string"
+              id="cpf"
+              placeholder="000.000.000-00"
+              {...register("cpf")}
+            />
+            <p>{errors.cpf?.message}</p>
 
-          <label htmlFor="cellphone">Telefone</label>
-          <input
-            type="text"
-            id="cellphone"
-            placeholder="(xx) xxxxx-xxxx"
-            {...register("cellPhone")}
-          />
-          <p>{errors.cellPhone?.message}</p>
+            <label htmlFor="cellphone">Telefone</label>
+            <input
+              type="text"
+              id="cellphone"
+              placeholder="(xx) xxxxx-xxxx"
+              {...register("cellPhone")}
+            />
+            <p>{errors.cellPhone?.message}</p>
 
-          <label htmlFor="dateBirth">Data de nascimento</label>
-          <input
-            type="text"
-            id="dateBirth"
-            placeholder="dd/mm/aaaa"
-            {...register("dateBirth")}
-          />
-          <p>{errors.dateBirth?.message}</p>
+            <label htmlFor="dateBirth">Data de nascimento</label>
+            <input
+              type="text"
+              id="dateBirth"
+              placeholder="dd/mm/aaaa"
+              {...register("dateBirth")}
+            />
+            <p>{errors.dateBirth?.message}</p>
 
-          <label htmlFor="description">Descrição</label>
-          <textarea
-            id="description"
-            placeholder="Digitar descrição"
-            {...register("description")}
-          />
-          <p>{errors.description?.message}</p>
+            <label htmlFor="description">Descrição</label>
+            <textarea
+              id="description"
+              placeholder="Digitar descrição"
+              {...register("description")}
+            />
+            <p>{errors.description?.message}</p>
 
-          <h3>Informações de Endereço</h3>
+            <h3>Informações de Endereço</h3>
 
-          <label htmlFor="cep">CEP</label>
-          <input
-            type="string"
-            id="cep"
-            placeholder="00000.000"
-            {...register("address.cep")}
-          />
-          <p>{errors.address?.cep?.message}</p>
+            <label htmlFor="cep">CEP</label>
+            <input
+              type="string"
+              id="cep"
+              placeholder="00000.000"
+              {...register("address.cep")}
+            />
+            <p>{errors.address?.cep?.message}</p>
 
-          <div className="state-city">
-            <div className="divState">
-              <label className="state" htmlFor="state">
-                Estado
-              </label>
-              <input
-                className="state"
-                type="text"
-                id="state"
-                placeholder="Digitar Estado"
-                {...register("address.state")}
-              />
-              <p>{errors.address?.state?.message}</p>
+            <div className="state-city">
+              <div className="divState">
+                <label className="state" htmlFor="state">
+                  Estado
+                </label>
+                <input
+                  className="state"
+                  type="text"
+                  id="state"
+                  placeholder="Digitar Estado"
+                  {...register("address.state")}
+                />
+                <p>{errors.address?.state?.message}</p>
+              </div>
+
+              <div className="divCity">
+                <label htmlFor="city">Cidade</label>
+                <input
+                  className="city"
+                  type="text"
+                  id="city"
+                  placeholder="Digitar cidade"
+                  {...register("address.city")}
+                />
+                <p>{errors.address?.city?.message}</p>
+              </div>
             </div>
 
-            <div className="divCity">
-              <label htmlFor="city">Cidade</label>
-              <input
-                className="city"
-                type="text"
-                id="city"
-                placeholder="Digitar cidade"
-                {...register("address.city")}
-              />
-              <p>{errors.address?.city?.message}</p>
+            <label htmlFor="street">Rua</label>
+            <input
+              type="text"
+              id="street"
+              placeholder="Digitar Rua"
+              {...register("address.street")}
+            />
+            <p>{errors.address?.street?.message}</p>
+
+            <div className="number-complement">
+              <div className="divNumber">
+                <label htmlFor="number">Número</label>
+                <input
+                  className="number"
+                  type="string"
+                  id="number"
+                  placeholder="Digitar número"
+                  {...register("address.number")}
+                />
+                <p>{errors.address?.number?.message}</p>
+              </div>
+
+              <div className="divComplement">
+                <label htmlFor="complement">Complemento</label>
+                <input
+                  className="complement"
+                  type="text"
+                  id="complement"
+                  placeholder="ex: apart 307"
+                  {...register("address.complement")}
+                />
+                <p>{errors.address?.complement?.message}</p>
+              </div>
             </div>
-          </div>
 
-          <label htmlFor="street">Rua</label>
-          <input
-            type="text"
-            id="street"
-            placeholder="Digitar Rua"
-            {...register("address.street")}
-          />
-          <p>{errors.address?.street?.message}</p>
+            <label htmlFor="type">Tipo de Conta</label>
 
-          <div className="number-complement">
-            <div className="divNumber">
-              <label htmlFor="number">Número</label>
-              <input
-                className="number"
-                type="string"
-                id="number"
-                placeholder="Digitar número"
-                {...register("address.number")}
-              />
-              <p>{errors.address?.number?.message}</p>
+            <div className="button-buyer-advertiser">
+              <button
+                autoFocus={true}
+                type="button"
+                className="button-buyer"
+                onClick={() => setIsAdvertiser(true)}
+              >
+                Comprador
+              </button>
+              <button
+                type="button"
+                className="button-advertiser"
+                onClick={() => setIsAdvertiser(true)}
+              >
+                Anunciante
+              </button>
             </div>
 
-            <div className="divComplement">
-              <label htmlFor="complement">Complemento</label>
-              <input
-                className="complement"
-                type="text"
-                id="complement"
-                placeholder="ex: apart 307"
-                {...register("address.complement")}
-              />
-              <p>{errors.address?.complement?.message}</p>
-            </div>
-          </div>
+            <label htmlFor="password">Senha</label>
+            <input
+              type="text"
+              id="password"
+              placeholder="********"
+              {...register("password")}
+            />
+            <p>{errors.password?.message}</p>
 
-          <label htmlFor="type">Tipo de Conta</label>
+            <label htmlFor="verPassword">Confirmar senha</label>
+            <input
+              type="password"
+              id="verPassword"
+              placeholder="********"
+              {...register("verPassword")}
+            />
+            <p>{errors.verPassword?.message}</p>
 
-          <div className="button-buyer-advertiser">
             <button
-              autoFocus={true}
-              type="button"
-              className="button-buyer"
-              onClick={() => setIsAdvertiser(true)}
+              onClick={() => console.log("botão")}
+              type="submit"
+              className="buttonRegister"
             >
-              Comprador
+              Finalizar Cadastro
             </button>
-            <button
-              type="button"
-              className="button-advertiser"
-              onClick={() => setIsAdvertiser(true)}
-            >
-              Anunciante
-            </button>
-          </div>
-
-          <label htmlFor="password">Senha</label>
-          <input
-            type="text"
-            id="password"
-            placeholder="********"
-            {...register("password")}
-          />
-          <p>{errors.password?.message}</p>
-
-          <label htmlFor="verPassword">Confirmar senha</label>
-          <input
-            type="password"
-            id="verPassword"
-            placeholder="********"
-            {...register("verPassword")}
-          />
-          <p>{errors.verPassword?.message}</p>
-
-          <button
-            onClick={() => console.log("botão")}
-            type="submit"
-            className="buttonRegister"
-          >
-            Finalizar Cadastro
-          </button>
-        </Form>
-      </Div>
-    </Container>
+          </Form>
+        </Div>
+      </Container>
+      <ModalInfo setOpen={setOpen} open={open} />
+    </>
   );
 };
 
