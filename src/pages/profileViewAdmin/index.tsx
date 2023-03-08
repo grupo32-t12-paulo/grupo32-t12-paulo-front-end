@@ -8,6 +8,7 @@ import MediaCard from "../../components/CardComponent";
 import CardInfoSeller from "../../components/CardInfoSeller";
 import { UserContext } from "../../contexts/user.context";
 import { title } from "process";
+import decode from "jwt-decode";
 
 export default function ProfileViewAdmin() {
   const { annoucementUser, setUserId } = useContext(UserContext);

@@ -66,7 +66,7 @@ export default function AppBarComponent() {
     settings = [
       { name: "Editar perfil", to: "/" },
       { name: "Editar endereço", to: "/" },
-      { name: "Meus Anúncios", to: "/advertiser-profile" },
+      { name: "Meus Anúncios", to: "/profileAdmin" },
       { name: "Sair", to: "/" },
     ];
   }
