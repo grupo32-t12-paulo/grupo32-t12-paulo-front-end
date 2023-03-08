@@ -3,86 +3,16 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ModalDelete from "../ModalDelete";
-import React from "react";
-import { ReactNode } from "react";
-import { useEffect } from "react";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AnnouncementDetailsContext } from "../../contexts/announcementDetails.context";
-import { AnnouncementContext } from "../../contexts/announcement.context";
-import { useContext } from "react";
-
-interface IHandleAnnouncementes {
-  title: string,
-  adType: string,
-  year: number,
-  mileage: number,
-  price: number,
-  description: string,
-  vehicleType: string,
-  coverImage: string,
-}
 
 interface IProps {
   annoucementId?: string;
   edit?: boolean;
+  create?: boolean;
 }
 
-
 const CreateAnnouncement = ({ annoucementId }: IProps) => {
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-
-  const schema = yup.object({
-    title: yup
-      .string()
-      .required("Título obrigatório"),
-    adType: yup.string(),
-    year: yup.string().nullable().required("Ano brigatório"),
-    mileage: yup.string().required("Quilometragem obrigatória"),
-    price: yup.string().required("Preço obrigatório"),
-    description: yup.string().required("Descrição obrigatória"),
-    vehicleType: yup.string(),
-    coverImage: yup.string().required("Imagem de capa obrigatória"),
-    firstImage: yup.string().required("Imagem de galeria obrigatória"),
-    secondImage: yup.string().required("Imagem de galeria obrigatória")
-  });
-
-  interface IForm {
-    title: string;
-    adType: string;
-    year: number;
-    mileage: number;
-    price: number;
-    description: string;
-    vehicleType: string;
-    coverImage: string;
-    firstImage: string;
-    secondImage: string;
-  };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IForm>({
-    resolver: yupResolver(schema),
-  });
-
-  const data = (e: IForm) => {
-    setOpen(false)
-
-    type ? e.adType = "auction" : e.adType = "sale"
-    typeVehicle ? e.vehicleType = "motocycle" : e.vehicleType = "car"
-
-    e.price = Number(e.price)
-    e.mileage = Number(e.mileage)
-    e.year = Number(e.year)
-    !edit ? handleAnnouncement(e) :
-      handleUpdateAnnouncements(e, `${annoucementId}`)
-  }
-
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -129,7 +59,6 @@ const CreateAnnouncement = ({ annoucementId }: IProps) => {
                         id="mileage"
                         placeholder="Digitar quilometragem"
                       />
-                      {errors.price && <p>{errors.price.message}</p>}
                     </div>
                   </div>
 
