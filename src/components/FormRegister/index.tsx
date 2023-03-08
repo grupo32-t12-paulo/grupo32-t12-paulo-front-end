@@ -221,11 +221,7 @@ const Register = () => {
           />
           <p>{errors.verPassword?.message}</p>
 
-          <button
-            onClick={() => console.log("botão")}
-            type="submit"
-            className="buttonRegister"
-          >
+          <button type="submit" className="buttonRegister">
             Finalizar Cadastro
           </button>
         </Form>

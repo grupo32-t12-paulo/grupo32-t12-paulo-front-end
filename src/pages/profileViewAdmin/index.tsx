@@ -10,11 +10,10 @@ import { UserContext } from "../../contexts/user.context";
 import { title } from "process";
 
 export default function ProfileViewAdmin() {
-  const { annoucementUser, setId, user } = useContext(UserContext);
+  const { annoucementUser, setUserId, userAdmin } = useContext(UserContext);
 
-  const { id } = useParams()
-  setId(id)
-
+  const { id } = useParams();
+  setUserId(id);
 
   return (
     <main
@@ -50,10 +49,7 @@ export default function ProfileViewAdmin() {
       </header>
 
       <Box sx={{ ml: { md: 6, xs: 7 }, mt: 6 }}>
-        <Typography
-          variant="h5"
-          style={{ fontWeight: "var(--Heading-2-600)" }}
-        >
+        <Typography variant="h5" style={{ fontWeight: "var(--Heading-2-600)" }}>
           Leilão
         </Typography>
         <List
@@ -77,13 +73,10 @@ export default function ProfileViewAdmin() {
       </Box>
 
       <Box sx={{ ml: { md: 6, xs: 7, minHeight: 350 } }}>
-        <Typography
-          variant="h5"
-          style={{ fontWeight: "var(--Heading-2-600)" }}
-        >
+        <Typography variant="h5" style={{ fontWeight: "var(--Heading-2-600)" }}>
           Carros
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {userAdmin.annoucements?.length !== 0 ? (
           <List
             sx={{
               display: "flex",
@@ -91,7 +84,7 @@ export default function ProfileViewAdmin() {
               pb: 2,
             }}
           >
-            {user.annoucements?.map((car) => {
+            {userAdmin.annoucements?.map((car) => {
               if (car.vehicleType === "car") {
                 return (
                   <ListItem sx={{ maxWidth: { md: 305 } }}>
@@ -99,7 +92,7 @@ export default function ProfileViewAdmin() {
                       title={car.title}
                       image={car.coverImage}
                       description={car.description}
-                      seller={user.name}
+                      seller={userAdmin.name}
                       km={car.mileage}
                       year={car.year}
                       price={`${car.price}`}
@@ -123,14 +116,11 @@ export default function ProfileViewAdmin() {
           </h2>
         )}
       </Box>
-      <Box sx={{ ml: { md: 6, xs: 7 }, minHeight: 350 }} >
-        <Typography
-          variant="h5"
-          style={{ fontWeight: "var(--Heading-2-600)" }}
-        >
+      <Box sx={{ ml: { md: 6, xs: 7 }, minHeight: 350 }}>
+        <Typography variant="h5" style={{ fontWeight: "var(--Heading-2-600)" }}>
           Motos
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {userAdmin.annoucements?.length !== 0 ? (
           <List
             sx={{
               p: 0,
@@ -147,7 +137,7 @@ export default function ProfileViewAdmin() {
                       title={motorcycle.title}
                       image={motorcycle.coverImage}
                       description={motorcycle.description}
-                      seller={user.name}
+                      seller={userAdmin.name}
                       km={motorcycle.mileage}
                       year={motorcycle.year}
                       price={motorcycle.price}
@@ -170,6 +160,6 @@ export default function ProfileViewAdmin() {
           </h2>
         )}
       </Box>
-    </main >
+    </main>
   );
 }

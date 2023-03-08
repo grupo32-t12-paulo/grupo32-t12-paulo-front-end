@@ -46,11 +46,11 @@ export const AddressContext = createContext<IAddressProps>({} as IAddressProps);
 const AddressProvider = ({ children }: IProviderChildren) => {
   const [editModalAddress, setEditModalAddress] = useState<boolean>(false);
 
-  const { setUser } = useContext(LoginContext);
+  const { user, setUser } = useContext(LoginContext);
 
   const handleEditAddress = async (data: IEditForm) => {
     await api
-      .patch(`/users/address`, data)
+      .patch(`/users/address/`, data)
       .then((response) => {
         setUser(response.data);
         setEditModalAddress(false);
