@@ -8,7 +8,7 @@ import { Box, Typography } from "@material-ui/core";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { IAnnouncement } from "../../contexts/announcement.context";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CardInfoAdvertiser from "../../components/CardInfoAdvertiser";
 
 const AdvertiserUser = () => {
@@ -25,6 +25,8 @@ const AdvertiserUser = () => {
       motorcycles.push(vehicle);
     }
   });
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -53,7 +55,12 @@ const AdvertiserUser = () => {
             {cars.length > 0 ? (
               cars.map((car) => {
                 return (
-                  <ListItem>
+                  <ListItem
+                    sx={{ ":hover": { cursor: "pointer" } }}
+                    onClick={() =>
+                      navigate(`/announcement/${car.annoucementId}`)
+                    }
+                  >
                     <MediaCard
                       title={car.title}
                       image={car.coverImage}
@@ -93,7 +100,12 @@ const AdvertiserUser = () => {
               {motorcycles.length > 0 ? (
                 motorcycles.map((motorcycle) => {
                   return (
-                    <ListItem>
+                    <ListItem
+                      sx={{ ":hover": { cursor: "pointer" } }}
+                      onClick={() =>
+                        navigate(`/announcement/${motorcycle.annoucementId}`)
+                      }
+                    >
                       <MediaCard
                         title={motorcycle.title}
                         image={motorcycle.coverImage}
