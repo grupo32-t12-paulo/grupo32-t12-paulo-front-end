@@ -11,6 +11,7 @@ import UserProvider from "./contexts/user.context";
 import { AnnouncementDetailsProvider } from "./contexts/announcementDetails.context";
 import AnnouncementProvider from "./contexts/announcement.context";
 import { LoginProvider } from "./contexts/login.context";
+import AddressProvider from "./contexts/address.context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,29 +19,31 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <CurrentImageGalleryProvider>
-        <LoginProvider>
-          <UserProvider>
-            <AnnouncementDetailsProvider>
-              <AnnouncementProvider>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={4000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                />
-                <App />
-              </AnnouncementProvider>
-            </AnnouncementDetailsProvider>
-          </UserProvider>
-        </LoginProvider>
-      </CurrentImageGalleryProvider>
+      <LoginProvider>
+        <UserProvider>
+          <AddressProvider>
+            <AnnouncementProvider>
+              <AnnouncementDetailsProvider>
+                <CurrentImageGalleryProvider>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
+                  <App />
+                </CurrentImageGalleryProvider>
+              </AnnouncementDetailsProvider>
+            </AnnouncementProvider>
+          </AddressProvider>
+        </UserProvider>
+      </LoginProvider>
     </Router>
   </React.StrictMode>
 );

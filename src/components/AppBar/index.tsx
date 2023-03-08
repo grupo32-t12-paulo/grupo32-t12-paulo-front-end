@@ -17,11 +17,14 @@ import ModalEditProfile from "../ModalEditProfile";
 import ModalAddress from "../ModalAddress";
 import { LoginContext } from "../../contexts/login.context";
 import { Link } from "react-scroll";
+import { UserContext } from "../../contexts/user.context";
+import { AddressContext } from "../../contexts/address.context";
 
 export default function AppBarComponent() {
   const { user, setUser } = useContext(LoginContext);
-  const [editProfile, setEditProfile] = useState(false);
-  const [editAddress, setEditAddress] = useState(false);
+  const { editModalUser, setEditModalUser } = useContext(UserContext);
+  const { editModalAddress, setEditModalAddress } = useContext(AddressContext);
+
   const photo = false;
   let letters = "";
   if (user) {
@@ -70,10 +73,10 @@ export default function AppBarComponent() {
 
   const openModal = (value: string) => {
     return value === "Editar perfil"
-      ? setEditProfile(true)
+      ? setEditModalUser(true)
       : value === "Editar endereço"
-        ? setEditAddress(true)
-        : null;
+      ? setEditModalAddress(true)
+      : null;
   };
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -96,8 +99,8 @@ export default function AppBarComponent() {
 
   return (
     <>
-      {editProfile ? <ModalEditProfile /> : null}
-      {editAddress ? <ModalAddress /> : null}
+      {editModalUser ? <ModalEditProfile /> : null}
+      {editModalAddress ? <ModalAddress /> : null}
       <AppBar color="inherit" elevation={0} sx={{ zIndex: 1 }} variant="outlined">
         <Container maxWidth="xl">
           <Toolbar disableGutters>

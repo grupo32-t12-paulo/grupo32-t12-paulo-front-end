@@ -1,5 +1,4 @@
 import AppBarComponent from "../../components/AppBar";
-import CardInfoSeller from "../../components/CardInfoSeller";
 import MediaCard from "../../components/CardComponent";
 import BackToTop from "../../components/Footer";
 import { ContainerRoot } from "./style";
@@ -10,11 +9,12 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { IAnnouncement } from "../../contexts/announcement.context";
 import { useParams } from "react-router-dom";
+import CardInfoAdvertiser from "../../components/CardInfoAdvertiser";
 
 const AdvertiserUser = () => {
-  const { annoucementUser, setId } = useContext(UserContext);
+  const { annoucementUser, setUserId, seller } = useContext(UserContext);
   const { idAdvertiser } = useParams();
-  setId(idAdvertiser);
+  setUserId(idAdvertiser);
   const cars: IAnnouncement[] = [];
   const motorcycles: IAnnouncement[] = [];
 
@@ -32,7 +32,9 @@ const AdvertiserUser = () => {
 
       <ContainerRoot>
         <Container>
-          <CardInfoSeller />
+          <Box style={{ marginTop: "60px", paddingTop: "60px" }}>
+            <CardInfoAdvertiser />
+          </Box>
           <Typography
             variant="h5"
             style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
@@ -56,7 +58,7 @@ const AdvertiserUser = () => {
                       title={car.title}
                       image={car.coverImage}
                       description={car.description}
-                      seller={car.adType}
+                      seller={seller?.name}
                       km={car.mileage}
                       year={car.year}
                       price={car.price}
@@ -96,7 +98,7 @@ const AdvertiserUser = () => {
                         title={motorcycle.title}
                         image={motorcycle.coverImage}
                         description={motorcycle.description}
-                        seller={motorcycle.adType}
+                        seller={seller?.name}
                         km={motorcycle.mileage}
                         year={motorcycle.year}
                         price={motorcycle.price}

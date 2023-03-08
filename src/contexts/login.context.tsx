@@ -3,7 +3,7 @@ import decode from "jwt-decode";
 import { toast } from "react-toastify";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { createContext } from "react";
 interface ILoginContext {
   user: null | IUser;
@@ -24,14 +24,14 @@ export interface IUser {
   password?: string;
   cpf: string;
   cellPhone: string;
-  dateBirth: Date | string | number;
+  dateBirth: string | number;
   description: string;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
   isAdvertiser: boolean;
   address: IAddress;
-  id: number;
+  id: string;
   addressId: number;
 }
 export interface IResponseLogin {
@@ -47,6 +47,25 @@ export const LoginContext = createContext<ILoginContext>({} as ILoginContext);
 export function LoginProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  async function getUser() {
+    const getToken = localStorage.getItem("@motorshop:token");
+    if (getToken) {
+      const resJWT: IToken = decode(getToken);
+      api.defaults.headers.common["Authorization"] = `Bearer ${getToken}`;
+      try {
+        const { data } = await api.get(`/users/${resJWT.id}`);
+        setUser(data);
+      } catch {
+        api.defaults.headers.common["Authorization"] = "";
+      }
+    }
+  }
+
   async function signIn(data: FieldValues) {
     try {
       const response = await api.post<IResponseLogin>("/login", data);

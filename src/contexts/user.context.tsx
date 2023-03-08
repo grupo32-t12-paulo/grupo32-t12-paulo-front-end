@@ -3,6 +3,7 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -11,21 +12,32 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 import { IAnnouncement } from "./announcement.context";
+import { LoginContext } from "./login.context";
 
 interface IUserProps {
   annoucementUser: IAnnouncement[] | [];
   setAnnoucementUser: (annoucementUser: IAnnouncement[] | []) => void;
 
-  setId: Dispatch<SetStateAction<string | undefined>>;
+  setUserId: Dispatch<SetStateAction<string | undefined>>;
 
   isAdvertiser: boolean;
   setIsAdvertiser: (isAdvertiser: boolean) => void;
+
+  editModalUser: boolean;
+  setEditModalUser: (editModalUser: boolean) => void;
+
+  deleteModalUser: boolean;
+  setDeleteModalUser: (deleteModalUser: boolean) => void;
 
   listAnnouncementProfile: () => void;
 
   handleRegisterUser: SubmitHandler<FieldValues>;
 
-  user: IUser;
+  handleEdit: (data: IEditForm) => void;
+
+  handleDelete: () => void;
+
+  seller: IUser | undefined;
 }
 
 interface IAddress {
@@ -33,7 +45,7 @@ interface IAddress {
   state: string;
   city: string;
   street: string;
-  number: string;
+  number: number;
   complement: string;
 }
 
@@ -50,8 +62,6 @@ export interface IUser {
   isAdvertiser?: boolean;
   annoucements?: IAnnouncement[];
 }
-
-
 export interface IHandleRegisterUser {
   name: string;
   email: string;
@@ -62,36 +72,51 @@ export interface IHandleRegisterUser {
   dateBirth: string;
   description: string;
   address: IAddress;
+}
 
-  // cep: string;
-  // state: string;
-  // city: string;
-  // street: string;
-  // number: string;
-  // complement: string;
+export interface IHandleEdit {
+  id?: string;
+  name?: string;
+  email?: string;
+  cpf?: string;
+  cellPhone?: string;
+  dateBirth?: string;
+  description?: string;
+}
+
+export interface IEditForm {
+  name?: string;
+  email?: string;
+  cpf?: string;
+  cellPhone?: string;
+  dateBirth?: string;
+  description?: string;
 }
 
 export interface IProviderChildren {
   children: ReactNode;
 }
 export const UserContext = createContext<IUserProps>({} as IUserProps);
-
 const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
-  const [user, setUser] = useState<IUser>({} as IUser)
+  const [seller, setSeller] = useState<IUser | undefined>();
 
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
-  const [id, setId] = useState<string | undefined>();
+  const [userId, setUserId] = useState<string | undefined>();
+  const [editModalUser, setEditModalUser] = useState<boolean>(false);
+  const [deleteModalUser, setDeleteModalUser] = useState<boolean>(false);
+
+  const { user, setUser } = useContext(LoginContext);
 
   const navigate = useNavigate();
 
   const listAnnouncementProfile = () => {
     api
-      .get(`/users/${id}`)
+      .get(`/users/${userId}`)
       .then((res) => {
-        setUser(res.data)
+        setSeller(res.data);
         setAnnoucementUser(res.data.annoucements);
       })
       .catch((err) => {
@@ -100,22 +125,47 @@ const UserProvider = ({ children }: IProviderChildren) => {
   };
 
   useEffect(() => {
-    if (id !== undefined) {
+    if (userId !== undefined) {
       listAnnouncementProfile();
     }
-  }, [id]);
+  }, [userId]);
 
   const handleRegisterUser = async (data: FieldValues) => {
     await api
       .post("/users", data)
       .then((res) => {
-        console.log(res.data);
         toast.success("usuário cadastrado com sucesso");
         navigate("/login", { replace: true });
       })
       .catch((err) => {
         console.log(err);
         toast.error("erro durante o cadastro. Tente novamente");
+      });
+  };
+
+  const handleEdit = async (data: IEditForm) => {
+    await api
+      .patch(`/users`, data)
+      .then((response) => {
+        setUser(response.data);
+        setEditModalUser(false);
+        toast.success("informações atualizadas com sucesso");
+      })
+      .catch((err) => {
+        toast.error("erro ao atualizar informações");
+      });
+  };
+
+  const handleDelete = async () => {
+    await api
+      .delete(`/user/${userId}`)
+      .then((response) => {
+        setDeleteModalUser(false);
+        window.localStorage.removeItem("@motorshop:token");
+        navigate("/", { replace: true });
+      })
+      .catch((err) => {
+        toast.error("erro ao excluir usuário");
       });
   };
 
@@ -126,15 +176,20 @@ const UserProvider = ({ children }: IProviderChildren) => {
         setAnnoucementUser,
         isAdvertiser,
         setIsAdvertiser,
-        setId,
+        setUserId,
+        editModalUser,
+        setEditModalUser,
+        deleteModalUser,
+        setDeleteModalUser,
         listAnnouncementProfile,
         handleRegisterUser,
-        user
+        handleEdit,
+        handleDelete,
+        seller,
       }}
     >
       {children}
     </UserContext.Provider>
   );
 };
-
 export default UserProvider;

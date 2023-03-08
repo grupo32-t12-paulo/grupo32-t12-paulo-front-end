@@ -6,15 +6,13 @@ import { useContext } from "react";
 import { IHandleRegisterUser, UserContext } from "../../contexts/user.context";
 
 const Register = () => {
-  const { handleRegisterUser, isAdvertiser, setIsAdvertiser } =
-    useContext(UserContext);
-  console.log("oi", handleRegisterUser);
+  const { handleRegisterUser, setIsAdvertiser } = useContext(UserContext);
 
   const formRegister = yup.object().shape({
     name: yup.string().required("campo obrigatório"),
     email: yup
       .string()
-      .email("digite um emmail válido")
+      .email("digite um email válido")
       .required("campo obrigatório"),
     password: yup
       .string()
@@ -36,12 +34,14 @@ const Register = () => {
       .string()
       .required("campo obrigatório")
       .min(10, "minimo 10 caracteres"),
-    // cep: yup.string().required("campo obrigatório"),
-    // state: yup.string().required("ex: DF"),
-    // city: yup.string().required("campo obrigatório"),
-    // street: yup.string().required("campo obrigatório"),
-    // number: yup.string().required("campo obrigatório"),
-    // complement: yup.string().required("campo obrigatório"),
+    address: yup.object().shape({
+      cep: yup.string().required("campo obrigatório"),
+      state: yup.string().required("ex: DF"),
+      city: yup.string().required("campo obrigatório"),
+      street: yup.string().required("campo obrigatório"),
+      number: yup.string().required("campo obrigatório"),
+      complement: yup.string().required("campo obrigatório"),
+    }),
   });
 
   const {
@@ -187,6 +187,7 @@ const Register = () => {
 
           <div className="button-buyer-advertiser">
             <button
+              autoFocus={true}
               type="button"
               className="button-buyer"
               onClick={() => setIsAdvertiser(true)}

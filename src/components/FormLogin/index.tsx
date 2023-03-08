@@ -74,7 +74,7 @@ const Login = () => {
             <button
               type="button"
               className="cadastrar"
-              onClick={() => navigate("login")}
+              onClick={() => navigate("/register-user")}
             >
               Cadastrar
             </button>
