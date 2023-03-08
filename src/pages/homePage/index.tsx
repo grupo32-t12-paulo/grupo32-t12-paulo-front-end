@@ -107,7 +107,12 @@ const HomePage = () => {
               }}
             >
               {motorcycles.map((motorcycle) => (
-                <ListItem>
+                <ListItem
+                  onClick={() =>
+                    navigate(`announcement/${motorcycle.annoucementId}`)
+                  }
+                  sx={{ ":hover": { cursor: "pointer" } }}
+                >
                   <MediaCard
                     title={motorcycle.title}
                     image={motorcycle.coverImage}

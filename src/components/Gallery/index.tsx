@@ -15,14 +15,12 @@ interface IChildren {
 
 export default function GalleryGrid({ arrImages }: IChildren) {
   if (arrImages) {
-    console.log(arrImages);
     if (arrImages.length < 6) {
       let acc = arrImages.length;
       arrImages.map((image, index) => {
         if (index === arrImages.length - 1) {
           while (acc < 6) {
             arrImages.push(image);
-            console.log(arrImages);
 
             acc = acc + 1;
           }
