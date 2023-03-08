@@ -42,8 +42,6 @@ const ProductPage = () => {
     }
   }, [announcement, comments]);
 
-  console.log(announcement?.user.id);
-
   return conditional ? (
     <>
       <AppBarComponent />
@@ -66,9 +64,7 @@ const ProductPage = () => {
                     />
                   </>
                 )}
-                {comments && (
-                  <ListComments comments={comments} userId={user?.id} />
-                )}
+                {comments && <ListComments userId={user?.id} />}
                 <InputComment />
               </Grid>
               <Grid item xs={4}>
@@ -108,7 +104,7 @@ const ProductPage = () => {
                 userId={announcement.user.id}
               />
             )}
-            {comments && <ListComments comments={comments} userId={user?.id} />}
+            {comments && <ListComments userId={user?.id} />}
             <InputComment />
           </Box>
         </Container>
