@@ -39,7 +39,7 @@ export default function CardSellerInfo({
 
   function handleRedirect() {
     if (user?.id === userId) {
-      navigate(`/profileAdmin/${user?.id}`);
+      navigate(`/profileAdmin`);
     } else {
       navigate(`/advertiser-profile/${userId}`);
     }
