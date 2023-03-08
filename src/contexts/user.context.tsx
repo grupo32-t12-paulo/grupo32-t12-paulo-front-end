@@ -160,7 +160,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
 
   const handleDelete = async () => {
     await api
-      .delete(`/user/${userId}`)
+      .delete(`/users`)
       .then((response) => {
         setDeleteModalUser(false);
         window.localStorage.removeItem("@motorshop:token");

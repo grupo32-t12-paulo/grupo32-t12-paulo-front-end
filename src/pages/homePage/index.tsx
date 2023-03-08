@@ -10,6 +10,8 @@ import { AnnouncementContext } from "../../contexts/announcement.context";
 
 const HomePage = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
+  console.log("cars", cars);
+  console.log("moto", motorcycles);
   const navigate = useNavigate();
 
   return (
