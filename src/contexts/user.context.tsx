@@ -101,6 +101,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
+
   const [seller, setSeller] = useState<IUser | undefined>();
 
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);

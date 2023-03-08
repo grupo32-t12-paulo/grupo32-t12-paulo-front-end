@@ -17,7 +17,7 @@ const HomePage = () => {
       <AppBarComponent />
       <CardHeader />
 
-      <Box sx={{ ml: { md: 15, xs: 7 }, mt: 6 }}>
+      <Box id="auction" sx={{ ml: { md: 15, xs: 7 }, mt: 6 }}>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
@@ -44,12 +44,12 @@ const HomePage = () => {
         </List>
       </Box>
 
-      <Box sx={{ ml: { md: 15, xs: 7 } }}>
+      <Box id="cars" sx={{ ml: { md: 15, xs: 7 } }}>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
         >
-          <span id="cars">Carros</span>
+          <span>Carros</span>
         </Typography>
         {cars.length ? (
           <List
@@ -90,12 +90,12 @@ const HomePage = () => {
           </h2>
         )}
 
-        <Box>
+        <Box id="motorcycle">
           <Typography
             variant="h5"
             style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
           >
-            <span id="motorcycle">Motos</span>
+            <span>Motos</span>
           </Typography>
           {motorcycles.length ? (
             <List

@@ -2,7 +2,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Avatar } from "@mui/material";
+import { Avatar, Modal } from "@mui/material";
 import { useContext } from "react";
 import { LoginContext } from "../../contexts/login.context";
 import CreateAnnouncement from "../CreateAnnouncement";
@@ -10,12 +10,14 @@ import CreateAnnouncement from "../CreateAnnouncement";
 export default function CardInfoSeller() {
   const { user } = useContext(LoginContext);
   return (
-    <div
-      style={{
-        width: "100%",
+    <Card
+      sx={{
+        minWidth: "343px",
         maxWidth: "1240px",
         height: "394px",
         backgroundColor: "#FDFDFD",
+        marginLeft: "16px",
+        marginRight: "16px",
       }}
     >
       <CardContent
@@ -68,6 +70,10 @@ export default function CardInfoSeller() {
         </div>
         <Typography
           style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            gap: "60px",
             color: "#495057",
             fontWeight: "400",
             fontSize: "16px",
@@ -76,9 +82,12 @@ export default function CardInfoSeller() {
           }}
         >
           {user?.description}
+          {user?.isAdvertiser ?
+            <CreateAnnouncement edit={false} />
+            : null
+          }
         </Typography>
-        <CreateAnnouncement create={true} />
       </CardContent>
-    </div>
+    </Card>
   );
 }
