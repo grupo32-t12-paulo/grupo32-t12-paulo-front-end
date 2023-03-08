@@ -46,7 +46,7 @@ export default function MediaCard({
   }
 
   return (
-    <Card sx={{ width: "302px", boxShadow: "unset", minHeight: 356 }}>
+    <Card sx={{ width: "302px", backgroundColor: "transparent", boxShadow: "unset", minHeight: 356 }}>
       <CardMedia
         sx={{
           width: "100%",
@@ -57,7 +57,7 @@ export default function MediaCard({
         image={image}
         title="green iguana"
       />
-      <CardContent sx={{ padding: "0" }}>
+      <CardContent sx={{ padding: "0", backgroundColor: "transparent" }}>
         <Typography
           gutterBottom
           variant="h5"
