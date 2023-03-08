@@ -59,7 +59,7 @@ const InputComment = () => {
         ) : (
           <></>
         )}
-        <Typography sx={{ ml: 1 }}>{user?.name}</Typography>
+        <Typography sx={{ ml: 1 }}>{" " + user?.name}</Typography>
       </Box>
 
       <form onSubmit={(e) => postComment(e)}>
