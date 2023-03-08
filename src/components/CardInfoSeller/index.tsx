@@ -2,12 +2,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Avatar } from "@mui/material";
+import { Avatar, Modal } from "@mui/material";
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/login.context";
+import CreateAnnouncement from "../CreateAnnouncement";
 
 export default function CardInfoSeller() {
+  const { user } = useContext(LoginContext);
   return (
     <Card
-      style={{
+      sx={{
         minWidth: "343px",
         maxWidth: "1240px",
         height: "394px",
@@ -45,7 +49,7 @@ export default function CardInfoSeller() {
               color: "#212529",
             }}
           >
-            Everton Vieira
+            {user?.name}{" "}
           </Typography>
           <Button
             variant="contained"
@@ -66,6 +70,10 @@ export default function CardInfoSeller() {
         </div>
         <Typography
           style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            gap: "60px",
             color: "#495057",
             fontWeight: "400",
             fontSize: "16px",
@@ -73,9 +81,11 @@ export default function CardInfoSeller() {
             textAlign: "justify",
           }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
+          {user?.description}
+          {user?.isAdvertiser ?
+            <CreateAnnouncement edit={false} />
+            : null
+          }
         </Typography>
       </CardContent>
     </Card>

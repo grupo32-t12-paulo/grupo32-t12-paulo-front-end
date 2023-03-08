@@ -1,9 +1,8 @@
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useRef } from "react";
-import { useMediaQuery } from "@mui/material";
+import { Box, Popover, useMediaQuery } from "@mui/material";
 
 export default function BackToTop() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -15,10 +14,9 @@ export default function BackToTop() {
   };
 
   return (
-    <div
+    <Box
       ref={headerRef}
       style={{
-        bottom: 0,
         minWidth: "100%",
         height: isScreenSizeLarge ? "140px" : "310px",
         backgroundColor: "#0B0D0D",
@@ -26,6 +24,7 @@ export default function BackToTop() {
         alignItems: "center",
         justifyContent: isScreenSizeLarge ? "space-around" : "center",
         flexDirection: isScreenSizeLarge ? "row" : "column",
+        position: "relative",
       }}
     >
       <img
@@ -62,6 +61,6 @@ export default function BackToTop() {
           <ArrowDropUpIcon style={{ color: "#FFFFFF" }} />
         </Button>
       </div>
-    </div>
+    </Box>
   );
 }

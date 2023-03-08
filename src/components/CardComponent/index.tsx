@@ -4,28 +4,78 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
+import CreateAnnouncement from "../CreateAnnouncement";
 
-export default function MediaCard() {
+interface IChildren {
+  title: string;
+  image: string;
+  description: string;
+  seller: string | undefined;
+  km: number;
+  year: number;
+  price: string;
+  annoucementId?: string;
+  edit?: boolean;
+}
+
+export default function MediaCard({
+  title,
+  image,
+  description,
+  seller,
+  km,
+  year,
+  price,
+  annoucementId,
+  edit,
+}: IChildren) {
+  let letters = "";
+  if (seller) {
+    const arrName = seller.split(" ");
+    if (arrName.length > 1) {
+      const first = arrName[0].split("");
+      const final = arrName[arrName.length - 1].split("");
+      const letterFirst = first[0];
+      const letterFinal = final[0];
+      letters = `${letterFirst}${letterFinal}`;
+    } else {
+      const first = arrName[0].split("");
+      const letterFirst = first[0];
+      letters = `${letterFirst}`;
+    }
+  }
+
+  price = Number(price).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
   return (
-    <Card sx={{ maxWidth: 312, boxShadow: "unset" }}>
+    <Card sx={{ width: "302px", backgroundColor: "transparent", boxShadow: "unset", minHeight: 356 }}>
       <CardMedia
-        sx={{ height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
-        image="https://i.ibb.co/JBPx8BM/EXTERIOR-front-Side-Pilot-Near-1653845164710-removebg-preview-1.png"
+        sx={{
+          width: "100%",
+          height: 152,
+          backgroundColor: "#E9ECEF",
+          paddingTop: "10px",
+        }}
+        image={image}
         title="green iguana"
       />
-      <CardContent sx={{ padding: "0" }}>
+      <CardContent sx={{ padding: "0", backgroundColor: "transparent" }}>
         <Typography
           gutterBottom
           variant="h5"
           component="div"
-          style={{ 
+          style={{
             paddingTop: "5px",
-            fontFamily: "Lexend", 
-            fontWeight: "600", 
-            fontSize: "16px" 
+            fontFamily: "Lexend",
+            fontWeight: "600",
+            fontSize: "16px",
+            margin: 4,
           }}
         >
-          Modelo do carro
+          {title}
         </Typography>
         <Typography
           variant="body2"
@@ -34,10 +84,10 @@ export default function MediaCard() {
             fontFamily: "Inter",
             fontSize: "14px",
             textAlign: "justify",
+            margin: 4,
           }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text
+          {description}
         </Typography>
         <div
           style={{
@@ -45,11 +95,16 @@ export default function MediaCard() {
             alignItems: "center",
             justifyContent: "left",
             gap: "10px",
-            marginTop: "10px",
+            marginTop: "14px",
             marginBottom: "10px",
+            marginLeft: 4,
           }}
         >
-          <Avatar alt="Everton Vieira" src="/static/images/avatar/1.jpg" sx={{ width: 32, height: 32, fontSize: "14px", backgroundColor: "#4529E6" }} />
+          <Avatar
+            alt={letters}
+            src="/static/images/avatar/1.jpg"
+            sx={{ width: 32, height: 32 }}
+          />
           <Typography
             variant="body1"
             style={{
@@ -59,7 +114,7 @@ export default function MediaCard() {
               fontSize: "14px",
             }}
           >
-            Everton Vieira
+            {seller}
           </Typography>
         </div>
         <div
@@ -67,14 +122,15 @@ export default function MediaCard() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            margin: 4,
+            marginTop: 15,
           }}
         >
-          <div style={{ display: "flex", gap: "10px", padding: "0" }}>
+          <div style={{ display: "flex", gap: "7px", padding: "0" }}>
             <Button
-              variant="contained"
               style={{
-                width: "50px",
-                height: "32px",
+                width: "85px",
+                flexWrap: "nowrap",
                 backgroundColor: "#EDEAFD",
                 fontWeight: "500",
                 fontSize: "14px",
@@ -82,13 +138,11 @@ export default function MediaCard() {
                 boxShadow: "unset",
               }}
             >
-              KM
+              KM {km}
             </Button>
             <Button
               variant="contained"
               style={{
-                width: "50px",
-                height: "32px",
                 backgroundColor: "#EDEAFD",
                 fontWeight: "500",
                 fontSize: "14px",
@@ -96,7 +150,7 @@ export default function MediaCard() {
                 boxShadow: "unset",
               }}
             >
-              2019
+              {year}
             </Button>
           </div>
           <Typography
@@ -107,11 +161,13 @@ export default function MediaCard() {
               fontSize: "16px",
               textAlign: "justify",
               lineHeight: "20px",
+              marginRight: "10px",
             }}
           >
-            R$ 00.000,00
+            {price}
           </Typography>
         </div>
+        {edit ? <CreateAnnouncement annoucementId={annoucementId} edit={true} /> : null}
       </CardContent>
     </Card>
   );

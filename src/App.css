@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #4A3E3E;
+  /* A altura só é vista quando a rolagem é horizontal */
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  padding: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #7E9292;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: black transparent;
+}
