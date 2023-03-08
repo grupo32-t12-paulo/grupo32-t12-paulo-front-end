@@ -19,6 +19,13 @@ export const Container = styled.div`
   background-color: #212529c7;
   border-radius: 4px;
   z-index: 999;
+
+  p{
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: -40px;
+  }
 `;
 
 export const Modal = styled.div`
@@ -83,6 +90,10 @@ export const Form = styled.form`
     color: var(--whiteFixed);
     font-weight: var(--button-medium-text);
   }
+  .buttonCancel{
+    width: 126px;
+    height: 40px;
+  }
 
   .buttonAuction,
   .buttonMotorcycle {
@@ -91,7 +102,7 @@ export const Form = styled.form`
 
     margin-bottom: 20px;
 
-    border: 1px solid var(--grey3);
+    border: 1px solid var(--brand1);
     background-color: var(--whiteFixed);
     font-weight: var(--button-medium-text);
   }
@@ -139,7 +150,7 @@ export const Form = styled.form`
   }
 
   span {
-    background-color: var(--brand4);
+    // background-color: var(--brand4);
     color: var(--brand1);
 
     text-align: center;
@@ -159,6 +170,7 @@ export const Form = styled.form`
 
     .buttonSale,
     .buttonCar {
+      border: 1px solid var(--brand1);
       width: 160px;
     }
 

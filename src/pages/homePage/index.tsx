@@ -17,7 +17,7 @@ const HomePage = () => {
       <AppBarComponent />
       <CardHeader />
 
-      <Box sx={{ ml: { md: 15, xs: 7 }, mt: 6 }}>
+      <Box id="auction" sx={{ ml: { md: 15, xs: 7 }, mt: 6 }}>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
@@ -71,7 +71,7 @@ const HomePage = () => {
                   image={car.coverImage}
                   km={car.mileage}
                   price={car.price}
-                  seller={car.adType}
+                  seller={car.user.name}
                   year={car.year}
                   key={car.annoucementId}
                 />
@@ -112,7 +112,7 @@ const HomePage = () => {
                     title={motorcycle.title}
                     image={motorcycle.coverImage}
                     description={motorcycle.description}
-                    seller={motorcycle.adType}
+                    seller={motorcycle.user.name}
                     km={motorcycle.mileage}
                     year={motorcycle.year}
                     price={motorcycle.price}

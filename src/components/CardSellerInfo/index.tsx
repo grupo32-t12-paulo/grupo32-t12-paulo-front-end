@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
 import { Box } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/login.context";
 
 interface IChildren {
   name: string;
@@ -19,6 +21,7 @@ export default function CardSellerInfo({
   image,
   userId,
 }: IChildren) {
+  const { user } = useContext(LoginContext);
   const arrName = name.split(" ");
   let letters = "";
   if (arrName.length > 1) {
@@ -28,12 +31,19 @@ export default function CardSellerInfo({
     const letterFinal = final[0];
     letters = `${letterFirst}${letterFinal}`;
   } else {
-    console.log(letters.length);
     const first = arrName[0].split("");
     const letterFirst = first[0];
     letters = `${letterFirst}`;
   }
   const navigate = useNavigate();
+
+  function handleRedirect() {
+    if (user?.id === userId) {
+      navigate(`/profileAdmin/${user?.id}`);
+    } else {
+      navigate(`/advertiser-profile/${userId}`);
+    }
+  }
 
   return (
     <Card
@@ -116,7 +126,7 @@ export default function CardSellerInfo({
             pr: 4,
             pl: 4,
           }}
-          onClick={() => navigate(`/advertiser-profile/${userId}`)}
+          onClick={() => handleRedirect()}
         >
           Ver todos anuncios
         </Button>

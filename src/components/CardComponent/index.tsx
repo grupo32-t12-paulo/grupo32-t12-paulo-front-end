@@ -10,7 +10,7 @@ interface IChildren {
   title: string;
   image: string;
   description: string;
-  seller: string;
+  seller: string | undefined;
   km: number;
   year: number;
   price: string;
@@ -29,13 +29,33 @@ export default function MediaCard({
   annoucementId,
   edit,
 }: IChildren) {
+  let letters = "";
+  if (seller) {
+    const arrName = seller.split(" ");
+    if (arrName.length > 1) {
+      const first = arrName[0].split("");
+      const final = arrName[arrName.length - 1].split("");
+      const letterFirst = first[0];
+      const letterFinal = final[0];
+      letters = `${letterFirst}${letterFinal}`;
+    } else {
+      const first = arrName[0].split("");
+      const letterFirst = first[0];
+      letters = `${letterFirst}`;
+    }
+  }
 
   return (
-    <Card sx={{ width: "312px", boxShadow: "unset", minHeight: 356 }}>
+    <Card sx={{ width: "302px", boxShadow: "unset", minHeight: 356 }}>
       <CardMedia
-        sx={{ width: "100%", height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
+        sx={{
+          width: "100%",
+          height: 152,
+          backgroundColor: "#E9ECEF",
+          paddingTop: "10px",
+        }}
         image={image}
-        title=""
+        title="green iguana"
       />
       <CardContent sx={{ padding: "0" }}>
         <Typography
@@ -76,7 +96,7 @@ export default function MediaCard({
           }}
         >
           <Avatar
-            alt={seller}
+            alt={letters}
             src="/static/images/avatar/1.jpg"
             sx={{ width: 32, height: 32 }}
           />
@@ -103,10 +123,8 @@ export default function MediaCard({
         >
           <div style={{ display: "flex", gap: "7px", padding: "0" }}>
             <Button
-
               style={{
                 width: "85px",
-                height: "38px",
                 flexWrap: "nowrap",
                 backgroundColor: "#EDEAFD",
                 fontWeight: "500",
@@ -144,7 +162,7 @@ export default function MediaCard({
             R$ {price}
           </Typography>
         </div>
-        {edit ? <CreateAnnouncement annoucementId={annoucementId} /> : null}
+        {edit ? <CreateAnnouncement annoucementId={annoucementId} edit={true} /> : null}
       </CardContent>
     </Card>
   );
