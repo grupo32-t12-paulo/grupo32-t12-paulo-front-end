@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import AdvertiserUser from "../pages/advertiserUser";
 import ProductPage from "../pages/product";
 import HomePage from "../pages/homePage";
@@ -22,6 +22,7 @@ const RouteApllication = () => {
       <Route path="/profileAdmin/:id" element={<ProfileViewAdmin />} />
       <Route path="/announcement/:id" element={<ProductPage />} />
       <Route path="/recover-password/:id/:token" element={<ResetPassword />} />
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
 };
