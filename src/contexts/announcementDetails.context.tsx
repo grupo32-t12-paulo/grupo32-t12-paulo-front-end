@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 import { UserContext } from "./user.context";
 import { useContext } from "react";
 
-
 interface IProviderChildren {
   children: ReactNode;
 }
@@ -55,20 +54,23 @@ interface IUser {
 }
 
 interface IHandleAnnouncementes {
-  title?: string,
-  adType?: string,
-  year?: number,
-  mileage?: number,
-  price?: number,
-  description?: string,
-  vehicleType?: string,
-  coverImage?: string,
+  title?: string;
+  adType?: string;
+  year?: number;
+  mileage?: number;
+  price?: number;
+  description?: string;
+  vehicleType?: string;
+  coverImage?: string;
 }
 
 interface IAnnouncementDetailsContext {
   handleAnnouncement: (data: IHandleAnnouncementes) => Promise<void>;
   handleDeleteAnnouncements: (annoucementId: any) => void;
-  handleUpdateAnnouncements: (data: IHandleAnnouncementes, announcementsId: string) => Promise<void>;
+  handleUpdateAnnouncements: (
+    data: IHandleAnnouncementes,
+    announcementsId: string
+  ) => Promise<void>;
   announcement: undefined | IAnnouncement;
   comments: undefined | IComment[];
   setId: Dispatch<SetStateAction<undefined | string>>;
@@ -91,22 +93,20 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
   const token = localStorage.getItem("@motorshop:token");
 
   async function handleAnnouncement(data: IHandleAnnouncementes) {
-
-    api.post(
-      "/announcements", data
-      , {
-        headers:
-        {
-          Authorization: `Bearer ${token}`
+    api
+      .post("/announcements", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      }
-    ).then(() => {
-      listAnnouncementProfile()
-      toast.success("anuncio criado com sucesso!");
-    }).catch(() => {
-      toast.error("algo inesperado aconteceu");
-    });
-  };
+      })
+      .then(() => {
+        listAnnouncementProfile();
+        toast.success("anuncio criado com sucesso!");
+      })
+      .catch(() => {
+        toast.error("algo inesperado aconteceu");
+      });
+  }
 
   async function refreshData() {
     if (id) {
@@ -114,13 +114,8 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
         .get(`/announcements/${id}`)
         .then((response) => setAnnouncement(response.data))
         .catch((error) => console.error(error));
-      await api
-        .get(`/announcements/${id}/comments`)
-        .then((response) => setComments(response.data))
-        .catch((error) => console.error(error));
     } else {
       setAnnouncement(undefined);
-      setComments(undefined);
     }
   }
 
@@ -143,45 +138,42 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
       .catch((err) => console.error(err));
   }
 
-  async function handleUpdateAnnouncements(data: IHandleAnnouncementes, announcementsId: string) {
+  async function handleUpdateAnnouncements(
+    data: IHandleAnnouncementes,
+    announcementsId: string
+  ) {
     // const obj = Object.keys(data).forEach((e) => { if (data[e] === "") { delete data.e } })
     // console.log(obj)
-    api.patch(
-      `/announcements/${announcementsId}`
-      ,
-      data
-      ,
-      {
-        headers:
-        {
-          Authorization: `Bearer ${token}`
+    api
+      .patch(`/announcements/${announcementsId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      }
-    ).then((res) => {
-      listAnnouncementProfile()
-      // toast.success("anuncio atualizado!")
-    }).catch(() => {
-      toast.error("algo inesperado aconteceu");
-    });
-  };
+      })
+      .then((res) => {
+        listAnnouncementProfile();
+        // toast.success("anuncio atualizado!")
+      })
+      .catch(() => {
+        toast.error("algo inesperado aconteceu");
+      });
+  }
 
   async function handleDeleteAnnouncements(announcementsId: string) {
-    api.delete(
-      `/announcements/${announcementsId}`
-      ,
-      {
-        headers:
-        {
-          Authorization: `Bearer ${token}`
+    api
+      .delete(`/announcements/${announcementsId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      }
-    ).then((res) => {
-      listAnnouncementProfile()
-      toast.success("anuncio deletado!")
-    }).catch(() => {
-      toast.error("algo inesperado aconteceu");
-    });
-  };
+      })
+      .then((res) => {
+        listAnnouncementProfile();
+        toast.success("anuncio deletado!");
+      })
+      .catch(() => {
+        toast.error("algo inesperado aconteceu");
+      });
+  }
 
   async function refreshListComments() {
     await api
@@ -191,14 +183,12 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
   }
 
   useEffect(() => {
-    refreshData();
-  }, [id]);
-
-  useEffect(() => {
-    setTimeout(() => {
+    setComments(undefined);
+    if (id) {
+      refreshData();
       refreshListComments();
-    }, 15000);
-  }, [comments]);
+    }
+  }, [id]);
 
   return (
     <AnnouncementDetailsContext.Provider
