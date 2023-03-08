@@ -3,7 +3,7 @@ import { useMediaQuery } from "@mui/material";
 import { Link } from "react-scroll"
 
 export const CardHeader = () => {
-  const isScreenSizeLarge = useMediaQuery("(max-width: 372px)");
+  const isScreenSizeLarge = useMediaQuery("(max-width: 380px)");
 
   return (
     <header
@@ -14,7 +14,7 @@ export const CardHeader = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        background: "#5126EA",
+        background: "var(--brand2)",
         gap: "40px",
         padding: "0 20px",
       }}
@@ -25,7 +25,7 @@ export const CardHeader = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          background: "#5126EA",
+          background: "var(--brand2)",
           gap: "20px",
         }}
       >
@@ -34,7 +34,8 @@ export const CardHeader = () => {
             maxWidth: "748px",
             fontSize: "44px",
             textAlign: "center",
-            color: "#EDEAFD",
+            color: "var(--brand4)",
+            paddingTop: isScreenSizeLarge ? "50px" : "0px", 
             margin: "0",
           }}
         >
@@ -45,7 +46,7 @@ export const CardHeader = () => {
             maxWidth: "388px",
             fontSize: "16px",
             textAlign: "center",
-            color: "#EDEAFD",
+            color: "var(--brand4)",
           }}
         >
           Um ambiente feito para você explorar o seu melhor
@@ -66,10 +67,10 @@ export const CardHeader = () => {
           <Button
             variant="outlined"
             style={{
-              width: "182px",
+              width: isScreenSizeLarge ? "350px" : "182px", 
               height: "48px",
-              color: "#ffffff",
-              border: "1px solid #ffffff",
+              color: "var(--whiteFixed)",
+              border: "1px solid var(--whiteFixed)",
             }}
           >
             <p style={{ textDecoration: "none", color: "#FFF" }}>Carros</p>
@@ -80,13 +81,13 @@ export const CardHeader = () => {
           <Button
             variant="outlined"
             style={{
-              width: "182px",
+              width: isScreenSizeLarge ? "350px" : "182px", 
               height: "48px",
-              color: "#ffffff",
-              border: "1px solid #ffffff",
+              color: "var(--whiteFixed)",
+              border: "1px solid var(--whiteFixed)",
             }}
           >
-            <p style={{ textDecoration: "none", color: "#FFF" }}>Motos</p>
+            <p style={{ textDecoration: "none", color: "var(--whiteFixed)" }}>Motos</p>
           </Button>
         </Link>
       </div>
