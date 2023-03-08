@@ -22,7 +22,6 @@ import { toast } from "react-toastify";
 import { AnnouncementDetailsContext } from "../../contexts/announcementDetails.context";
 
 interface IChildren {
-  comments: IComment[];
   userId: string | undefined;
 }
 
@@ -50,8 +49,9 @@ interface IUser {
   letters: string;
 }
 
-export default function ListComments({ comments, userId }: IChildren) {
+export default function ListComments({ userId }: IChildren) {
   const { refreshListComments } = useContext(AnnouncementDetailsContext);
+  const { comments } = useContext(AnnouncementDetailsContext);
   const [openEditComment, setOpenEditComment] = useState(false);
   const [comment, setComment] = useState<undefined | IComment>();
   const handleOpenEditComment = () => {
@@ -93,7 +93,7 @@ export default function ListComments({ comments, userId }: IChildren) {
       .catch((error) => toast.error("Erro ao apagar comentário"));
   }
 
-  comments.map((comment) => {
+  comments?.map((comment) => {
     const arrName = comment.user.name.split(" ");
     let letters = "";
     if (arrName.length > 1) {
@@ -103,7 +103,6 @@ export default function ListComments({ comments, userId }: IChildren) {
       const letterFinal = final[0];
       letters = `${letterFirst}${letterFinal}`;
     } else {
-      console.log(letters.length);
       const first = arrName[0].split("");
       const letterFirst = first[0];
       letters = `${letterFirst}`;
@@ -135,7 +134,7 @@ export default function ListComments({ comments, userId }: IChildren) {
           >
             Comentários
           </Typography>
-          {comments.map((comment) => (
+          {comments?.map((comment) => (
             <ListItem
               key={comment.id}
               alignItems="flex-start"
