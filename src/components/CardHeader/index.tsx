@@ -62,7 +62,7 @@ export const CardHeader = () => {
           gap: "10px",
         }}
       >
-        <Link to="cars" activeClass="active" spy={true} smooth={true} offset={-100} duration={500}>
+        <Link to="cars" activeClass="active" spy={true} smooth={true} offset={-100} duration={500} delay={100}>
           <Button
             variant="outlined"
             style={{
@@ -76,7 +76,7 @@ export const CardHeader = () => {
           </Button>
         </Link>
         
-        <Link to="motorcycle" activeClass="active" spy={true} smooth={true} offset={-100} duration={500}>
+        <Link to="motorcycle" activeClass="active" spy={true} smooth={true} offset={-100} duration={500} delay={100}>
           <Button
             variant="outlined"
             style={{
