@@ -17,7 +17,7 @@ const HomePage = () => {
       <AppBarComponent />
       <CardHeader />
 
-      <Box sx={{ ml: { md: 15, xs: 7 }, mt: 6 }}>
+      <Box id="auction" sx={{ ml: { md: 15, xs: 7 }, mt: 6 }}>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
