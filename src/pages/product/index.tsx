@@ -12,9 +12,12 @@ import GalleryGrid from "../../components/Gallery";
 import InputComment from "../../components/inputComment";
 import ListComments from "../../components/ListComments";
 import { AnnouncementDetailsContext } from "../../contexts/announcementDetails.context";
+import { LoginContext } from "../../contexts/login.context";
 import { ContainerRoot } from "./style";
 
 const ProductPage = () => {
+  const { user } = useContext(LoginContext);
+  console.log(user);
   const [conditional, setConditional] = useState<true | false>(false);
   const { setId, announcement, comments } = useContext(
     AnnouncementDetailsContext
@@ -59,7 +62,9 @@ const ProductPage = () => {
                     />
                   </>
                 )}
-                {comments && <ListComments comments={comments} />}
+                {comments && (
+                  <ListComments comments={comments} userId={user?.id} />
+                )}
                 <InputComment />
               </Grid>
               <Grid item xs={4}>
@@ -99,7 +104,7 @@ const ProductPage = () => {
                 userId={announcement.user.id}
               />
             )}
-            {comments && <ListComments comments={comments} />}
+            {comments && <ListComments comments={comments} userId={user?.id} />}
             <InputComment />
           </Box>
         </Container>

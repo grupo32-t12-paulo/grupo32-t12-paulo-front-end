@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import ModalEditProfile from "../ModalEditProfile";
 import ModalAddress from "../ModalAddress";
 import { LoginContext } from "../../contexts/login.context";
+import { Link } from "react-scroll";
 import { UserContext } from "../../contexts/user.context";
 import { AddressContext } from "../../contexts/address.context";
 
@@ -24,8 +25,6 @@ export default function AppBarComponent() {
   const { editModalUser, setEditModalUser } = useContext(UserContext);
   const { editModalAddress, setEditModalAddress } = useContext(AddressContext);
 
-  const [editProfile, setEditProfile] = useState(false);
-  const [editAddress, setEditAddress] = useState(false);
   const photo = false;
   let letters = "";
   if (user) {
@@ -42,11 +41,19 @@ export default function AppBarComponent() {
       letters = `${letterFirst}`;
     }
   }
+  const scrollConfig = {
+    activeClass: "active",
+    spy: true,
+    smooth: true,
+    offset: -100,
+    duration: 500,
+    delay: 100
+  };
   const navigate = useNavigate();
   const pages = [
-    { name: "Carros", to: "/" },
-    { name: "Motos", to: "/" },
-    { name: "Leilão", to: "/" },
+    { name: "Carros", to: "cars" },
+    { name: "Motos", to: "motorcycle"},
+    { name: "Leilão", to: "auction"},
   ];
 
   let settings = [
@@ -68,8 +75,8 @@ export default function AppBarComponent() {
     return value === "Editar perfil"
       ? setEditModalUser(true)
       : value === "Editar endereço"
-        ? setEditModalAddress(true)
-        : null;
+      ? setEditModalAddress(true)
+      : null;
   };
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -94,7 +101,7 @@ export default function AppBarComponent() {
     <>
       {editModalUser ? <ModalEditProfile /> : null}
       {editModalAddress ? <ModalAddress /> : null}
-      <AppBar color="inherit" elevation={0} variant="outlined">
+      <AppBar color="inherit" elevation={0} sx={{ zIndex: 1 }} variant="outlined">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Logo */}
@@ -306,24 +313,29 @@ export default function AppBarComponent() {
               }}
             >
               {pages.map((page) => (
-                <Button
-                  variant="text"
+                <Link
+                  to={page.to}
                   key={page.name}
+                  {...scrollConfig}
                   onClick={() => {
-                    navigate(`page.to`);
-                    return handleCloseNavMenu();
-                  }}
-                  sx={{
-                    my: 2,
-                    mr: 1,
-                    color: "#495057",
-                    display: "block",
-                    fontWeight: 400,
-                    textTransform: "capitalize",
+                    navigate(`/${page.to}`);
+                    handleCloseNavMenu();
                   }}
                 >
-                  {page.name}
-                </Button>
+                  <Button
+                    variant="text"
+                    sx={{
+                      my: 2,
+                      mr: 1,
+                      color: "#495057",
+                      display: "block",
+                      fontWeight: 400,
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {page.name}
+                  </Button>
+                </Link>
               ))}
               <Divider
                 orientation="vertical"

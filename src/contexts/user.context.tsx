@@ -37,8 +37,7 @@ interface IUserProps {
 
   handleDelete: () => void;
 
-  userAll: IUser;
-
+  seller: IUser | undefined;
 }
 
 interface IAddress {
@@ -63,8 +62,6 @@ export interface IUser {
   isAdvertiser?: boolean;
   annoucements?: IAnnouncement[];
 }
-
-
 export interface IHandleRegisterUser {
   name: string;
   email: string;
@@ -100,12 +97,12 @@ export interface IProviderChildren {
   children: ReactNode;
 }
 export const UserContext = createContext<IUserProps>({} as IUserProps);
-
 const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
-  const [userAll, setUserAll] = useState<IUser>({} as IUser)
+
+  const [seller, setSeller] = useState<IUser | undefined>();
 
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | undefined>();
@@ -120,8 +117,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .get(`/users/${userId}`)
       .then((res) => {
-        setUserAll(res.data)
-        setUser(res.data)
+        setSeller(res.data);
         setAnnoucementUser(res.data.annoucements);
       })
       .catch((err) => {
@@ -139,7 +135,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
     await api
       .post("/users", data)
       .then((res) => {
-        console.log(res.data);
         toast.success("usuário cadastrado com sucesso");
         navigate("/login", { replace: true });
       })
@@ -151,7 +146,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
 
   const handleEdit = async (data: IEditForm) => {
     await api
-      .patch(`/users/${user?.id}`, data)
+      .patch(`/users`, data)
       .then((response) => {
         setUser(response.data);
         setEditModalUser(false);
@@ -191,12 +186,11 @@ const UserProvider = ({ children }: IProviderChildren) => {
         handleRegisterUser,
         handleEdit,
         handleDelete,
-        userAll
+        seller,
       }}
     >
       {children}
     </UserContext.Provider>
   );
 };
-
 export default UserProvider;
