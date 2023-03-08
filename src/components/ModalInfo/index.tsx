@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router";
 
 const style = {
   position: "absolute" as "absolute",
@@ -13,20 +14,23 @@ const style = {
   padding: "16px",
   bgcolor: "background.paper",
   borderRadius: "8px",
-  '@media (min-width: 375px)': {
+  "@media (min-width: 375px)": {
     minWidth: "320px",
     maxWidth: "520px",
   },
 };
 
-export default function ModalInfo() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+interface IChildren {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function ModalInfo({ open, setOpen }: IChildren) {
   const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -34,13 +38,13 @@ export default function ModalInfo() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div
+          <Box
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              paddingTop: "18px",
-              paddingBottom: "48px",
+              paddingTop: "10",
+              paddingBottom: "15",
             }}
           >
             <Typography
@@ -57,8 +61,8 @@ export default function ModalInfo() {
             >
               Sucesso!
             </Typography>
-            <CloseIcon onClick={handleClose} style={{cursor:"pointer"}} />
-          </div>
+            <CloseIcon onClick={handleClose} style={{ cursor: "pointer" }} />
+          </Box>
           <Typography
             id="modal-modal-description"
             sx={{ mt: 2 }}
@@ -85,18 +89,22 @@ export default function ModalInfo() {
             Agora você poderá ver seus negócios crescendo em grande escala
           </Typography>
           <Button
-              style={{
-                backgroundColor: "#4529E6",
-                borderRadius: "4px",
-                width: "132px",
-                height: "38px",
-                textTransform: "none",
-                color: "#FFFFFF",
-                fontFamily: "Inter",
-                fontSize: "14px",
-                fontWeight: "600",
-              }}
-            >
+            style={{
+              backgroundColor: "#4529E6",
+              borderRadius: "4px",
+              width: "132px",
+              height: "38px",
+              textTransform: "none",
+              color: "#FFFFFF",
+              fontFamily: "Inter",
+              fontSize: "14px",
+              fontWeight: "600",
+            }}
+            onClick={() => {
+              navigate("/login");
+              setOpen(false);
+            }}
+          >
             Ir para o login
           </Button>
         </Box>
