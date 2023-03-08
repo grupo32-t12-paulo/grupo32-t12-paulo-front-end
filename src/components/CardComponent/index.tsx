@@ -31,11 +31,11 @@ export default function MediaCard({
 }: IChildren) {
 
   return (
-    <Card sx={{ width: "312px", boxShadow: "unset", minHeight: 356 }}>
+    <Card sx={{ width: "302px", boxShadow: "unset", minHeight: 356 }}>
       <CardMedia
-        sx={{ width: "100%", height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
+        sx={{ height: 152, backgroundColor: "#E9ECEF", paddingTop: "10px" }}
         image={image}
-        title=""
+        title="green iguana"
       />
       <CardContent sx={{ padding: "0" }}>
         <Typography
@@ -103,10 +103,9 @@ export default function MediaCard({
         >
           <div style={{ display: "flex", gap: "7px", padding: "0" }}>
             <Button
-
+              variant="contained"
               style={{
                 width: "85px",
-                height: "38px",
                 flexWrap: "nowrap",
                 backgroundColor: "#EDEAFD",
                 fontWeight: "500",
@@ -144,7 +143,7 @@ export default function MediaCard({
             R$ {price}
           </Typography>
         </div>
-        {edit ? <CreateAnnouncement annoucementId={annoucementId} /> : null}
+        {edit ? <CreateAnnouncement annoucementId={annoucementId} edit={true} /> : null}
       </CardContent>
     </Card>
   );

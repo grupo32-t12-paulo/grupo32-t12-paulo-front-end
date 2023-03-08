@@ -11,6 +11,7 @@ import api from "../services/api";
 import { toast } from "react-toastify";
 import { UserContext } from "./user.context";
 
+
 interface IProviderChildren {
   children: ReactNode;
 }
@@ -83,6 +84,7 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
   const [announcement, setAnnouncement] = useState<undefined | IAnnouncement>(
     undefined
   );
+
 
   const { listAnnouncementProfile } = useContext(UserContext);
 
@@ -167,7 +169,7 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
       }
     ).then((res) => {
       listAnnouncementProfile()
-      toast.success("anuncio atualizado!")
+      // toast.success("anuncio atualizado!")
     }).catch(() => {
       toast.error("algo inesperado aconteceu");
     });
