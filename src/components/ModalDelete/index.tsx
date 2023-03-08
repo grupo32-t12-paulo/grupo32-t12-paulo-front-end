@@ -32,7 +32,7 @@ export default function ModalDelete({ annoucementId }: IProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const { handleDeleteAnnouncements } = useContext(AnnouncementDetailsContext);
+  const { handleDeleteAnnouncements } = useContext(AnnouncementDetailsContext);
 
   return (
     <>
@@ -51,8 +51,8 @@ export default function ModalDelete({ annoucementId }: IProps) {
       <Modal
         open={open}
         onClose={handleClose}
-        // aria-labelledby="modal-modal-title"
-        // aria-describedby="modal-modal-description"
+      // aria-labelledby="modal-modal-title"
+      // aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <div
@@ -132,7 +132,7 @@ export default function ModalDelete({ annoucementId }: IProps) {
             </Button>
             <Button
               onClick={(e) => {
-                // handleDeleteAnnouncements(annoucementId);
+                handleDeleteAnnouncements(annoucementId);
               }}
               style={{
                 backgroundColor: "#FDD8D8",

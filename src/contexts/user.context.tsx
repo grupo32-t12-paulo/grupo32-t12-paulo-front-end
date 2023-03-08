@@ -42,6 +42,8 @@ interface IUserProps {
   open: boolean;
 
   setOpen: Dispatch<SetStateAction<boolean>>;
+
+  userAll: IUser;
 }
 
 interface IAddress {
@@ -107,7 +109,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
-
+  const [userAll, setUserAll] = useState<IUser>({} as IUser)
   const [seller, setSeller] = useState<IUser | undefined>();
 
   const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
@@ -123,6 +125,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .get(`/users/${userId}`)
       .then((res) => {
+        setUserAll(res.data)
         setSeller(res.data);
         setAnnoucementUser(res.data.annoucements);
       })
@@ -194,6 +197,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         seller,
         open,
         setOpen,
+        userAll
       }}
     >
       {children}
