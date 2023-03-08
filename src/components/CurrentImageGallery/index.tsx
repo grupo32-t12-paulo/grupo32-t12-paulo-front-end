@@ -1,5 +1,4 @@
 import { Card, CardActionArea, CardMedia } from "@mui/material";
-import { Box, Container } from "@mui/system";
 import { useContext } from "react";
 import { CurrentImageGalleryContext } from "../../contexts/gallery.context";
 
