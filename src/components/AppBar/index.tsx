@@ -59,7 +59,7 @@ export default function AppBarComponent() {
     settings = [
       { name: "Editar perfil", to: "/" },
       { name: "Editar endereço", to: "/" },
-      { name: "Meus Anúncios", to: "/advertiser-profile" },
+      { name: "Meus Anúncios", to: "/profileAdmin" },
       { name: "Sair", to: "/" },
     ];
   }
@@ -68,8 +68,8 @@ export default function AppBarComponent() {
     return value === "Editar perfil"
       ? setEditModalUser(true)
       : value === "Editar endereço"
-      ? setEditModalAddress(true)
-      : null;
+        ? setEditModalAddress(true)
+        : null;
   };
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -94,7 +94,7 @@ export default function AppBarComponent() {
     <>
       {editModalUser ? <ModalEditProfile /> : null}
       {editModalAddress ? <ModalAddress /> : null}
-      <AppBar color="inherit" elevation={0} sx={{ zIndex: 1 }} variant="outlined">
+      <AppBar color="inherit" elevation={0} variant="outlined">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Logo */}

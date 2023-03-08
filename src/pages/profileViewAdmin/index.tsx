@@ -8,21 +8,27 @@ import MediaCard from "../../components/CardComponent";
 import CardInfoSeller from "../../components/CardInfoSeller";
 import { UserContext } from "../../contexts/user.context";
 import { title } from "process";
+import decode from "jwt-decode";
+
+interface IToken {
+  id: string;
+  isActive: boolean;
+  isAdvertiser: boolean;
+}
 
 export default function ProfileViewAdmin() {
-  const { annoucementUser, setId, user } = useContext(UserContext);
-
-  const { id } = useParams()
-  setId(id)
-
+  const { annoucementUser, setUserId, userAll } = useContext(UserContext);
+  const token = localStorage.getItem("@motorshop:token");
+  const resJWT: IToken = decode(`${token}`);
+  setUserId(`${resJWT.id}`)
 
   return (
     <main
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "200px",
-        // background: "#E9ECEF"
+        gap: "15rem",
+        background: "#F1F3F5",
       }}
     >
       <header
@@ -49,7 +55,16 @@ export default function ProfileViewAdmin() {
         </div>
       </header>
 
-      <Box sx={{ ml: { md: 6, xs: 7 }, mt: 6 }}>
+      <Box sx={
+        {
+          ml: { md: 6, xs: 7 },
+          mt: 6,
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+        }
+      }
+      >
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)" }}
@@ -65,25 +80,33 @@ export default function ProfileViewAdmin() {
           }}
         >
           <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-            <ActionAreaCard />
+            <ActionAreaCard edit={true} />
           </ListItem>
           <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-            <ActionAreaCard />
+            <ActionAreaCard edit={true} />
           </ListItem>
           <ListItem sx={{ minWidth: { md: 725, xs: 420 } }}>
-            <ActionAreaCard />
+            <ActionAreaCard edit={true} />
           </ListItem>
         </List>
       </Box>
 
-      <Box sx={{ ml: { md: 6, xs: 7, minHeight: 350 } }}>
+      <Box sx={
+        {
+          ml: { md: 6, xs: 7 },
+          minHeight: 350,
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+        }
+      }>
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)" }}
         >
           Carros
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {userAll.annoucements?.find(e => e.vehicleType === "car") ? (
           <List
             sx={{
               display: "flex",
@@ -91,15 +114,15 @@ export default function ProfileViewAdmin() {
               pb: 2,
             }}
           >
-            {user.annoucements?.map((car) => {
+            {userAll.annoucements?.map((car) => {
               if (car.vehicleType === "car") {
                 return (
-                  <ListItem sx={{ maxWidth: { md: 305 } }}>
+                  <ListItem sx={{ maxWidth: { md: 312 } }}>
                     <MediaCard
                       title={car.title}
                       image={car.coverImage}
                       description={car.description}
-                      seller={user.name}
+                      seller={userAll.name}
                       km={car.mileage}
                       year={car.year}
                       price={`${car.price}`}
@@ -114,23 +137,34 @@ export default function ProfileViewAdmin() {
         ) : (
           <h2
             style={{
-              margin: "20px",
+              width: "100%",
+              height: "356px",
               fontSize: "1rem",
-              fontWeight: "var(--Heading-2-600)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: "var(--grey2)",
             }}
           >
-            Não há anúncio de motos no momento
+            Não há anúncio de carros no momento
           </h2>
         )}
       </Box>
-      <Box sx={{ ml: { md: 6, xs: 7 }, minHeight: 350 }} >
+      <Box sx={
+        {
+          ml: { md: 6, xs: 7 }, minHeight: 350,
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+        }
+      } >
         <Typography
           variant="h5"
           style={{ fontWeight: "var(--Heading-2-600)" }}
         >
           Motos
         </Typography>
-        {user.annoucements?.length !== 0 ? (
+        {userAll.annoucements?.find(e => e.vehicleType === "motocycle") ? (
           <List
             sx={{
               p: 0,
@@ -147,7 +181,7 @@ export default function ProfileViewAdmin() {
                       title={motorcycle.title}
                       image={motorcycle.coverImage}
                       description={motorcycle.description}
-                      seller={user.name}
+                      seller={userAll.name}
                       km={motorcycle.mileage}
                       year={motorcycle.year}
                       price={motorcycle.price}
@@ -162,8 +196,13 @@ export default function ProfileViewAdmin() {
         ) : (
           <h2
             style={{
+              width: "100%",
+              height: "356px",
               fontSize: "1rem",
-              fontWeight: "var(--Heading-2-600)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: "var(--grey2)",
             }}
           >
             Não há anúncio de motos no momento
