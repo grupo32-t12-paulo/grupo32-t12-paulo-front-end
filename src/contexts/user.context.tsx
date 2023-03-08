@@ -38,6 +38,10 @@ interface IUserProps {
   handleDelete: () => void;
 
   seller: IUser | undefined;
+
+  open: boolean;
+
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 interface IAddress {
@@ -97,7 +101,9 @@ export interface IProviderChildren {
   children: ReactNode;
 }
 export const UserContext = createContext<IUserProps>({} as IUserProps);
+
 const UserProvider = ({ children }: IProviderChildren) => {
+  const [open, setOpen] = useState(false);
   const [annoucementUser, setAnnoucementUser] = useState<IAnnouncement[] | []>(
     []
   );
@@ -135,8 +141,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     await api
       .post("/users", data)
       .then((res) => {
-        toast.success("usuário cadastrado com sucesso");
-        navigate("/login", { replace: true });
+        setOpen(true);
       })
       .catch((err) => {
         console.log(err);
@@ -187,6 +192,8 @@ const UserProvider = ({ children }: IProviderChildren) => {
         handleEdit,
         handleDelete,
         seller,
+        open,
+        setOpen,
       }}
     >
       {children}
