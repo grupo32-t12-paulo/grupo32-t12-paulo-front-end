@@ -12,13 +12,14 @@ import GalleryGrid from "../../components/Gallery";
 import InputComment from "../../components/inputComment";
 import ListComments from "../../components/ListComments";
 import { AnnouncementDetailsContext } from "../../contexts/announcementDetails.context";
+import { CurrentImageGalleryContext } from "../../contexts/gallery.context";
 import { LoginContext } from "../../contexts/login.context";
 import { ContainerRoot } from "./style";
 
 const ProductPage = () => {
   const { user } = useContext(LoginContext);
-  console.log(user);
   const [conditional, setConditional] = useState<true | false>(false);
+  const { setCurrentImage } = useContext(CurrentImageGalleryContext);
   const { setId, announcement, comments } = useContext(
     AnnouncementDetailsContext
   );
@@ -28,6 +29,7 @@ const ProductPage = () => {
   const images: string[] = [];
   if (announcement) {
     images.push(announcement.coverImage);
+    setCurrentImage(announcement.coverImage);
   } else {
     images.push("");
   }
@@ -39,6 +41,8 @@ const ProductPage = () => {
       setConditional(false);
     }
   }, [announcement, comments]);
+
+  console.log(announcement?.user.id);
 
   return conditional ? (
     <>
