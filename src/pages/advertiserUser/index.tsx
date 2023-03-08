@@ -39,7 +39,11 @@ const AdvertiserUser = () => {
           </Box>
           <Typography
             variant="h5"
-            style={{ fontWeight: "var(--Heading-2-600)", margin: "20px" }}
+            style={{
+              fontWeight: "var(--Heading-2-600)",
+              marginTop: "80px",
+              marginLeft: "20px",
+            }}
           >
             Carros
           </Typography>
