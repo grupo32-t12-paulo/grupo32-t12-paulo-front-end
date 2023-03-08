@@ -45,6 +45,11 @@ export default function MediaCard({
     }
   }
 
+  price = Number(price).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
   return (
     <Card sx={{ width: "312px", boxShadow: "unset", minHeight: 356 }}>
       <CardMedia
@@ -160,7 +165,7 @@ export default function MediaCard({
               marginRight: "10px",
             }}
           >
-            R$ {price}
+            {price}
           </Typography>
         </div>
         {edit ? <CreateAnnouncement annoucementId={annoucementId} /> : null}
