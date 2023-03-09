@@ -10,7 +10,7 @@ import { UserContext } from "../../contexts/user.context";
 import { title } from "process";
 import decode from "jwt-decode";
 import BackToTop from "../../components/Footer/index";
-import CardInfoAdvertiser from "../../components/CardInfoAdvertiser";
+import CardInfoAdvertiserUser from "../../components/CardInfoAdvertiserUser";
 
 
 interface IToken {
@@ -55,7 +55,7 @@ export default function ProfileViewAdmin() {
               top: "150px",
             }}
           >
-            <CardInfoAdvertiser />
+            <CardInfoAdvertiserUser />
           </div>
         </header>
 

@@ -38,6 +38,7 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
 
   const [open, setOpen] = useState(false)
   const [type, setType] = useState(false)
+  const [active, setActive] = useState(false)
   const [typeVehicle, setTypeVehicle] = useState(false)
   const navigate = useNavigate();
 
@@ -236,6 +237,38 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
                       }}
                     >
                       Moto
+                    </button>
+                  </div>
+
+                  <h3>Publicado</h3>
+                  <div className="sale-auction">
+                    <button className="buttonSale"
+                      type="button"
+                      style={
+                        {
+                          background: `${active ? "#4529E6" : "#ffffff"}`,
+                          color: `${active ? "#ffffff" : "#4529E6"}`
+                        }
+                      }
+                      onClick={() => {
+                        setActive(true)
+                      }}
+                    >
+                      Sim
+                    </button>
+                    <button className="buttonAuction"
+                      type="button"
+                      style={
+                        {
+                          background: `${!active ? "#4529E6" : "#ffffff"}`,
+                          color: `${active ? "#4529E6" : "#ffffff"}`,
+                        }
+                      }
+                      onClick={() => {
+                        setActive(false)
+                      }}
+                    >
+                      Não
                     </button>
                   </div>
 

@@ -39,6 +39,7 @@ export default function ModalDelete({ annoucementId }: IProps) {
       <Button
         onClick={handleOpen}
         style={{
+          textTransform: "none",
           height: "40px",
           minWidth: "202px",
           background: "#DEE2E6",
