@@ -2,8 +2,8 @@ import AppBarComponent from "../../components/AppBar";
 import MediaCard from "../../components/CardComponent";
 import BackToTop from "../../components/Footer";
 import { ContainerRoot } from "./style";
-import { Container } from "@mui/joy";
-import { List, ListItem } from "@mui/material";
+import { Container, Stack } from "@mui/joy";
+import { CardMedia, Chip, List, ListItem } from "@mui/material";
 import { Box, Typography } from "@material-ui/core";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
@@ -65,15 +65,55 @@ const AdvertiserUser = () => {
                       navigate(`/announcement/${car.annoucementId}`)
                     }
                   >
-                    <MediaCard
-                      title={car.title}
-                      image={car.coverImage}
-                      description={car.description}
-                      seller={seller?.name}
-                      km={car.mileage}
-                      year={car.year}
-                      price={car.price}
-                    />
+                    <Container>
+                      <Box sx={{ display: "flex", flexDirection: "column" }}>
+                        {car.isActive === true ? (
+                          <Stack
+                            direction="row"
+                            sx={{
+                              display: "flex",
+                              position: "absolute",
+                              backgroundColor: "var(--brand1)",
+                              color: "var(--whiteFixed)",
+                              margin: "10px",
+                              padding: "3px 6px",
+                              zIndex: "1",
+                              fontSize: "0.8rem",
+                            }}
+                            spacing={1}
+                          >
+                            Ativo
+                          </Stack>
+                        ) : (
+                          <Stack
+                            direction="row"
+                            sx={{
+                              display: "flex",
+                              position: "absolute",
+                              backgroundColor: "var(--grey4)",
+                              color: "var(--whiteFixed)",
+                              margin: "10px",
+                              padding: "3px 6px",
+                              zIndex: "1",
+                              fontSize: "0.8rem",
+                            }}
+                            spacing={1}
+                          >
+                            Inativo
+                          </Stack>
+                        )}
+                      </Box>
+
+                      <MediaCard
+                        title={car.title}
+                        image={car.coverImage}
+                        description={car.description}
+                        seller={seller?.name}
+                        km={car.mileage}
+                        year={car.year}
+                        price={car.price}
+                      />
+                    </Container>
                   </ListItem>
                 );
               })
@@ -110,6 +150,44 @@ const AdvertiserUser = () => {
                         navigate(`/announcement/${motorcycle.annoucementId}`)
                       }
                     >
+                      <Box sx={{ display: "flex", flexDirection: "column" }}>
+                        {motorcycle.isActive === true ? (
+                          <Stack
+                            direction="row"
+                            sx={{
+                              display: "flex",
+                              position: "absolute",
+                              backgroundColor: "var(--brand1)",
+                              color: "var(--whiteFixed)",
+                              margin: "10px",
+                              padding: "3px 6px",
+                              zIndex: "1",
+                              fontSize: "0.8rem",
+                            }}
+                            spacing={1}
+                          >
+                            Ativo
+                          </Stack>
+                        ) : (
+                          <Stack
+                            direction="row"
+                            sx={{
+                              display: "flex",
+                              position: "absolute",
+                              backgroundColor: "var(--grey4)",
+                              color: "var(--whiteFixed)",
+                              margin: "10px",
+                              padding: "3px 6px",
+                              zIndex: "1",
+                              fontSize: "0.8rem",
+                            }}
+                            spacing={1}
+                          >
+                            Inativo
+                          </Stack>
+                        )}
+                      </Box>
+
                       <MediaCard
                         title={motorcycle.title}
                         image={motorcycle.coverImage}

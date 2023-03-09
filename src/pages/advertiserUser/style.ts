@@ -10,8 +10,8 @@ export const ContainerRoot = styled.div`
   @media (min-width: 769px) {
     background: linear-gradient(
       180deg,
-      rgba(69, 41, 230, 1) 35%,
-      rgba(248, 249, 250, 1) 35%
+      rgba(69, 41, 230, 1) 30%,
+      rgba(248, 249, 250, 1) 30%
     );
   }
 `;
