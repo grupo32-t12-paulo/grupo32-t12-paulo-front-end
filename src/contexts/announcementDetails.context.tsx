@@ -54,14 +54,14 @@ interface IUser {
 }
 
 interface IHandleAnnouncementes {
-  title: string;
-  adType: string;
-  year: number;
-  mileage: number;
-  price: number;
-  description: string;
-  vehicleType: string;
-  coverImage: string;
+  title?: string;
+  adType?: string;
+  year?: number;
+  mileage?: number;
+  price?: number;
+  description?: string;
+  vehicleType?: string;
+  coverImage?: string;
 }
 
 interface IAnnouncementDetailsContext {
