@@ -47,13 +47,13 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
       .required("Título obrigatório"),
     adType: yup.string(),
     year: yup.string().nullable().required("Ano brigatório"),
-    mileage: yup.string().required("Quilometragem obrigatória"),
+    mileage: yup.string().required("km obrigatória"),
     price: yup.string().required("Preço obrigatório"),
-    description: yup.string().required("Descrição obrigatória"),
+    description: yup.string().notRequired(),
     vehicleType: yup.string(),
-    coverImage: yup.string().required("Imagem de capa obrigatória"),
-    firstImage: yup.string().required("Imagem de galeria obrigatória"),
-    secondImage: yup.string().required("Imagem de galeria obrigatória")
+    coverImage: yup.string().notRequired(),
+    firstImage: yup.string().notRequired(),
+    secondImage: yup.string().notRequired()
   });
 
   interface IForm {
@@ -151,6 +151,7 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
                     type="text"
                     id="title"
                     placeholder="Digitar título"
+                    defaultValue={product?.title}
                     {...register("title")}
                   />
                   {errors.title && <p>{errors.title.message}</p>}
@@ -164,6 +165,7 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
                           type="number"
                           id="year"
                           placeholder="Digitar ano"
+                          defaultValue={product?.year}
                           {...register("year")}
                         />
                         {errors.year && <p>{errors.year.message}</p>}
@@ -176,6 +178,7 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
                           type="number"
                           id="mileage"
                           placeholder="Digitar quilometragem"
+                          defaultValue={product?.mileage}
                           {...register("mileage")}
                         />
                         {errors.mileage && <p>{errors.mileage.message}</p>}
@@ -189,6 +192,7 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
                         type="number"
                         id="price"
                         placeholder="Digitar preço"
+                        defaultValue={product?.price}
                         {...register("price")}
                       />
                       {errors.price && <p>{errors.price.message}</p>}
@@ -198,6 +202,7 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
                   <label htmlFor="description">Descrição</label>
                   <textarea id="description"
                     placeholder="Digitar descrição"
+                    defaultValue={product?.description}
                     {...register("description")}
                   />
                   {errors.description && <p>{errors.description.message}</p>}
@@ -239,18 +244,21 @@ const CreateAnnouncement = ({ annoucementId, edit }: IProps) => {
                     type="text"
                     id="coverImage"
                     placeholder="https://image.com"
+                    defaultValue={product?.coverImage}
                     {...register("coverImage")}
                   />
                   {errors.coverImage && <p>{errors.coverImage.message}</p>}
                   <label htmlFor="firstImage">1ª imagem da galeria</label>
                   <input type="text" id="firstImage"
                     placeholder="https://image.com"
+                    defaultValue={product?.firstImage}
                     {...register("firstImage")}
                   />
                   {errors.firstImage && <p>{errors.firstImage.message}</p>}
                   <label htmlFor="secondImage">2ª imagem da galeria</label>
                   <input type="text" id="secondImage"
                     placeholder="https://image.com"
+                    defaultValue={product?.secondImage}
                     {...register("secondImage")}
                   />
                   {errors.secondImage && <p>{errors.secondImage.message}</p>}

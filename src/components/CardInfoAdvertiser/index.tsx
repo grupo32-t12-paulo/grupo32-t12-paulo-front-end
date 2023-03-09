@@ -4,8 +4,12 @@ import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
+import { LoginContext } from "../../contexts/login.context";
+import CreateAnnouncement from "../CreateAnnouncement";
 
 export default function CardInfoAdvertiser() {
+  const { user } = useContext(LoginContext);
+
   const { seller } = useContext(UserContext);
   let letters = "";
   if (seller) {
@@ -84,6 +88,10 @@ export default function CardInfoAdvertiser() {
         </div>
         <Typography
           style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            gap: "60px",
             color: "#495057",
             fontWeight: "400",
             fontSize: "16px",
@@ -92,6 +100,10 @@ export default function CardInfoAdvertiser() {
           }}
         >
           {seller?.description}
+          {user?.isAdvertiser ?
+            <CreateAnnouncement edit={false} />
+            : null
+          }
         </Typography>
       </CardContent>
     </div>
