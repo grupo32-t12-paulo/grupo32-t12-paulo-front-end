@@ -50,14 +50,38 @@ export default function MediaCard({
     currency: "BRL",
   });
 
+  const randomColorAvatar = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+
+    return color;
+  };
+
   return (
-    <Card sx={{ width: "302px", backgroundColor: "transparent", boxShadow: "unset", minHeight: 356 }}>
+    <Card
+      sx={{
+        width: "302px",
+        backgroundColor: "transparent",
+        boxShadow: "unset",
+        minHeight: 356,
+      }}
+    >
       <CardMedia
         sx={{
           width: "100%",
           height: 152,
           backgroundColor: "#E9ECEF",
           paddingTop: "10px",
+          WebkitTransition: "webkitTransform .5s ease",
+          transition: "transform .5s ease",
+          ":hover": {
+            WebkitTransform: "scale(1.1)",
+            transform: "scale(1.1)",
+          },
         }}
         image={image}
         title="green iguana"
@@ -103,7 +127,11 @@ export default function MediaCard({
           <Avatar
             alt={letters}
             src="/static/images/avatar/1.jpg"
-            sx={{ width: 32, height: 32 }}
+            sx={{
+              width: 32,
+              height: 32,
+              backgroundColor: randomColorAvatar(),
+            }}
           />
           <Typography
             variant="body1"
@@ -167,7 +195,9 @@ export default function MediaCard({
             {price}
           </Typography>
         </div>
-        {edit ? <CreateAnnouncement annoucementId={annoucementId} edit={true} /> : null}
+        {edit ? (
+          <CreateAnnouncement annoucementId={annoucementId} edit={true} />
+        ) : null}
       </CardContent>
     </Card>
   );

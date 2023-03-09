@@ -30,7 +30,9 @@ export default function GalleryGrid({ arrImages }: IChildren) {
   }
   const photos = arrImages;
 
-  const { setCurrentImage, setOpen } = useContext(CurrentImageGalleryContext);
+  const { setCurrentImage, setOpen, handleImageError } = useContext(
+    CurrentImageGalleryContext
+  );
 
   useEffect(() => {
     setOpen(false);
@@ -92,6 +94,7 @@ export default function GalleryGrid({ arrImages }: IChildren) {
                   }}
                   component="img"
                   image={photo}
+                  onError={handleImageError}
                 />
               </Card>
             </CardActionArea>

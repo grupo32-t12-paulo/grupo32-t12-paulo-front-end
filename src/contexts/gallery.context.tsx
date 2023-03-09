@@ -4,7 +4,9 @@ import {
   ReactNode,
   SetStateAction,
   Dispatch,
+  SyntheticEvent,
 } from "react";
+import imageError from "../assets/image.png";
 
 interface ICurrentImageGalleryContextChildren {
   children: ReactNode;
@@ -17,6 +19,7 @@ interface ICurrentImageGalleryContext {
   setOpen: Dispatch<SetStateAction<boolean>>;
   handleOpenModal: () => void;
   handleCloseModal: () => void;
+  handleImageError: (event: SyntheticEvent<HTMLImageElement>) => void;
 }
 
 export const CurrentImageGalleryContext =
@@ -36,6 +39,10 @@ export const CurrentImageGalleryProvider = ({
     setOpen(false);
   }
 
+  const handleImageError = (event: SyntheticEvent<HTMLImageElement>) => {
+    event.currentTarget.src = imageError;
+  };
+
   return (
     <CurrentImageGalleryContext.Provider
       value={{
@@ -45,6 +52,7 @@ export const CurrentImageGalleryProvider = ({
         setOpen,
         handleOpenModal,
         handleCloseModal,
+        handleImageError,
       }}
     >
       {children}

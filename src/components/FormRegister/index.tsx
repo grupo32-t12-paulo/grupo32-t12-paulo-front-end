@@ -15,10 +15,10 @@ const Register = () => {
     email: yup
       .string()
       .email("digite um email válido")
-      .required("campo obrigatório"),
+      .required("email obrigatório"),
     password: yup
       .string()
-      .required("campo obrigatorio")
+      .required("senha obrigatória")
       .min(4, "A senha deve conter pelo menos 8 caracteres")
       .matches(
         new RegExp("^(?=.*[a-za-z])(?=.*[0-9])(?=.*[!@#$%^&*])"),
@@ -29,20 +29,21 @@ const Register = () => {
       .string()
       .required("Confirmação de senha obrigatória")
       .equals([yup.ref("password"), null], "A senha não corresponde"),
-    cpf: yup.string().required("campo obrigatório"),
-    cellPhone: yup.string().required("campo obrigatório"),
-    dateBirth: yup.string().required("campo obrigatório"),
+    cpf: yup.string().required("ex: 000.000.000-00"),
+    cellPhone: yup.string().required("(00)90000-0000"),
+    dateBirth: yup.string().required("ex: dd/mm/aaa"),
     description: yup
       .string()
       .required("campo obrigatório")
-      .min(10, "minimo 10 caracteres"),
+      .min(10, "minimo 10 caracteres")
+      .max(350, "máximo de 350 caracteres"),
     address: yup.object().shape({
       cep: yup.string().required("campo obrigatório"),
       state: yup.string().required("ex: DF"),
       city: yup.string().required("campo obrigatório"),
       street: yup.string().required("campo obrigatório"),
       number: yup.string().required("campo obrigatório"),
-      complement: yup.string().required("campo obrigatório"),
+      complement: yup.string().optional(),
     }),
   });
 
@@ -183,7 +184,6 @@ const Register = () => {
                   placeholder="ex: apart 307"
                   {...register("address.complement")}
                 />
-                <p>{errors.address?.complement?.message}</p>
               </div>
             </div>
 
@@ -209,7 +209,7 @@ const Register = () => {
 
             <label htmlFor="password">Senha</label>
             <input
-              type="text"
+              type="password"
               id="password"
               placeholder="********"
               {...register("password")}
@@ -225,11 +225,7 @@ const Register = () => {
             />
             <p>{errors.verPassword?.message}</p>
 
-            <button
-              onClick={() => console.log("botão")}
-              type="submit"
-              className="buttonRegister"
-            >
+            <button type="submit" className="buttonRegister">
               Finalizar Cadastro
             </button>
           </Form>
