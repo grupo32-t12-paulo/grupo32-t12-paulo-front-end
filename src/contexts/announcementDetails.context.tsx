@@ -138,26 +138,26 @@ export function AnnouncementDetailsProvider({ children }: IProviderChildren) {
       .catch((err) => console.error(err));
   }
 
-  async function handleUpdateAnnouncements(
-    data: IHandleAnnouncementes,
-    announcementsId: string
-  ) {
-    // const obj = Object.keys(data).forEach((e) => { if (data[e] === "") { delete data.e } })
-    // console.log(obj)
-    api
-      .patch(`/announcements/${announcementsId}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+  async function handleUpdateAnnouncements(data: IHandleAnnouncementes, announcementsId: string) {
+    api.patch(
+      `/announcements/${announcementsId}`
+      ,
+      data
+      ,
+      {
+        headers:
+        {
+          Authorization: `Bearer ${token}`
         },
-      })
-      .then((res) => {
-        listAnnouncementProfile();
-        // toast.success("anuncio atualizado!")
-      })
-      .catch(() => {
-        toast.error("algo inesperado aconteceu");
-      });
-  }
+      }
+    ).then((res) => {
+      listAnnouncementProfile()
+      toast.success("anuncio atualizado!")
+    }).catch(() => {
+      toast.error("algo inesperado aconteceu");
+    });
+  };
+
 
   async function handleDeleteAnnouncements(announcementsId: string) {
     api
